@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link href="styles/register.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('includes/header') %>
+    <div class="container">
+      <div class="formbox register">
+        <form action="/api/users/register" id="registerform" method="POST">
+          <h1>Registration</h1>
+          <% if (req.query.error === "UsernameTaken") { %>
+          <div
+            class="error"
+            style="color: red; margin-bottom: 10px; text-align: center"
+          >
+            Username already taken.
+          </div>
+          <% } else if (req.query.error === "WeakPassword") { %>
+          <div
+            class="error"
+            style="color: red; margin-bottom: 10px; text-align: center"
+          >
+            Password does not meet strength requirements. Please ensure it has
+            at least 8 characters, one uppercase letter, one lowercase letter,
+            one number, and one special character.
+          </div>
+          <% } else if (req.query.error === "MissingFields") { %>
+          <div
+            class="error"
+            style="color: red; margin-bottom: 10px; text-align: center"
+          >
+            Please provide all required fields.
+          </div>
+          <% } %>
+          <div class="inputbox">
+            <input
+              type="text"
+              placeholder="Name"
+              required
+              name="name"
+              id="register-name"
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="inputbox">
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              name="username"
+              id="register-username"
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="inputbox">
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              name="email"
+              id="register-email"
+            />
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <div class="inputbox">
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              name="password"
+              id="register-password"
+            />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+
+          <input type="hidden" name="responseType" value="redirect" />
+          <button type="submit" class="btn">Register</button>
+          <p>or register with social platforms</p>
+          <div class="socialicons">
+            <a href="https://accounts.google.com/" target="_blank"
+              ><i class="bx bxl-google"></i
+            ></a>
+            <a href="https://www.facebook.com/" target="_blank"
+              ><i class="bx bxl-facebook"></i
+            ></a>
+            <a href="https://github.com/login" target="_blank "
+              ><i class="bx bxl-github"></i
+            ></a>
+            <a href="https://www.linkedin.com/login" target="_blank"
+              ><i class="bx bxl-linkedin"></i
+            ></a>
+          </div>
+        </form>
+      </div>
+      <div class="toggle-box">
+        <div class="toggle-panel toggle-right">
+          <h1>Welcome Back!</h1>
+          <p>Already have an account?</p>
+          <a href="/login">
+            <button class="btn login-btn">Login</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>

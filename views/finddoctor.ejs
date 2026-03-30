@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedLink</title>
+    <link rel="icon" href="/images/iconhead.jpg" />
+    <link rel="stylesheet" href="/styles/shine.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <input type="checkbox" id="check" name="" value="" />
+      <label for="check" id="checkbtn">
+        <i class="fa fa-bars"></i>
+      </label>
+      <label class="logo">
+        <img src="/images/icon.jpg" height="70px" width="150px" />
+      </label>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/services" class="active">Services</a></li>
+        <li><a href="/about">About us</a></li>
+        <li><a href="/contact">Contact us</a></li>
+        <li id="login">
+          <a href="/login">Login/Signup</a>
+        </li>
+        <li id="user-info" style="display: none">
+          <a href="#">Welcome, <span id="name"></span>!</a>
+          <a href="/api/logout" id="logout-btn">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="search-section">
+      <div class="search-container">
+        <h1>Search for a specialist and make an appointment</h1>
+        <p>
+          Select your doctor and preferred time slot to book your appointment
+        </p>
+        <div class="booking-form">
+          <select>
+            <option value="">Speciality / Doctor / Hospital</option>
+          </select>
+          <input type="text" placeholder="Location" />
+          <input type="date" />
+          <button>Search</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <div class="results-container">
+        <form class="filter-section" method="GET" action="/finddoctor">
+          <h2>Refine your search</h2>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search"
+            value="<%= typeof req.query.search !== 'undefined' ? req.query.search : '' %>"
+          />
+          <h3>Speciality</h3>
+          <select name="speciality">
+            <option value="">All Specialities</option>
+            <% (Array.isArray(specialities) ? specialities : []).forEach(s => { %>
+            <option value="<%= s.name %>" <%= req.query.speciality === s.name ? 'selected' : '' %>><%= s.name %></option>
+            <% }); %>
+          </select>
+          <h3>Qualification</h3>
+          <select name="qualification">
+            <option value="">All Qualifications</option>
+            <% ["MBBS", "MBBch", "MD", "DO"].forEach(q => { %>
+            <option value="<%= q %>" <%= req.query.qualification === q ? 'selected' : '' %>><%= q %></option>
+            <% }) %>
+          </select>
+
+          <button type="submit" class="update-search">Update search</button>
+        </form>
+
+        <div class="doctor-list">
+          <div class="list-header">
+            <select>
+              <option value="highest">Sort by: Highest rated</option>
+            </select>
+          </div>
+          <div class="doctor-cards">
+            <% (Array.isArray(doctors) ? doctors : []).forEach(d => { %>
+            <div class="doctor-card" tabindex="0">
+              <img src="/images/<%= d.img %>" alt="<%= d.name %>" />
+              <h3><%= d.name %></h3>
+              <p><%= d.field %></p>
+              <div
+                class="doctor-details"
+                style="display: none; text-align: left; margin-top: 10px"
+              >
+                <p><strong>Experience:</strong> <%= d.experience %></p>
+                <p><strong>Qualification:</strong> <%= d.qualification %></p>
+                <p><strong>Location:</strong> <%= d.location || 'Not specified' %></p>
+                <p><strong>Rating:</strong> <%= d.rating %> / 5</p>
+              </div>
+              <button
+                onclick="window.location.href='/Appointment?doctorId=<%= d._id %>'"
+                class="book-appointment-btn"
+              >
+                Book an Appointment
+              </button>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/js/home1.js"></script>
+    <script>
+      // Toggle doctor details on card click
+      document.querySelectorAll(".doctor-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const details = card.querySelector(".doctor-details");
+          if (
+            details.style.display === "none" ||
+            details.style.display === ""
+          ) {
+            details.style.display = "block";
+          } else {
+            details.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>

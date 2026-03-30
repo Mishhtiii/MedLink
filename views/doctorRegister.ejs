@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link href="/styles/login.css" rel="stylesheet" />
+    <link href="/styles/register.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- LAYOUT FIXES --- */
+
+      .container {
+        height: 700px !important;
+        position: relative;
+        overflow: hidden; /* Keeps everything neat inside */
+      }
+
+      /* 1. Force REGISTER FORM to the LEFT */
+      .formbox.register {
+        position: absolute !important;
+        left: 0 !important;
+        right: auto !important;
+        width: 50% !important;
+        height: 100% !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        z-index: 5 !important;
+        transition: none !important;
+      }
+
+      /* 2. Hide Login Form */
+      .formbox.login {
+        display: none !important;
+      }
+
+      /* 3. Force BLUE BACKGROUND to the RIGHT */
+      .toggle-box::before {
+        left: 50% !important;
+        width: 50% !important;
+        height: 100% !important;
+        border-radius: 0 30px 30px 0 !important;
+        transition: none !important;
+        z-index: 2 !important; /* Lower than the text panel */
+      }
+
+      /* 4. Force TEXT PANEL ("Welcome Back") to the RIGHT & ON TOP */
+      .toggle-panel.toggle-right {
+        right: 0 !important;
+        left: auto !important;
+        width: 50% !important;
+        height: 100% !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transition: none !important;
+        transform: none !important;
+        z-index: 10 !important; /* CRITICAL FIX: Sits on top of blue background */
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .toggle-panel.toggle-left {
+        display: none !important;
+      }
+
+      /* --- Step Wizard Styles --- */
+      .form-step {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      .form-step.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .inputbox {
+        margin: 15px 0 !important;
+      }
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .btn-half {
+        width: 50%;
+      }
+      .error-msg {
+        background: #ffe6e6;
+        color: #d93025;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('includes/header') %>
+
+    <div class="container" id="mainContainer">
+      <div class="formbox register">
+        <form
+          action="/doctorRegister"
+          method="POST"
+          enctype="multipart/form-data"
+          id="multiStepForm"
+        >
+          <h1>Doctor Registration</h1>
+
+          <% if (req.query.error === "UsernameTaken") { %>
+          <div class="error-msg">Username is already taken.</div>
+          <% } else if (req.query.error === "Length") { %>
+          <div class="error-msg">Password must be at least 8 characters.</div>
+          <% } else if (req.query.error === "MissingFields") { %>
+          <div class="error-msg">Please fill in all fields.</div>
+          <% } %>
+
+          <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px">
+            Step <span id="step-count">1</span> of 3
+          </p>
+
+          <div class="form-step active" id="step1">
+            <div class="inputbox">
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                required
+              /><i class="bx bxs-user"></i>
+            </div>
+            <div class="inputbox">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+              /><i class="bx bxs-user-badge"></i>
+            </div>
+            <div class="inputbox">
+              <input type="email" name="email" placeholder="Email" required /><i
+                class="bx bxs-envelope"
+              ></i>
+            </div>
+            <div class="inputbox">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              /><i class="bx bxs-lock-alt"></i>
+            </div>
+            <div class="inputbox">
+              <input type="tel" name="phone" placeholder="Phone" required /><i
+                class="bx bxs-phone"
+              ></i>
+            </div>
+            <button type="button" class="btn" onclick="nextStep(1)">
+              Next
+            </button>
+          </div>
+
+          <div class="form-step" id="step2">
+            <div class="inputbox">
+              <select
+                name="specialization"
+                required
+                style="
+                  width: 100%;
+                  padding: 13px 20px;
+                  border: none;
+                  background: #eee;
+                  border-radius: 8px;
+                "
+              >
+                <option value="">Select Speciality</option>
+                <option value="General practitioner">
+                  General practitioner
+                </option>
+                <option value="Dentistry">Dentistry</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="X-Ray">X-Ray</option>
+                <option value="Urology">Urology</option>
+                <option value="Psychiatry">Psychiatry</option>
+              </select>
+            </div>
+            <div class="inputbox">
+              <input
+                type="text"
+                name="qualification"
+                placeholder="Qualification (e.g. MBBS)"
+                required
+              /><i class="bx bxs-graduation"></i>
+            </div>
+            <div class="inputbox">
+              <input
+                type="text"
+                name="experience"
+                placeholder="Experience (e.g. 5 years)"
+                required
+              /><i class="bx bxs-time"></i>
+            </div>
+            <div class="inputbox">
+              <input
+                type="text"
+                name="hospital"
+                placeholder="Hospital Name"
+                required
+              /><i class="bx bxs-building"></i>
+            </div>
+            <div class="inputbox">
+              <input
+                type="text"
+                name="location"
+                placeholder="City"
+                required
+              /><i class="bx bxs-map"></i>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-half"
+                style="background: #777"
+                onclick="prevStep(2)"
+              >
+                Back
+              </button>
+              <button type="button" class="btn btn-half" onclick="nextStep(2)">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div class="form-step" id="step3">
+            <div class="inputbox">
+              <input
+                type="number"
+                name="fees"
+                placeholder="Fees (₹)"
+                required
+              /><i class="bx bxs-dollar-circle"></i>
+            </div>
+            <div class="inputbox">
+              <select
+                name="availability"
+                required
+                style="
+                  width: 100%;
+                  padding: 13px 20px;
+                  border: none;
+                  background: #eee;
+                  border-radius: 8px;
+                "
+              >
+                <option value="">Select Availability</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+                <option value="Full Day">Full Day</option>
+              </select>
+            </div>
+            <div class="inputbox" style="text-align: left">
+              <label style="font-size: 0.8rem; margin-left: 5px"
+                >Profile Image</label
+              >
+              <input
+                type="file"
+                name="image"
+                required
+                style="padding: 10px; width: 100%"
+              />
+            </div>
+            <input type="hidden" name="rating" value="0" />
+            <input type="hidden" name="responseType" value="redirect" />
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-half"
+                style="background: #777"
+                onclick="prevStep(3)"
+              >
+                Back
+              </button>
+              <button type="submit" class="btn btn-half">Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="toggle-box">
+        <div class="toggle-panel toggle-right">
+          <h1>Welcome Back!</h1>
+          <p>Already have a doctor account?</p>
+          <a href="/doctorLogin">
+            <button
+              class="btn"
+              style="
+                background: transparent;
+                border: 2px solid #fff;
+                width: 150px;
+              "
+            >
+              Login
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('includes/footer') %>
+
+    <script>
+      function nextStep(step) {
+        const currentStepDiv = document.getElementById("step" + step);
+        const inputs = currentStepDiv.querySelectorAll("input, select");
+        let valid = true;
+        inputs.forEach((inp) => {
+          if (inp.hasAttribute("required") && !inp.value) {
+            inp.style.border = "1px solid red";
+            valid = false;
+          } else {
+            inp.style.border = "none";
+          }
+        });
+        if (!valid) return alert("Please fill all fields.");
+        document.getElementById("step" + step).classList.remove("active");
+        document.getElementById("step" + (step + 1)).classList.add("active");
+        document.getElementById("step-count").innerText = step + 1;
+      }
+      function prevStep(step) {
+        document.getElementById("step" + step).classList.remove("active");
+        document.getElementById("step" + (step - 1)).classList.add("active");
+        document.getElementById("step-count").innerText = step - 1;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedLink</title>
+    <link rel="icon" href="images/iconhead.jpg" />
+    <link href="images/logo.jpg" rel="icon" />
+    <link href="styles/contact.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+<%- include('includes/header') %> 
+<section class="contact-form-section">
+  <div class="container">
+    <div class="form-content">
+      <div class="image-container">
+        <img src="images/contact.jpg" alt="Contact Us Image" />
+      </div>
+      <div class="form-container">
+        <h2>Contact Us</h2>
+        <form action="/" method="POST" class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inquiry">Type of Inquiry</label>
+            <select id="inquiry" name="inquiry">
+              <option value="general">General Inquiry</option>
+              <option value="support">Support</option>
+              <option value="feedback">Feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Write your message"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="submit-btn">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scrollable-faq-section">
+  <div class="container">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq">
+      <p><strong>Q1: How can I find nearby hospitals?</strong></p>
+      <p>
+        A: You can use our search feature by entering your location to find
+        hospitals near you.
+      </p>
+    </div>
+    <div class="faq">
+      <p>
+        <strong>Q2: How do I book an appointment with a doctor?</strong>
+      </p>
+      <p>
+        A: You can book an appointment by visiting the doctor’s profile and
+        selecting the available time slots.
+      </p>
+    </div>
+    <div class="faq">
+      <p><strong>Q3: What are the hospital services offered?</strong></p>
+      <p>
+        A: Our hospitals provide various services including emergency care,
+        surgeries, diagnostic testing, and more.
+      </p>
+    </div>
+    <div class="faq">
+      <p><strong>Q4: Can I consult a doctor online?</strong></p>
+      <p>
+        A: Yes, we offer online consultations. Simply choose the "Online
+        Consultation" option when booking an appointment.
+      </p>
+    </div>
+    <div class="faq">
+      <p><strong>Q5: Do you accept insurance?</strong></p>
+      <p>
+        A: Yes, we accept a variety of health insurance providers. Please
+        check our website for a list of accepted insurance companies.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="container">
+    <h3>Our Location</h3>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.174971799975!2d76.65720287457472!3d30.516091096072213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e2d7%3A0x81b346dee91799ca!2sChitkara%20University!5e0!3m2!1sen!2sin!4v1735133048182!5m2!1sen!2sin"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<%- include('includes/footer') %> 
+</body>
+<script src="js/home1.js"></script>
+</html>

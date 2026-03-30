@@ -1,0 +1,34 @@
+<nav>
+  <input type="checkbox" id="check" />
+  <label for="check" id="checkbtn">
+    <i class="fa fa-bars"></i>
+  </label>
+  <label class="logo">
+    <img src="/images/icon.jpg" height="70px" width="150px" />
+  </label>
+  <ul>
+    <li><a href="/api/doctors/profile">Doctor Dashboard</a></li>
+    <li><a href="#" onclick="showSection('slots')">Manage Slots</a></li>
+
+    <% let profileLink = null; let logoutLink = null; if (req.isUser) {
+    profileLink = '/profile'; logoutLink = '/api/users/logout'; } else if
+    (req.isDoctor) { profileLink = '/doctorProfile'; logoutLink =
+    '/api/doctors/logout'; } %> <% if (profileLink) { %>
+    <li class="dropdown">
+      <a href="#" class="icon-wrapper">
+        <i class="fas fa-circle circle-bg"></i>
+        <i class="fas fa-user user-icon"> </i>
+      </a>
+      <ul class="dropdown-content">
+        <li><a href="<%= profileLink %>">Your Profile</a></li>
+        <li><a href="<%= logoutLink %>">Logout</a></li>
+      </ul>
+    </li>
+
+    <% } else { %>
+    <li id="login">
+      <a href="/login">Login/Signup</a>
+    </li>
+    <% } %>
+  </ul>
+</nav>

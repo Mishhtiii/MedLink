@@ -1,0 +1,37 @@
+<nav>
+  <input type="checkbox" id="check" />
+  <label for="check" id="checkbtn">
+    <i class="fa fa-bars"></i>
+  </label>
+  <label class="logo">
+    <img src="/images/icon.jpg" height="70px" width="150px" />
+  </label>
+  <ul>
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/services">Services</a></li>
+
+    <li><a href="/about">About us</a></li>
+    <li><a href="/contact">Contact us</a></li>
+
+    <% let profileLink = null; let logoutLink = null; if (req.isUser) {
+    profileLink = '/profile'; logoutLink = '/api/users/logout'; } else if
+    (req.isDoctor) { profileLink = '/doctorProfile'; logoutLink =
+    '/api/doctors/logout'; } %> <% if (profileLink) { %>
+    <li class="dropdown">
+      <a href="#" class="icon-wrapper">
+        <i class="fas fa-circle circle-bg"></i>
+        <i class="fas fa-user user-icon"> </i>
+      </a>
+      <ul class="dropdown-content">
+        <li><a href="<%= profileLink %>">Your Profile</a></li>
+        <li><a href="<%= logoutLink %>">Logout</a></li>
+      </ul>
+    </li>
+
+    <% } else { %>
+    <li id="login">
+      <a href="/login">Login/Signup</a>
+    </li>
+    <% } %>
+  </ul>
+</nav>

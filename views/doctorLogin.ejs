@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link href="styles/login.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('includes/header') %>
+    <div class="container">
+      <div class="formbox login">
+        <form action="/api/doctors/login" method="POST">
+          <h1>Doctor Login</h1>
+          <% if (typeof error !== 'undefined' && error === 'InvalidCredentials')
+          { %>
+          <div
+            class="error-message"
+            style="color: red; margin-bottom: 10px; text-align: center"
+          >
+            Invalid username or password. Please try again.
+          </div>
+          <% } %>
+          <div class="inputbox">
+            <input
+              type="text"
+              placeholder="Username"
+              id="login-username"
+              name="username"
+              required
+            />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="inputbox">
+            <input
+              type="password"
+              placeholder="Password"
+              id="login-password"
+              minlength="8"
+              name="password"
+              required
+            />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <div class="forgotlink">
+            <a href="/reset">Forgot password?</a>
+          </div>
+          <input type="hidden" name="responseType" value="redirect" />
+          <button type="submit" class="btn">Login</button>
+          <p>or login with social platforms</p>
+          <div class="socialicons">
+            <a href="https://accounts.google.com/" target="_blank"
+              ><i class="bx bxl-google"></i
+            ></a>
+            <a href="https://www.facebook.com/" target="_blank"
+              ><i class="bx bxl-facebook"></i
+            ></a>
+            <a href="https://github.com/login" target="_blank "
+              ><i class="bx bxl-github"></i
+            ></a>
+            <a href="https://www.linkedin.com/login" target="_blank"
+              ><i class="bx bxl-linkedin"></i
+            ></a>
+          </div>
+        </form>
+      </div>
+
+      <div class="toggle-box">
+        <div class="toggle-panel toggle-left">
+          <h1>Hello,welcome!</h1>
+          <p>Don't have an account?</p>
+          <a href="/doctorRegister">
+            <button class="btn register-btn">Register</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>

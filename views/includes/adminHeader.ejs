@@ -1,0 +1,28 @@
+<nav>
+  <input type="checkbox" id="check" />
+  <label for="check" id="checkbtn">
+    <i class="fa fa-bars"></i>
+  </label>
+  <label class="logo">
+    <img src="/images/icon.jpg" height="70px" width="150px" />
+  </label>
+  <ul>
+    <li><a href="/adminDashboard" class="active">Admin Dashboard</a></li>
+    <li>
+      <a href="#" onclick="switchTab('pending-doctors')">Pending Doctors</a>
+    </li>
+    <li><a href="#" onclick="switchTab('users')">Users</a></li>
+    <li><a href="#" onclick="switchTab('doctors')">Doctors</a></li>
+    <li><a href="#" onclick="switchTab('appointments')">Appointments</a></li>
+    <li class="dropdown">
+      <a href="#" class="icon-wrapper">
+        <i class="fas fa-circle circle-bg"></i>
+        <i class="fas fa-user user-icon"> </i>
+      </a>
+      <ul class="dropdown-content">
+        <li><a href="/profile">Your Profile</a></li>
+        <li><a href="/api/users/logout">Logout</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

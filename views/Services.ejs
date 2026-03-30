@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedLink</title>
+  <link rel="icon" href="images/iconhead.jpg">
+  <link href="styles/Services.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <%- include('includes/header') %>
+
+  <header>
+    <h1>Our Services</h1>
+    <p>Explore the services we offer to enhance your healthcare experience.</p>
+  </header>
+
+  <section class="services-grid">
+    <div class="service-card">
+      <i class="fa-solid fa-user-md"></i>
+      <h2>Find My Doctor</h2>
+      <p>Search for top-rated doctors near you.</p>
+      <a href="/finddoctor">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-users"></i>
+      <h2>Client Zone</h2>
+      <p>Manage appointments and health records.</p>
+      <a href="/profile">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-hospital"></i>
+      <h2>Find Hospital Near You</h2>
+      <p>Locate the best hospitals in your area.</p>
+      <a href="/findhospital">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-calendar-check"></i>
+      <h2>Book an Appointment</h2>
+      <p>Schedule appointments with doctors online.</p>
+      <a href="/Appointment">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-ambulance"></i>
+      <h2>Emergency Services</h2>
+      <p>Quick access to emergency medical help.</p>
+      <a href="/emergency">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-video"></i>
+      <h2>Online Consultation</h2>
+      <p>Consult with doctors via video calls.</p>
+      <a href="/Appointment">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-prescription-bottle"></i>
+      <h2>Pharmacy & Medicine Delivery</h2>
+      <p>Order medicines and get them delivered.</p>
+      <a href="/pharmacy">Learn More →</a>
+    </div>
+    <div class="service-card">
+      <i class="fa-solid fa-heartbeat"></i>
+      <h2>Health Packages</h2>
+      <p>Checkups and health screenings for all.</p>
+      <a href="/pharmacy">Learn More →</a>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <p>"MedLink helped me find the best doctor in my area. Booking was so easy!"</p>
+        <h4>- Rahul S.</h4>
+      </div>
+      <div class="testimonial">
+        <p>"I love the online consultation feature. It saved me a trip to the hospital!"</p>
+        <h4>- Priya M.</h4>
+      </div>
+      <div class="testimonial">
+        <p>"Emergency services were quick and reliable. Highly recommend MedLink!"</p>
+        <h4>- Anjali K.</h4>
+      </div>
+    </div>
+  </section>
+
+  <%- include('includes/footer') %>
+
+</body>
+<script src="js/home1.js"></script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link href="/styles/reset.css" rel="stylesheet" />
+    <link href="/styles/navbar.css" rel="stylesheet" />
+    <link href="/styles/profile.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('includes/doctorHeader') %>
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="avatar">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <h2 id="doctor-name">Loading...</h2>
+        <p id="doctor-speciality">Loading...</p>
+      </div>
+      <div class="profile-content">
+        <div class="card">
+          <h3>Professional Information</h3>
+          <p><strong>Name:</strong> <span id="info-name">Loading...</span></p>
+          <p>
+            <strong>Username:</strong>
+            <span id="info-username">Loading...</span>
+          </p>
+
+          <p><strong>Email:</strong> <span id="info-email">Loading...</span></p>
+          <p>
+            <strong>Speciality:</strong> <span id="info-field">Loading...</span>
+          </p>
+          <p>
+            <strong>Qualification:</strong>
+            <span id="info-qualification">Loading...</span>
+          </p>
+          <p>
+            <strong>Experience:</strong>
+            <span id="info-experience">Loading...</span>
+          </p>
+
+          <p>
+            <strong>Location:</strong>
+            <span id="info-location">Loading...</span>
+          </p>
+          <p>
+            <strong>Rating:</strong> <span id="info-rating">Loading...</span> /
+            5
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function fetchDoctorInfo() {
+        try {
+          // FIX 3: Fetch the JSON data from the correct, simplified API endpoint
+          const response = await fetch("/api/doctors/profile-data");
+
+          if (response.status === 401) {
+            // FIX 4: Redirect to login if unauthorized, ensuring persistent login feel
+            window.location.href = "/doctorLogin";
+            return;
+          }
+
+          if (!response.ok) throw new Error("Network response was not ok");
+          const data = await response.json();
+          if (data.doctor) {
+            document.getElementById("doctor-name").textContent =
+              data.doctor.name || "N/A";
+            document.getElementById("doctor-speciality").textContent =
+              data.doctor.field || "N/A";
+            document.getElementById("info-name").textContent =
+              data.doctor.name || "N/A";
+            document.getElementById("info-username").textContent =
+              data.doctor.username || "N/A";
+            document.getElementById("info-email").textContent =
+              data.doctor.email || "N/A";
+            document.getElementById("info-field").textContent =
+              data.doctor.field || "N/A";
+            document.getElementById("info-qualification").textContent =
+              data.doctor.qualification || "N/A";
+            document.getElementById("info-experience").textContent =
+              data.doctor.experience || "N/A";
+            document.getElementById("info-location").textContent =
+              data.doctor.location || "Not specified";
+            document.getElementById("info-rating").textContent =
+              data.doctor.rating || "N/A";
+          } else {
+            document.getElementById("doctor-name").textContent =
+              "Doctor not found";
+            document.getElementById("doctor-speciality").textContent = "N/A";
+            document.getElementById("info-name").textContent = "N/A";
+            document.getElementById("info-username").textContent = "N/A";
+            document.getElementById("info-email").textContent = "N/A";
+            document.getElementById("info-field").textContent = "N/A";
+            document.getElementById("info-qualification").textContent = "N/A";
+            document.getElementById("info-experience").textContent = "N/A";
+            document.getElementById("info-location").textContent =
+              "Not specified";
+            document.getElementById("info-rating").textContent = "N/A";
+          }
+        } catch (error) {
+          console.error("Failed to fetch doctor info:", error);
+          document.getElementById("doctor-name").textContent =
+            "Error loading doctor info";
+          document.getElementById("doctor-speciality").textContent = "Error";
+          // ... [rest of the error display logic] ...
+        }
+      }
+
+      fetchDoctorInfo();
+    </script>
+    <%- include('includes/doctorFooter') %>
+  </body>
+</html>

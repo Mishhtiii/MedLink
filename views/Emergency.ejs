@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MedLink</title>
+  <link rel="icon" href="images/iconhead.jpg" />
+  <link href="styles/Services.css" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <%- include('includes/header') %>
+
+  <header>
+    <h1>Emergency Helpline Numbers</h1>
+    <p>Call the following numbers for immediate emergency assistance.</p>
+  </header>
+
+  <style>
+    .helpline-numbers {
+      text-align: center;
+      font-size: 1.2em;
+      margin-top: 2rem;
+    }
+    .helpline-numbers ul {
+      list-style: none;
+      padding: 0;
+    }
+    .helpline-numbers li {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .helpline-numbers i {
+      font-size: 2em;
+      color: #146C94;
+    }
+    .helpline-caption {
+      font-style: italic;
+      color: #555;
+      margin-left: 0.5rem;
+    }
+    .helpline-number {
+      user-select: text;
+      font-weight: bold;
+    }
+  </style>
+
+  <section class="helpline-numbers">
+    <ul>
+      <li>
+        <i class="fa-solid fa-ambulance"></i>
+        <span><strong>Emergency Ambulance:</strong> <span class="helpline-number">102</span></span>
+        <span class="helpline-caption">Rapid ambulance response</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-fire-flame-curved"></i>
+        <span><strong>Fire Brigade:</strong> <span class="helpline-number">101</span></span>
+        <span class="helpline-caption">Fire emergency services</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-shield-halved"></i>
+        <span><strong>Police:</strong> <span class="helpline-number">100</span></span>
+        <span class="helpline-caption">Law enforcement assistance</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span><strong>Disaster Management:</strong> <span class="helpline-number">108</span></span>
+        <span class="helpline-caption">Disaster response and relief</span>
+      </li>
+      <li>
+        <i class="fa-solid fa-female"></i>
+        <span><strong>Women Helpline:</strong> <span class="helpline-number">1091</span></span>
+        <span class="helpline-caption">Support for women in distress</span>
+      </li>
+    </ul>
+  </section>
+
+  <%- include('includes/footer') %>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedLink</title>
+    <link rel="icon" href="images/iconhead.jpg" />
+    <link href="images/logo.jpg" rel="icon" />
+    <link href="styles/Aboutus.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('includes/header') %>
+    <section class="about-us">
+      <div class="container">
+        <h1>About Us</h1>
+        <% if (req.user) { %>
+        <p>Welcome back, <%= req.user.name %>! Thanks for trusting MedLink.</p>
+        <% } else { %>
+        <p>
+          Welcome to <strong>MedLink</strong>, your trusted partner in finding
+          the best healthcare professionals and hospitals near you...
+        </p>
+        <% } %>
+
+        <h2>Our Vision</h2>
+        <p>
+          To revolutionize the healthcare experience by connecting patients with
+          highly-qualified doctors and hospitals, enabling them to make informed
+          decisions and receive the best care possible.
+        </p>
+
+        <h2>Our Services</h2>
+        <ul>
+          <li>
+            <strong>Search for Top Hospitals and Doctors:</strong> Our
+            comprehensive database helps you find trusted healthcare providers
+            based on your location, medical specialty, and patient reviews.
+          </li>
+          <li>
+            <strong>Doctor Appointments:</strong> Booking an appointment has
+            never been easier. Choose your preferred doctor and schedule a visit
+            online in just a few simple steps.
+          </li>
+          <li>
+            <strong>Location-Based Search:</strong> Whether you’re at home,
+            traveling, or on vacation, we make it easy to locate the best
+            healthcare providers in your current area.
+          </li>
+          <li>
+            <strong>Trusted Reviews and Ratings:</strong> We provide honest
+            feedback from real patients to help you make informed decisions
+            about your healthcare.
+          </li>
+        </ul>
+
+        <h2>Why Choose MedLink?</h2>
+        <ul>
+          <li>
+            <strong>Convenience:</strong> Search and book appointments from
+            anywhere, at any time.
+          </li>
+          <li>
+            <strong>Comprehensive Database:</strong> A wide variety of hospitals
+            and doctors across different specialties.
+          </li>
+          <li>
+            <strong>Personalized Experience:</strong> Tailored recommendations
+            based on your location and medical needs.
+          </li>
+          <li>
+            <strong>Trustworthy:</strong> Our platform ensures you connect with
+            reputable healthcare professionals and facilities.
+          </li>
+        </ul>
+
+        <p>
+          At <strong>MedLink</strong>, we are committed to your health and
+          well-being. Whether you're seeking a routine check-up or specialized
+          treatment, our goal is to help you get the care you need, when you
+          need it.
+        </p>
+        <p>
+          Thank you for choosing <strong>MedLink</strong> — Your Health, Our
+          Priority.
+        </p>
+      </div>
+    </section>
+
+    <section class="appointment-hospital">
+      <div class="section-container">
+        <div class="appointment-section">
+          <img
+            src="images/appointmentbooking.avif"
+            alt="Appointment Image"
+            class="section-img"
+          />
+          <div class="text-container">
+            <h2>Book an Appointment</h2>
+            <p>
+              Find the best doctors and schedule your appointment easily through
+              our platform. We make booking healthcare appointments hassle-free!
+            </p>
+            <a href="/Appointment" class="btn">Book Now</a>
+          </div>
+        </div>
+        <div class="hospital-section">
+          <div class="text-container">
+            <h2>Top Hospitals</h2>
+            <p>
+              Search through a wide range of trusted hospitals near you. Whether
+              it's for routine checkups or emergencies, we connect you to the
+              right facility.
+            </p>
+            <a href="/findhospital" class="btn">Explore Hospitals</a>
+          </div>
+          <img
+            src="images/hospital.avif"
+            alt="Hospital Image"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-hospital">
+      <div class="section-container">
+        <div class="appointment-section">
+          <img src="images/doctor.png" alt="Doctor Image" class="section-img" />
+          <div class="text-container">
+            <h2>Top Doctors</h2>
+            <p>
+              Search through a wide range of trusted doctors. Either for
+              surgeries or checkups. Find the best doctors and schedule your
+              appointment easily.
+            </p>
+            <a href="/finddoctor" class="btn">Book Now</a>
+          </div>
+        </div>
+        <div class="hospital-section">
+          <div class="text-container">
+            <h2>Location Service</h2>
+            <p>Search for Healthcare Providers Near You.</p>
+            <a href="/findhospital" class="btn">Explore</a>
+          </div>
+          <img
+            src="images/location.avif"
+            alt="Hospital Image"
+            class="section-img"
+          />
+        </div>
+      </div>
+    </section>
+    <%- include('includes/footer') %>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('includes/head') %>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+
+    <link href="styles/findHospital.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('includes/header') %>
+    <section class="search-section">
+      <div class="hospital-text">
+        <pre>_______   Welcome to MedLink</pre>
+        <h1>Find Nearest Hospital.</h1>
+        <div id="searchBar">
+          <input type="text" id="citySearch" placeholder="Locations" />
+          <i id="loc" class="fas fa-map-marker-alt"></i>
+          <button onclick="searchCity()">
+            <i class="fas fa-search"></i> Find Now
+          </button>
+        </div>
+      </div>
+      <div class="hospital-image">
+        <img src="images/unnamed.png" />
+      </div>
+    </section>
+    <div id="map"></div>
+    <div id="hospitalList"></div>
+    <%- include('includes/footer') %>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/findHospital.js"></script>
+  </body>
+</html>

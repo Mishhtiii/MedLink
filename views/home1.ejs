@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link href="styles/home1.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <%- include('includes/header') %>
+
+    <% if (req.query.message) { %>
+    <script>
+      alert('<%= req.query.message %>');
+    </script>
+    <% } %>
+
+    <section class="container1">
+      <div class="left-section">
+        <h1>Connect with top-rated doctors in just a few clicks</h1>
+        <div class="appointment-form">
+          <p>
+            To find your preferred doctor, please click the button below to
+            visit our Find Doctor page where you can browse specialists and book
+            appointments.
+          </p>
+          <style>
+            .custom-button {
+              background-color: green !important;
+              color: white !important;
+              border: 2px solid green !important;
+              padding: 10px 20px !important;
+              border-radius: 5px !important;
+              cursor: pointer !important;
+              transition: background-color 0.3s ease, border-color 0.3s ease !important;
+            }
+            .custom-button:hover {
+              background-color: #007bff !important;
+              border-color: #007bff !important;
+            }
+          </style>
+          <button
+            onclick="window.location.href='/finddoctor'"
+            class="custom-button"
+          >
+            Find Doctor
+          </button>
+          <p>
+            For convenient and quick access to your medicines, please use our
+            Medicine Cart to easily add and manage your medicine orders. We are
+            currently offering discounts on selected medicines.
+          </p>
+          <button
+            onclick="window.location.href='/pharmacy'"
+            class="custom-button"
+          >
+            Buy Medicine
+          </button>
+        </div>
+      </div>
+      <div class="right-section">
+        <img
+          src="https://media.istockphoto.com/id/1189304032/photo/doctor-holding-digital-tablet-at-meeting-room.jpg?s=612x612&w=0&k=20&c=RtQn8w_vhzGYbflSa1B5ea9Ji70O8wHpSgGBSh0anUg="
+          alt="Doctor"
+          class="doctor-image"
+        />
+        <div class="stats">
+          <div class="stat">
+            <p>200,000+</p>
+            <span>Registered Patients</span>
+          </div>
+          <div class="stat">
+            <p>5,000+</p>
+            <span>Doctors on Call</span>
+          </div>
+        </div>
+        <% if (req.isUser) { %>
+        <a href="/profile"><button class="join-btn">My Profile</button></a>
+        <% } else { %>
+        <a href="/register"><button class="join-btn">Join Today!</button></a>
+        <% } %>
+        <a href="/doctorRegister"
+          ><button class="join-btn" style="margin-left: 10px">
+            Doctor Register/Login
+          </button></a
+        >
+      </div>
+    </section>
+
+    <section class="categories">
+      <div class="title">How It Works?</div>
+      <div class="category-content">
+        <div class="category-line">
+          <div class="image">
+            <img
+              src="https://i.pinimg.com/564x/64/34/d7/6434d72ce9e16251c4f41f4e5a146567.jpg"
+            />
+          </div>
+          <a href="/finddoctor" style="text-decoration: none"
+            ><h4>Find your Doctor</h4></a
+          >
+          <p>Choose from variety of our medical specialists</p>
+        </div>
+        <div class="category-line">
+          <div class="image">
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/009/742/342/non_2x/3d-location-point-marker-of-map-or-navigation-pin-icon-sign-on-isolated-white-background-navigation-is-blue-pastel-colour-with-shadow-on-map-direction-3d-gps-pin-rendering-illustration-vector.jpg"
+            />
+          </div>
+          <a href="/findhospital" style="text-decoration: none"
+            ><h4>Choose Location</h4></a
+          >
+          <p>Find doctors and medical offices in your area</p>
+        </div>
+        <div class="category-line">
+          <div class="image">
+            <img
+              src="https://i.pinimg.com/originals/db/0c/d6/db0cd67428185be3e9fe48e31e724de2.jpg"
+            />
+          </div>
+          <a href="/Appointment" style="text-decoration: none"
+            ><h4>Select Time Slot</h4></a
+          >
+          <p>Choose a time that is most convenient for you</p>
+        </div>
+        <div class="category-line">
+          <div class="image">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_JlTBWbMrX73Zt75VmC0jKtrw9gRUngLhQA&s"
+            />
+          </div>
+          <a href="/pharmacy" style="text-decoration: none"
+            ><h4>Get a solution</h4></a
+          >
+          <p>We can hold an appointment either on call or video chat</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container2">
+      <main class="content">
+        <div class="left-section2">
+          <div class="doctor-image2">
+            <img src="images/doctor.jpg" alt="Dr. Andrew Eyeball" />
+            <div class="badge">Dr. Andrew Eyeball</div>
+            <div class="signup">
+              Sign up now<br />
+              <span>for your regular checkup!</span>
+            </div>
+          </div>
+        </div>
+        <div class="right-section2">
+          <h1>Booking made easy</h1>
+          <ul>
+            <li>Find your specialist</li>
+            <li>Describe your problem</li>
+            <li>Set a meeting type</li>
+            <li>Book your time</li>
+          </ul>
+          <a href="/Appointment"
+            ><button class="appointment-btn">Book an appointment</button></a
+          >
+        </div>
+      </main>
+    </section>
+
+    <div class="container3">
+      <div class="text-section">
+        <h1 class="heading">
+          We offer a wide range of specialists for your health
+        </h1>
+        <div class="specialties">
+          <div class="specialty">
+            <i
+              class="fas fa-tooth"
+              style="color: #7fddff; font-size: 1.5rem"
+            ></i>
+            <span>Dentistry</span>
+          </div>
+          <div class="specialty">
+            <i
+              class="fas fa-stethoscope"
+              style="color: #33aa96; font-size: 1.5rem"
+            ></i>
+            <span>General health</span>
+          </div>
+          <div class="specialty">
+            <i
+              class="fas fa-brain"
+              style="color: #9f66a6; font-size: 1.5rem"
+            ></i>
+            <span>Psychiatry</span>
+          </div>
+          <div class="specialty">
+            <i
+              class="fas fa-brain"
+              style="color: #d7d72e; font-size: 1.5rem"
+            ></i>
+            <span>Neurology</span>
+          </div>
+        </div>
+        <div class="show-more">Show more →</div>
+      </div>
+
+      <div class="image-section">
+        <div class="badge1">8.8 / 10.0 Avg doctor rating</div>
+        <img class="doctor-image3" src="images/scope.jpg" alt="Doctor" />
+        <div class="rating">All Fields of specialization</div>
+      </div>
+    </div>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>
