@@ -29,7 +29,6 @@ router.get('/Appointment', async (req, res, next) => {
   if (!req.isLoggedIn) return res.redirect('/login');
   
   try {
-    // Replacement for Doctor.distinct('field')
     const specialitiesData = await Doctor.findAll({
       attributes: ['field'],
       group: ['field'],
@@ -39,7 +38,6 @@ router.get('/Appointment', async (req, res, next) => {
 
     let selectedDoctor = null;
     if (req.query.doctorId) {
-      // Replacement for Doctor.findById()
       selectedDoctor = await Doctor.findByPk(req.query.doctorId);
     }
     
@@ -72,7 +70,6 @@ router.get('/admin', async (req, res, next) => {
     return res.redirect('/login');
   }
   try {
-    // Replacement for PendingDoctor.find()
     const pendingDoctors = await PendingDoctor.findAll();
     res.render('adminDashboard', { req, pendingDoctors });
   } catch (err) {

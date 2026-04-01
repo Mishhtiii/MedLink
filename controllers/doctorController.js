@@ -7,7 +7,6 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const { sendToken } = require('../utils/jwtHelper');
 
-// Strong password validation function
 const validatePassword = (password) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -87,15 +86,14 @@ const loginDoctor = async (req, res, next) => {
         const foundDoctor = await Doctor.findOne({ where: { username } });
 
         if (foundDoctor && await bcrypt.compare(password, foundDoctor.password)) {
-            // FIX: Pass an object with id AND role to prevent ID collision in middleware
             sendToken(res, { 
     id: foundDoctor.id, 
-    username: foundDoctor.username, // ADD THIS
+    username: foundDoctor.username, 
     role: 'doctor' 
 });
 
             if (responseType === 'redirect') {
-                // RECTIFIED: Redirect to the full dashboard path defined in server.js and doctorRoutes.js
+                
                 return res.redirect('/api/doctors/dashboard'); 
             }
 
@@ -220,14 +218,14 @@ const getAvailableSlots = async (req, res, next) => {
         const { doctor, date } = req.query;
         if (!doctor || !date) return res.status(400).json({ message: 'Doctor and date are required' });
 
-        // Ensure date is handled at start of day to avoid timezone mismatches
+        
         const searchDate = new Date(date);
         searchDate.setHours(0, 0, 0, 0);
 
         const doctorDoc = await Doctor.findByPk(doctor);
         if (!doctorDoc) return res.status(404).json({ message: 'Doctor not found' });
 
-        // Look for existing slots for this specific doctor and date
+        
         let slots = await DoctorSlot.findAll({ 
             where: { 
                 doctorId: doctor, 
@@ -235,12 +233,10 @@ const getAvailableSlots = async (req, res, next) => {
             } 
         });
 
-        // If no slots exist, generate them based on the doctor's shift
+        
         if (slots.length === 0) {
-            const availability = doctorDoc.availability; // e.g., 'Morning', 'Afternoon'
+            const availability = doctorDoc.availability; 
             let startHour, endHour;
-
-            // Logic matching doctorController.js
             switch (availability) {
                 case 'Morning': startHour = 9; endHour = 12; break;
                 case 'Afternoon': startHour = 12; endHour = 17; break;
@@ -250,7 +246,7 @@ const getAvailableSlots = async (req, res, next) => {
 
             const newSlots = [];
             for (let hour = startHour; hour < endHour; hour++) {
-                // Create slots for each hour (e.g., 9:00, 10:00)
+                
                 const slot = await DoctorSlot.create({
                     doctorId: doctor,
                     date: searchDate,
@@ -309,7 +305,6 @@ const getDoctorSlots = async (req, res, next) => {
     if (!date) return res.status(400).json({ message: 'Date is required' });
 
     try {
-        // Normalize date to start of day to match creation logic
         const searchDate = new Date(date);
         searchDate.setHours(0, 0, 0, 0);
 

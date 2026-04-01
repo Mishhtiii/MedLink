@@ -33,9 +33,7 @@ const authenticateDoctorToken = async (req, res, next) => {
     if (!decoded) return res.status(401).json({ message: 'Access token required or invalid' });
 
     try {
-        // CHANGED: Use decoded.id instead of decoded.username.
-        // Sequelize findByPk expects the primary key (id) unless your model 
-        // explicitly defines username as the primary key.
+        
         const doctor = await Doctor.findByPk(decoded.id); 
         
         if (!doctor) return res.status(401).json({ message: 'Doctor not found' });
@@ -65,7 +63,6 @@ const checkAuthStatus = async (req, res, next) => {
     if (decoded) {
         try {
             if (decoded.role === 'doctor') {
-                // CHANGED: Use decoded.id for consistent Primary Key lookup
                 const doctor = await Doctor.findByPk(decoded.id);
                 if (doctor) {
                     req.isLoggedIn = true;

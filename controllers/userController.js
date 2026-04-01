@@ -5,7 +5,6 @@ const DoctorSlot = require('../models/doctorSlot');
 const bcrypt = require('bcrypt');
 const { sendToken } = require('../utils/jwtHelper');
 
-// Strong password validation function
 const validatePassword = (password) => {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -46,7 +45,6 @@ const registerUser = async (req, res, next) => {
         const user = await User.create({ name, username, email, password: hashedPassword });
 
         if (user) {
-            // Role add kiya taaki auth middleware sahi table check kare
             sendToken(res, { id: user.id, role: user.role }); 
 
             if (responseType === 'redirect') {
@@ -74,7 +72,7 @@ const loginUser = async (req, res, next) => {
         const foundUser = await User.findOne({ where: { username } });
 
         if (foundUser && (await bcrypt.compare(password, foundUser.password))) {
-            // FIX: .id use karein aur role pass karein
+            
             sendToken(res, { id: foundUser.id, role: foundUser.role });
 
             if (responseType === 'redirect') {
@@ -130,7 +128,6 @@ const resetPassword = async (req, res, next) => {
             return res.status(404).json({ message: 'User with that email not found' });
         }
 
-        // Password hash karna zaroori hai
         foundUser.password = await bcrypt.hash(newPassword, 10);
         await foundUser.save();
 
@@ -146,7 +143,7 @@ const getUserAppointments = async (req, res, next) => {
         const appointments = await Appointment.findAll({
             where: { userId: req.user.id },
             include: [{
-                model: Doctor, // Imported variable use karein
+                model: Doctor, 
                 attributes: ['name', 'field']
             }],
             order: [['date', 'DESC'], ['time', 'DESC']]
@@ -157,7 +154,6 @@ const getUserAppointments = async (req, res, next) => {
     }
 };
 
-// Fullstack/controllers/userController.js
 
 const bookAppointment = async (req, res, next) => {
     const { doctor, appointmentDate, timeslot } = req.body;
@@ -166,14 +162,13 @@ const bookAppointment = async (req, res, next) => {
         const doctorDoc = await Doctor.findByPk(doctor);
         if (!doctorDoc) return res.status(404).json({ message: 'Doctor not found' });
 
-        // Normalize the date to avoid timestamp mismatches
         const searchDate = new Date(appointmentDate);
         searchDate.setHours(0, 0, 0, 0); 
 
         const slot = await DoctorSlot.findOne({
             where: {
                 doctorId: doctor,
-                date: searchDate, // Use the normalized date
+                date: searchDate, 
                 time: timeslot,
                 available: true
             }
@@ -181,7 +176,6 @@ const bookAppointment = async (req, res, next) => {
 
         if (!slot) return res.status(400).json({ message: 'Selected slot is not available' });
 
-        // Create the appointment using the same normalized date
         const appointment = await Appointment.create({
             userId: req.user.id,
             doctorId: doctor,
@@ -190,7 +184,6 @@ const bookAppointment = async (req, res, next) => {
             status: 'pending'
         });
 
-        // Mark slot as unavailable
         slot.available = false;
         await slot.save();
 
