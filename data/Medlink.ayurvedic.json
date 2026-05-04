@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cda"
+  },
+  "id": 1,
+  "name": "Dabur Pudin Hara Pearls",
+  "image": "https://cdn.zeptonow.com/production/tr:w-640,ar-1021-1021,pr-true,f-auto,q-80/cms/product_variant/51423e0a-4eec-4634-9ca9-14ccbf5689dc.jpeg",
+  "price": 33.25,
+  "oldPrice": 35
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cdb"
+  },
+  "id": 2,
+  "name": "Himalaya Liv.52 Tablet",
+  "image": "https://himalayawellness.eu/cdn/shop/files/LIV-52-DS-2000px-KI_1.png?v=1699423150",
+  "price": 175.23,
+  "oldPrice": 215
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cdc"
+  },
+  "id": 3,
+  "name": "Baidyanath Chyawanprash",
+  "image": "https://www.bigbasket.com/media/uploads/p/xxl/40201737_2-baidyanath-nagpur-chyawanprash-special-all-round-immunity-protection.jpg",
+  "price": 299,
+  "oldPrice": 350
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cdd"
+  },
+  "id": 4,
+  "name": "Kayam Tablet 30 Tablets",
+  "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRxgRBNkzgz11a2DXqsdZAy_NLnZ7sgj59XuO7VjWjmiLcaCpz_k1B0fnSIhmUeE2a8zul0bqrs0Fnumj_g9jQYmSAQKoCnTjVoxPrCeL2fmZgjL8x4QMStNw",
+  "price": 107.53,
+  "oldPrice": 115
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cde"
+  },
+  "id": 5,
+  "name": "Galact Granules 200gm",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-4prJW1lK2BWjfsDdOphgqUGbUK3M8eZMeQ&s",
+  "price": 339.95,
+  "oldPrice": 421
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cdf"
+  },
+  "id": 6,
+  "name": "Dabur Pudin Hara Liquid",
+  "image": "https://m.media-amazon.com/images/I/81rkz2TDltL.jpg",
+  "price": 52.2,
+  "oldPrice": 55
+}]

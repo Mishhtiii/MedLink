@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -104,21 +104,21 @@
               } else {
                 data.forEach((doctor) => {
                   html += `
-                    <div class="doctor-card">
-                        <h3>${doctor.name}</h3>
-                        <p>Specialization: ${doctor.specialization}</p>
-                        <p>Experience: ${doctor.experience} years</p>
-                        <button class="btn approve-btn" data-id="${doctor.id}">Approve</button> 
-                        <button class="btn reject-btn" data-id="${doctor.id}">Reject</button>
-                    </div>
-                  `; // Changed ._id to .id
+                                    <div class="doctor-card">
+                                        <h3>${doctor.name}</h3>
+                                        <p>Specialization: ${doctor.specialization}</p>
+                                        <p>Experience: ${doctor.experience} years</p>
+                                        <button class="btn approve-btn" data-id="${doctor._id}">Approve</button>
+                                        <button class="btn reject-btn" data-id="${doctor._id}">Reject</button>
+                                    </div>
+                                `;
                 });
               }
               $("#pending-doctors-list").html(html);
             },
             error: function (err) {
               $("#pending-doctors-list").html(
-                '<p style="color: red;">Error loading pending doctors.</p>',
+                '<p style="color: red;">Error loading pending doctors.</p>'
               );
             },
           });
@@ -131,25 +131,25 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-              `;
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
               if (data.length > 0) {
                 data.forEach((user) => {
                   html += `
-                    <tr>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                        <td><button class="btn delete-btn delete-user-btn" data-id="${user.id}">Delete</button></td>
-                    </tr>
-                  `; // Changed ._id to .id
+                                    <tr>
+                                        <td>${user.name}</td>
+                                        <td>${user.email}</td>
+                                        <td><button class="btn delete-btn delete-user-btn" data-id="${user._id}">Delete</button></td>
+                                    </tr>
+                                `;
                 });
               } else {
                 html += '<tr><td colspan="3">No users found.</td></tr>';
@@ -159,7 +159,7 @@
             },
             error: function (err) {
               $("#users-list").html(
-                '<p style="color: red;">Error loading users.</p>',
+                '<p style="color: red;">Error loading users.</p>'
               );
             },
           });
@@ -172,25 +172,25 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Specialization</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-              `;
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Specialization</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
               if (data.length > 0) {
                 data.forEach((doctor) => {
                   html += `
-                    <tr>
-                        <td>${doctor.name}</td>
-                        <td>${doctor.field}</td>
-                        <td><button class="btn delete-btn delete-doctor-btn" data-id="${doctor.id}">Delete</button></td>
-                    </tr>
-                  `; // Changed ._id to .id
+                                    <tr>
+                                        <td>${doctor.name}</td>
+                                        <td>${doctor.field}</td>
+                                        <td><button class="btn delete-btn delete-doctor-btn" data-id="${doctor._id}">Delete</button></td>
+                                    </tr>
+                                `;
                 });
               } else {
                 html += '<tr><td colspan="3">No doctors found.</td></tr>';
@@ -200,7 +200,7 @@
             },
             error: function (err) {
               $("#doctors-list").html(
-                '<p style="color: red;">Error loading doctors.</p>',
+                '<p style="color: red;">Error loading doctors.</p>'
               );
             },
           });
@@ -213,27 +213,29 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Doctor</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-              `;
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Doctor</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
               if (data.length > 0) {
                 data.forEach((appointment) => {
                   html += `
-                    <tr>
-                        <td>${appointment.User ? appointment.User.name : "N/A"}</td>
-                        <td>${appointment.Doctor ? appointment.Doctor.name : "N/A"}</td>
-                        <td>${new Date(appointment.date).toLocaleDateString()}</td>
-                        <td>${appointment.time}</td>
-                    </tr>
-                  `; // Updated to use capitalized associations from Sequelize include
+                                    <tr>
+                                        <td>${appointment.user.name}</td>
+                                        <td>${appointment.doctor.name}</td>
+                                        <td>${new Date(
+                                          appointment.date
+                                        ).toLocaleDateString()}</td>
+                                        <td>${appointment.time}</td>
+                                    </tr>
+                                `;
                 });
               } else {
                 html += '<tr><td colspan="4">No appointments found.</td></tr>';
@@ -243,7 +245,7 @@
             },
             error: function (err) {
               $("#appointments-list").html(
-                '<p style="color: red;">Error loading appointments.</p>',
+                '<p style="color: red;">Error loading appointments.</p>'
               );
             },
           });

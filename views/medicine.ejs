@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="styles/medicine.css" />
+    <script src="js/medicine.js"></script>
+    <script src="js/medicine-search.js"></script>
+  </head>
+  <body>
+    <%- include('includes/header') %>
+
+    <section class="search-section">
+      <div class="search-content">
+        <h2>Buy Medicines and Essentials</h2>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="medicine-search-input"
+            placeholder="Search Medicines"
+          />
+          <button id="medicine-search-button">🔍</button>
+          <a href="/cart" class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search Results Dialog -->
+    <div id="search-dialog" class="search-dialog" style="display: none">
+      <div class="search-dialog-content">
+        <span id="search-dialog-close" class="search-dialog-close"
+          >&times;</span
+        >
+        <h3>Search Results</h3>
+        <ul id="search-results-list"></ul>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-items">
+          <div class="hero-item">
+            <img
+              src="https://i.pinimg.com/736x/91/db/35/91db35d4cb14819cd525f952db2d0d2a.jpg"
+              alt="Order Medicine"
+            />
+            <h3>Order Medicine</h3>
+          </div>
+          <div class="hero-item">
+            <a href="/order-by-prescription">
+              <img
+                src="https://i.pinimg.com/736x/25/67/91/2567919dc66fcfd9d932a779df38f00c.jpg"
+                alt="Order by Prescription"
+              />
+              <h3>Order by Prescription</h3>
+            </a>
+          </div>
+          <div class="hero-item">
+            <img
+              src="https://i.pinimg.com/736x/24/59/c9/2459c9c43d365d7e0759e0271bcddef5.jpg"
+              alt="Reorder Medicine"
+            />
+            <h3>Reorder Medicine</h3>
+          </div>
+          <div class="hero-item">
+            <img
+              src="https://i.pinimg.com/736x/15/22/b5/1522b54572eb1973d98622f7733648a7.jpg"
+              alt="Shop by Category"
+            />
+            <h3>Shop by Category</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slider">
+      <div class="slides">
+        <% sliderImages.forEach(image => { %>
+        <a href="<%= image.link %>">
+          <img src="<%= image.src %>" alt="<%= image.alt %>" />
+        </a>
+        <% }); %>
+      </div>
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </section>
+
+    <section id="ayush-section" class="products">
+      <h2>Best of Ayurvedic, Siddha & Unani</h2>
+      <div class="slider-container">
+        <button class="prev-slide">&#10094;</button>
+        <div class="product-slider">
+          <% medicines.forEach(medicine => { %>
+          <div
+            class="product-card"
+            data-name="<%= medicine.name %>"
+            data-price="<%= medicine.price %>"
+            data-image="<%= medicine.image %>"
+            data-oldprice="<%= medicine.oldPrice %>"
+          >
+            <img src="<%= medicine.image %>" alt="<%= medicine.name %>" />
+            <h3><%= medicine.name %></h3>
+            <p>
+              ₹ <%= medicine.price.toFixed(2) %>
+              <span class="old-price"
+                >₹ <%= medicine.oldPrice.toFixed(2) %></span
+              >
+            </p>
+            <p class="discount">
+              GET <%= ((medicine.oldPrice - medicine.price) / medicine.oldPrice
+              * 100).toFixed(1) %>% OFF
+            </p>
+            <button class="add-to-cart">ADD TO CART</button>
+          </div>
+          <% }); %>
+        </div>
+        <button class="next-slide">&#10095;</button>
+      </div>
+    </section>
+
+    <section id="fitness-section" class="products1">
+      <h2>Deals on Fitness</h2>
+      <div class="slider-container">
+        <button class="prev-slide">&#10094;</button>
+        <div class="product-slider">
+          <% fitnessDeals.forEach(deal => { %>
+          <div
+            class="product-card"
+            data-name="<%= deal.name %>"
+            data-price="<%= deal.price %>"
+            data-image="<%= deal.image %>"
+            data-oldprice="<%= deal.oldPrice %>"
+          >
+            <img src="<%= deal.image %>" alt="<%= deal.name %>" />
+            <h3><%= deal.name %></h3>
+            <p>
+              ₹ <%= deal.price.toFixed(2) %>
+              <span class="old-price">₹ <%= deal.oldPrice.toFixed(2) %></span>
+            </p>
+            <p class="discount1">
+              GET <%= ((deal.oldPrice - deal.price) / deal.oldPrice *
+              100).toFixed(0) %>% OFF
+            </p>
+            <button class="add-to-cart1">ADD TO CART</button>
+          </div>
+          <% }) %>
+        </div>
+        <button class="next-slide">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="products" id="personal-care-section">
+      <h2>Best Sellers in Personal Care</h2>
+      <div class="slider-container">
+        <button class="prev-slide">&#10094;</button>
+        <div class="product-slider">
+          <% personalCareProducts.forEach(item => { %>
+          <div
+            class="product-card"
+            data-name="<%= item.name %>"
+            data-price="<%= item.price %>"
+            data-image="<%= item.image %>"
+            data-oldprice="<%= item.oldPrice %>"
+          >
+            <img src="<%= item.image %>" alt="<%= item.name %>" />
+            <h3><%= item.name %></h3>
+            <p>
+              ₹ <%= item.price.toFixed(2) %>
+              <span class="old-price">₹ <%= item.oldPrice.toFixed(2) %></span>
+            </p>
+            <p class="discount">
+              GET <%= ((item.oldPrice - item.price) / item.oldPrice *
+              100).toFixed(0) %>% OFF
+            </p>
+            <button class="add-to-cart">ADD TO CART</button>
+          </div>
+          <% }) %>
+        </div>
+        <button class="next-slide">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="products1">
+      <h2>Surgical Super Savers</h2>
+      <div class="slider-container">
+        <button class="prev-slide">&#10094;</button>
+        <div class="product-slider">
+          <% surgicalDeals.forEach(item => { %>
+          <div
+            class="product-card"
+            data-name="<%= item.name %>"
+            data-price="<%= item.price %>"
+            data-image="<%= item.image %>"
+            data-oldprice="<%= item.oldPrice %>"
+          >
+            <img src="<%= item.image %>" alt="<%= item.name %>" />
+            <h3><%= item.name %></h3>
+            <p class="price">
+              ₹ <%= item.price.toFixed(2) %>
+              <span class="old-price">₹ <%= item.oldPrice.toFixed(2) %></span>
+            </p>
+            <p class="discount1">
+              GET <%= ((item.oldPrice - item.price) / item.oldPrice *
+              100).toFixed(0) %>% OFF
+            </p>
+            <button class="add-to-cart1">ADD TO CART</button>
+          </div>
+          <% }); %>
+        </div>
+        <button class="next-slide">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="popular-categories">
+      <h2>Brands in Focus</h2>
+      <div class="categories-container">
+        <div class="category">
+          <a
+            href="https://www.cetaphil.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="category-box">
+              <img
+                src="https://ik.imagekit.io/anscommerce/image/tr:e-sharpen-01,h-1080,w-1080,cm-pad_resize/data/galderma/08may2024/F43000_1.jpg"
+                alt="Cetaphil"
+              />
+              <h3>Cetaphil</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="category">
+          <a
+            href="https://www.accu-chek.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="category-box">
+              <img
+                src="https://m.media-amazon.com/images/I/61lBgAv8UDL.jpg"
+                alt="Fitness"
+              />
+              <h3>Accu-check</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="category">
+          <a
+            href="https://www.muscleblaze.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="category-box">
+              <img
+                src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS1xPAk_qawI2gAoYza2kjuhHQwR9tDsFzNk_m0Mu4c5jCoCHVSQYNY6hKGkfVFwvydlEttZNy897kRV2ATfD_Sk12cXL1uPPZs7bkdyjWTZrSQCtjHtp21"
+                alt="Devices"
+              />
+              <h3>MuscleBlaze</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="category">
+          <a
+            href="https://www.sebamedindia.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="category-box personal-care">
+              <img
+                src="https://m.media-amazon.com/images/I/717v4zE201L.jpg"
+                alt="Personal Care"
+              />
+              <h3>Sebamed</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products">
+      <h2>Spotlight Deals on Devices</h2>
+      <div class="slider-container" id="devices-section">
+        <button class="prev-slide">&#10094;</button>
+        <div class="product-slider">
+          <% surgicalDevices.forEach(product => { %>
+          <div
+            class="product-card"
+            data-name="<%= product.name %>"
+            data-price="<%= product.price %>"
+            data-image="<%= product.image %>"
+            data-oldprice="<%= product.oldPrice %>"
+          >
+            <img src="<%= product.image %>" alt="<%= product.name %>" />
+            <h3><%= product.name %></h3>
+            <p class="price">
+              ₹ <%= product.price.toFixed(2) %>
+              <span class="old-price"
+                >₹ <%= product.oldPrice.toFixed(2) %></span
+              >
+            </p>
+            <p class="discount">
+              GET <%= ((product.oldPrice - product.price) / product.oldPrice *
+              100).toFixed(0) %>% off
+            </p>
+            <button class="add-to-cart">ADD TO CART</button>
+          </div>
+          <% }) %>
+        </div>
+        <button class="next-slide">&#10095;</button>
+      </div>
+    </section>
+
+    <%- include('includes/footer') %>
+  </body>
+</html>

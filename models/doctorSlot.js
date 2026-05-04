@@ -1,35 +1,25 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const mongoose = require('mongoose');
 
-const DoctorSlot = sequelize.define('DoctorSlot', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  doctorId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'doctors',
-      key: 'id'
+const doctorSlotSchema = new mongoose.Schema({
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor',
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    },
+    available: {
+        type: Boolean,
+        default: true
     }
-  },
-  date: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  time: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  available: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
-  }
-}, {
-  tableName: 'doctor_slots',
-  timestamps: true
 });
 
-module.exports = DoctorSlot;
+let doctorSlotModel = new mongoose.model('DoctorSlot', doctorSlotSchema);
+
+module.exports = doctorSlotModel;

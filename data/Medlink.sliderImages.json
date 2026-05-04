@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7ce2"
+  },
+  "link": "https://www.example.com/product1",
+  "src": "https://mercury.akamaized.net/i/74149777d22f3768a198e93c7799287e_70759_0.jpg",
+  "alt": "Protein Powerhouse"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7ce3"
+  },
+  "link": "https://www.example.com/product2",
+  "src": "https://mercury.akamaized.net/i/062b8662dcefe2c675c5b9eff1f84b56_259685_0.jpg",
+  "alt": "Beat the Diabetes"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7ce4"
+  },
+  "link": "https://www.example.com/product3",
+  "src": "https://mercury.akamaized.net/i/8e70230e856a1504cf9cc0dc1b4ae7ce_70765_0.jpg",
+  "alt": "Healthy Living"
+}]

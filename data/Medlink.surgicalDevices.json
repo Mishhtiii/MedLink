@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cfe"
+  },
+  "name": "Onetouch Select Plus Test Strips 50's",
+  "image": "https://m.media-amazon.com/images/I/619z2QQgO9L._AC_UF1000,1000_QL80_.jpg",
+  "price": 1063.55,
+  "oldPrice": 1195
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cff"
+  },
+  "name": "Accu-Chek Active Test Strip 100'S",
+  "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRrq3-WtC9lm0MWb8sF3KkdoOwUewbMNZqnrU8o6Gj3hc7brOz2sw1v5VtdCOyw-9M9EISkZEvMdyMDvXxVFeIUEFWtS5bNq7v3Qvu7hBpfTP1-7_VMxTFQyA",
+  "price": 1783.3,
+  "oldPrice": 2098
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7d00"
+  },
+  "name": "AccuSure Blood Pressure Monitor - TD",
+  "image": "https://images.apollo247.in/pub/media/catalog/product/a/c/acc0089_1-oct2023.jpg",
+  "price": 1140,
+  "oldPrice": 1520
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7d01"
+  },
+  "name": "Dr. Morepen GlucoOne Blood Glucose Monitor",
+  "image": "https://m.media-amazon.com/images/I/71xExwFHEZL._AC_UF1000,1000_QL80_.jpg",
+  "price": 465.23,
+  "oldPrice": 665
+}]

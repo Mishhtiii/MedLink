@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cef"
+  },
+  "name": "Cetaphil Moisturizer",
+  "price": 1325.22,
+  "oldPrice": 1699,
+  "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTU5GTUg6gP9xWkAJcLIduoE3Nadl4F4uVPeS2CZ2wpujR9-GAhLvSy1vnumCgXEp8oIC86Ik6vUf1_PRzMALMGlwyEL1vmXrmBPOG4xU-swo_NFJEo-g7n5Q&usqp=CAE"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cf0"
+  },
+  "name": "Dettol Antiseptic Liquid",
+  "price": 401.4,
+  "oldPrice": 441,
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR9MwldvkgX1vdkWO-HSXU0O8dqYAV_AyfPNc00eexH93C6bqZDRXH7Xcod5lXfN6-MDdX8byTe4Y36JDAbVjou7kyYOHmphAGslb55X4lGuKmuex25cdLreQ&usqp=CAE"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cf1"
+  },
+  "name": "AHAGLOW facewash gel",
+  "price": 686.28,
+  "oldPrice": 798,
+  "image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQUo4867WWHgJvY3V7VuynVbzlQse7_bfGQgGboOeRF237k66CHoszdFem8n6qsZnS0iPPWq_8DbX_f5wq-c3w06NzZtvub8gb6Z3v2-5N7kJL3t0Z2GDVG&usqp=CAE"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cf2"
+  },
+  "name": "UV DUOX Sunscreen",
+  "price": 669.76,
+  "oldPrice": 745,
+  "image": "https://www.clinikally.com/cdn/shop/products/UVdouxspf5050g.jpg?v=1675847654&width=900"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cf3"
+  },
+  "name": "Scalpe anti-dandruff Shampoo",
+  "price": 258.23,
+  "oldPrice": 323,
+  "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQOmvFqPXCa--gBtM9sJ6ahjE3AJnWHIU3-WMaKq6FnZJnfSmTaaMEA612PKWGtzXmLt1Kn0jH-a652sQlcF0l9_96u4hZlLsIo1s5bKPOOxD-6iti-g3OvuA&usqp=CAE"
+},
+{
+  "_id": {
+    "$oid": "6821dabc09c5afb0b3df7cf4"
+  },
+  "name": "Cetaphil Restoraderm",
+  "price": 1895.14,
+  "oldPrice": 2561,
+  "image": "https://www.netmeds.com/images/product-v1/600x600/382110/cetaphil_restoraderm_skin_restoring_body_moisturizer_cream_295ml_114526_0_1.jpg"
+}]

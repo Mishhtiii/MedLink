@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('includes/head') %>
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/navbar.css">
+  <link href="/styles/payment.css" rel="stylesheet" />
+  <script src="/js/payment.js" defer></script>
+</head>
+<body>
+  <%- include('includes/header') %>
+  <section class="payment-section">
+    <h2>Payment Page</h2>
+    <p>Please complete your payment to proceed.</p>
+
+    <button id="complete-payment-btn" class="btn-primary">Make Payment</button>
+    <a href="/pharmacy" class="redirect-button">Back to Shopping</a>
+  </section>
+  <%- include('includes/footer') %>
+</body>
+</html>

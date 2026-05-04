@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/medicine.css">
+</head>
+<body>
+    <%- include('includes/header') %>
+
+    <section class="order-prescription-section">
+        <div class="container">
+            <h2>Order by Prescription</h2>
+            <p>Please upload your prescription to order medicines.</p>
+            <form id="prescription-form" action="/submit-prescription" method="POST" enctype="multipart/form-data">
+                <label for="prescription-file">Upload Prescription:</label>
+                <input type="file" id="prescription-file" name="prescription" accept="image/*,application/pdf" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <%- include('includes/footer') %>
+</body>
+</html>

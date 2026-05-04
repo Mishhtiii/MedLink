@@ -260,6 +260,28 @@ a:hover {
   color: #333;
 }
 
+.no-medicines {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+.clear-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #c82333;
+}
 footer {
   background-color: #afd3e2;
   border-top-left-radius: 100px;

@@ -44,7 +44,8 @@
               id="name"
               name="name"
               required
-              value="<%= req.user ? req.user.name : '' %>"
+              value="<%= req.user ?
+req.user.name : '' %>"
             />
           </div>
           <div class="form-group">
@@ -88,7 +89,7 @@
             <select id="doctor" name="doctor" required>
               <option value="">--Choose a Doctor--</option>
               <% if (selectedDoctor) { %>
-              <option value="<%= selectedDoctor.id %>" selected><%= selectedDoctor.name %></option>
+              <option value="<%= selectedDoctor._id %>" selected><%= selectedDoctor.name %></option>
               <% } %>
             </select>
           </div>
@@ -142,8 +143,7 @@
             .then((doctors) => {
               doctors.forEach((doctor) => {
                 const option = document.createElement("option");
-                // UPDATED: Changed doctor._id to doctor.id
-                option.value = doctor.id;
+                option.value = doctor._id;
                 option.textContent = doctor.name;
                 doctorSelect.appendChild(option);
               });
@@ -266,8 +266,7 @@
 
       // Wait a bit for doctors to load, then set the selected doctor
       setTimeout(() => {
-        // UPDATED: Changed selectedDoctor._id to selectedDoctor.id
-        doctorSelect.value = "<%= selectedDoctor.id %>";
+        doctorSelect.value = "<%= selectedDoctor._id %>";
         doctorSelect.dispatchEvent(new Event('change'));
       }, 500);
     });

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head') %>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/medcart.css">
+    <script src="/js/medcart.js" defer></script>
+</head>
+
+<body>
+    <%- include('includes/header') %>
+
+    <section class="cart-section">
+        <h2>Your Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <p id="cart-total"></p>
+        <div class="cart-actions">
+            <button id="clear-cart-btn">Clear Cart</button>
+            <button id="buy-btn">Buy</button>
+        </div>
+    </section>
+
+    <%- include('includes/footer') %>
+</body>
+</html>

@@ -1,71 +1,64 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const mongoose = require('mongoose');
 
-const PendingDoctor = sequelize.define('PendingDoctor', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  specialization: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  qualification: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  experience: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  rating: {
-    type: DataTypes.FLOAT,
-    defaultValue: 0
-  },
-  location: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  hospital: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  fees: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  image: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  availability: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
-}, {
-  tableName: 'pending_doctors',
-  timestamps: true
+const pendingDoctorSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    specialization: {
+        type: String,
+        required: true
+    },
+    qualification: {
+        type: String,
+        required: true
+    },
+    experience: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        default: 0
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    hospital: {
+        type: String,
+        required: true
+    },
+    fees: {
+        type: Number,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    availability: {
+        type: String,
+        required: true
+    }
 });
 
-module.exports = PendingDoctor;
+let pendingDoctorModel = new mongoose.model('PendingDoctor', pendingDoctorSchema);
+
+module.exports = pendingDoctorModel;
