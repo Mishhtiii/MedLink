@@ -1,244 +1,232 @@
-/* doctorDashboard.css */
+:root {
+  --teal-color: #00a8bd;
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
+}
 
 body {
-  font-family: "Roboto", sans-serif;
-  /* Use light theme background */
-  background-color: #f4f7f6;
-  color: #333;
-  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
 }
 
-.dashboard-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* 1. HERO SLIDER BANNER INTERACTIVE STYLES (EXACTLY AS HOME1.CSS) */
+.home {
+  padding: 0;
+  position: relative;
 }
 
-.profile-header {
+.home .home-slider .box {
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 0 8%;
 }
 
-.profile-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.home .home-slider .box .content {
+  max-width: 750px;
+  padding-top: 100px;
 }
 
-.profile-info h2 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #146c94; /* Primary Theme Color */
-}
-
-.profile-info p {
-  margin: 0.25rem 0;
-  font-size: 1rem;
-  color: #555;
-}
-
-h1 {
-  text-align: center;
-  font-weight: 500;
-  color: #34495e;
-  margin-bottom: 2.5rem;
-}
-
-.dashboard-options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.option-card {
-  background-color: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.option-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-.option-card h3 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: #34495e;
-}
-
-.option-card p {
-  font-size: 0.95rem;
-  color: #6c757d;
-  margin-bottom: 1.5rem;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #146c94; /* Primary Theme Color */
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #0f4c67; /* Darker Primary Theme Color */
-}
-
-#appointments-section,
-#slots-section {
-  padding: 2rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-}
-
-#appointments-section h2,
-#slots-section h2 {
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #146c94; /* Primary Theme Color */
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 1rem;
-}
-
-#appointments-list .appointment-item {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-#appointments-list .appointment-item p {
-  margin: 0.5rem 0;
-}
-
-/* Appointment Status Styling */
-.status {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.85rem;
+.home .home-slider .box .content h3 {
+  font-size: 3.5rem;
   font-weight: 600;
-  color: white;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
-.status-pending {
-  background-color: #f39c12; /* Orange */
+.home .home-slider .box .content p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 1rem 0;
+  line-height: 1.8;
 }
 
-.status-confirmed {
-  background-color: #2ecc71; /* Green */
-}
-
-.status-cancelled {
-  background-color: #e74c3c; /* Red */
-}
-
-/* Slots Section */
-#slots-section label {
+/* Badge overlay blocks indicators */
+.hero-badge-panel {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 13px;
   font-weight: 500;
-  margin-right: 1rem;
 }
 
-#slots-section input[type="date"] {
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ced4da;
-  margin-right: 1rem;
+.dot-teal {
+  width: 8px;
+  height: 8px;
+  background: var(--teal-color);
+  border-radius: 50%;
+  display: inline-block;
 }
 
-#slots-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.slot {
-  padding: 1rem;
+/* PRIMARY CALL TO ACTION BUTTON SLIDERS FOR THE BANNER CONTAINER */
+.btn-theme-solid,
+.btn-theme-outline {
+  padding: 13px 32px;
   border-radius: 8px;
-  text-align: center;
-  font-weight: 500;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.slot:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.slot.available {
-  background-color: #afd3e2; /* Lighter Theme Color */
-  color: #146c94;
-}
-
-.slot.unavailable {
-  background-color: #e74c3c; /* Red for unavailable */
-  color: #fff;
-}
-
-.slot.booked {
-  /* If you implement separate isBooked field */
-  background-color: #95a5a6;
-  color: #fff;
-  cursor: not-allowed;
-}
-
-.slot-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
   margin-top: 10px;
 }
 
-.slot-actions button {
-  background-color: #146c94;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+.btn-theme-solid {
+  background-color: var(--teal-color);
+  color: #ffffff !important;
+  border: 2px solid var(--teal-color);
+}
+.btn-theme-solid:hover {
+  background-color: var(--dark-blue-bg);
+  border-color: var(--dark-blue-bg);
+}
+
+.btn-theme-outline {
+  background-color: transparent;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.btn-theme-outline:hover {
+  background-color: #ffffff;
+  color: var(--dark-blue-bg) !important;
+  border-color: #ffffff;
+}
+
+/* 2. CORE WORKSPACE WORKSPACE CONFIGURATION LAYOUTS */
+.dashboard-core-wrapper {
+  background-color: var(--light-teal-bg);
+  border-radius: 35px 35px 0 0;
   margin-top: 0;
-  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 10;
+  padding-top: 40px !important;
 }
 
-.slot.available .btn-availability {
-  background-color: #0f4c67;
+.practitioner-profile-card,
+.metric-status-card,
+.dashboard-nav,
+.dashboard-content {
+  border-color: #edf2f7 !important;
 }
 
-.slot.unavailable .btn-availability {
-  background-color: #2ecc71;
+.metric-status-card {
+  transition: transform 0.3s ease;
+}
+.metric-status-card:hover {
+  transform: translateY(-4px);
 }
 
-.slot.available .btn-secondary {
-  background-color: #2c3e50;
+/* NAVIGATION ASYNC MENU SIDEBAR */
+.dashboard-nav .nav-item {
+  display: block;
+  padding: 12px 18px;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.dashboard-nav .nav-item:hover {
+  background-color: #f7fafc;
+  color: var(--dark-blue-bg);
+}
+.dashboard-nav .nav-item.active {
+  background-color: rgba(0, 168, 189, 0.08);
+  color: var(--teal-color);
+  font-weight: 600;
 }
 
-.slot-actions button:hover {
-  opacity: 0.9;
+.panel-heading-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark-blue-bg);
+}
+.min-height-lock {
+  min-height: 450px;
+}
+
+/* APPOINTMENTS ITEMS COMPONENT TRANSITIONS */
+.bg-light-split {
+  background-color: #f8fafc;
+}
+.status-pill-pending {
+  background: rgba(255, 193, 7, 0.12);
+  color: #b88a5d;
+}
+.status-pill-confirmed {
+  background: rgba(39, 174, 96, 0.12);
+  color: #27ae60;
+}
+.status-pill-cancelled {
+  background: rgba(192, 57, 43, 0.12);
+  color: #c0392b;
+}
+
+/* HOURLY SLOTS VISUAL CARDS INDICATORS */
+.slot-card-runtime {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.slot-card-runtime:hover {
+  border-color: rgba(0, 168, 189, 0.2) !important;
+  box-shadow: 0 8px 20px rgba(7, 35, 49, 0.04);
+}
+.slot-disabled-bg {
+  background-color: #f8fafc !important;
+  opacity: 0.85;
+}
+.badge-status-dot {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+.badge-status-dot.dot-available {
+  background: rgba(39, 174, 96, 0.1);
+  color: #27ae60;
+}
+.badge-status-dot.dot-unavailable {
+  background: rgba(113, 128, 150, 0.1);
+  color: #718096;
+}
+
+/* RESPONSIVE SUB-BREAKPOINTS AT VIEWPORTS */
+@media (max-width: 991px) {
+  .home .home-slider .box .content h3 {
+    font-size: 2.2rem;
+  }
+  .home .home-slider .box {
+    padding: 0 4%;
+    min-height: 70vh;
+  }
+  .button-group-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-theme-solid,
+  .btn-theme-outline {
+    width: 100%;
+  }
+  .practitioner-profile-card {
+    margin-top: -40px !important;
+  }
+  .dashboard-nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px !important;
+  }
+  .dashboard-nav .nav-item {
+    padding: 8px 16px;
+  }
 }

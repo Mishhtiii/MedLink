@@ -4,60 +4,178 @@
     <%- include('includes/head') %>
     <link href="/styles/reset.css" rel="stylesheet" />
     <link href="/styles/navbar.css" rel="stylesheet" />
-    <link href="/styles/profile.css" rel="stylesheet" />
+    <link href="/styles/doctorProfile.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <%- include('includes/doctorHeader') %>
-    <div class="profile-container">
-      <div class="profile-header">
-        <div class="avatar">
-          <i class="fas fa-user-md"></i>
-        </div>
-        <h2 id="doctor-name">Loading...</h2>
-        <p id="doctor-speciality">Loading...</p>
-      </div>
-      <div class="profile-content">
-        <div class="card">
-          <h3>Professional Information</h3>
-          <p><strong>Name:</strong> <span id="info-name">Loading...</span></p>
-          <p>
-            <strong>Username:</strong>
-            <span id="info-username">Loading...</span>
-          </p>
 
-          <p><strong>Email:</strong> <span id="info-email">Loading...</span></p>
-          <p>
-            <strong>Speciality:</strong> <span id="info-field">Loading...</span>
-          </p>
-          <p>
-            <strong>Qualification:</strong>
-            <span id="info-qualification">Loading...</span>
-          </p>
-          <p>
-            <strong>Experience:</strong>
-            <span id="info-experience">Loading...</span>
-          </p>
-
-          <p>
-            <strong>Location:</strong>
-            <span id="info-location">Loading...</span>
-          </p>
-          <p>
-            <strong>Rating:</strong> <span id="info-rating">Loading...</span> /
-            5
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content text-start">
+          <div class="hero-badge-panel mb-3">
+            <span class="dot-teal me-2"></span> Practitioner Credentials
+            Terminal
+          </div>
+          <h1 class="hero-title text-white">
+            Manage &amp; View <br />
+            Your Professional <br />
+            Practitioner File
+          </h1>
+          <p class="hero-text">
+            Review your dynamic clinical specialization parameters, official
+            registered contact channels, academic qualifications records, and
+            client ranking data indexes seamlessly.
           </p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="profile-dashboard-wrapper py-5">
+      <div class="container">
+        <div
+          class="profile-user-header-card bg-white border shadow-sm p-4 rounded-5 mb-4 text-start d-flex align-items-center gap-4"
+          style="margin-top: -100px; position: relative; z-index: 100"
+        >
+          <div
+            class="profile-avatar-circle shadow-sm border rounded-circle d-flex align-items-center justify-content-center text-info bg-light-teal"
+            style="
+              width: 75px;
+              height: 75px;
+              font-size: 28px;
+              background-color: rgba(0, 168, 189, 0.07);
+              color: #00a8bd !important;
+            "
+          >
+            <i class="fas fa-user-md"></i>
+          </div>
+          <div>
+            <div
+              class="showcase-badge mb-1"
+              style="font-size: 12px; color: #00a8bd"
+            >
+              <span class="dot-teal me-2"></span> Active Consultant File
+            </div>
+            <h2
+              id="doctor-name"
+              class="fw-bold text-dark mb-1"
+              style="font-size: 24px"
+            >
+              Loading...
+            </h2>
+            <p
+              id="doctor-speciality"
+              class="small text-muted mb-0 font-monospace"
+            >
+              Loading...
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="card profile-meta-card bg-white border shadow-sm p-4 p-md-5 rounded-5 text-start mb-4"
+        >
+          <h3
+            class="card-heading-title mb-4 pb-2 border-bottom"
+            style="font-size: 20px; font-weight: 700; color: #072331"
+          >
+            <i
+              class="fas fa-id-card-clip text-info me-2"
+              style="color: #00a8bd !important"
+            ></i>
+            Professional Information
+          </h3>
+
+          <div class="row g-3 info-profile-lines">
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">Full Name Title</p>
+              <strong id="info-name" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Practitioner Username
+              </p>
+              <strong id="info-username" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Official Email Address
+              </p>
+              <strong id="info-email" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Assigned Speciality Domain
+              </p>
+              <strong id="info-field" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Academic Qualifications
+              </p>
+              <strong id="info-qualification" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Practice Experience Span
+              </p>
+              <strong id="info-experience" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Operational Location / City
+              </p>
+              <strong id="info-location" class="text-dark d-block mt-1"
+                >Loading...</strong
+              >
+            </div>
+            <div class="col-md-6 border-bottom pb-3">
+              <p class="mb-0 text-secondary small fw-medium">
+                Public Feedback Rating
+              </p>
+              <div class="d-flex align-items-center gap-1 mt-1">
+                <i
+                  class="fas fa-star text-warning"
+                  style="color: #ffc107 !important"
+                ></i>
+                <strong id="info-rating" class="text-dark">Loading...</strong>
+                <span class="text-muted small">/ 5 Rating nodes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script>
       async function fetchDoctorInfo() {
         try {
-          // FIX 3: Fetch the JSON data from the correct, simplified API endpoint
           const response = await fetch("/api/doctors/profile-data");
 
           if (response.status === 401) {
-            // FIX 4: Redirect to login if unauthorized, ensuring persistent login feel
             window.location.href = "/doctorLogin";
             return;
           }
@@ -104,12 +222,20 @@
           document.getElementById("doctor-name").textContent =
             "Error loading doctor info";
           document.getElementById("doctor-speciality").textContent = "Error";
-          // ... [rest of the error display logic] ...
+          document.getElementById("info-name").textContent = "Error";
+          document.getElementById("info-username").textContent = "Error";
+          document.getElementById("info-email").textContent = "Error";
+          document.getElementById("info-field").textContent = "Error";
+          document.getElementById("info-qualification").textContent = "Error";
+          document.getElementById("info-experience").textContent = "Error";
+          document.getElementById("info-location").textContent = "Error";
+          document.getElementById("info-rating").textContent = "Error";
         }
       }
 
       fetchDoctorInfo();
     </script>
+
     <%- include('includes/doctorFooter') %>
   </body>
 </html>

@@ -1,51 +1,190 @@
-.payment-section {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  text-align: center;
-  font-family: Arial, sans-serif;
+:root {
+  --teal-color: #00a8bd;
+  --dark-overlay: rgba(7, 35, 49, 0.78);
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
 }
 
-.payment-section h2 {
-  margin-bottom: 20px;
-  color: #333;
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
 }
 
-.payment-section p {
-  margin-bottom: 30px;
-  font-size: 1.1em;
-  color: #555;
+/* 1. HERO ARCHITECTURE COMPONENT (EXACTLY MATCHING HOME1 GRID STYLE) */
+.hero-container-box {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  border-radius: 30px;
+  overflow: hidden;
+  padding-bottom: 70px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--dark-overlay) 0%,
+      rgba(4, 65, 65, 0.72) 20%,
+      rgba(7, 84, 114, 0.45) 45%,
+      rgba(14, 159, 169, 0.15) 60%,
+      transparent 100%
+    ),
+    url("../images/scope.jpg"); /* Reusing shared local asset background canvas from context matrix */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.hero-content {
+  max-width: 1000px;
+  padding-top: 140px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.hero-badge,
+.about-badge,
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
   color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1em;
-  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+.hero-badge::before,
+.dot-teal {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal-color);
+}
+
+.hero-text {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 650px;
+}
+
+/* 2. TRANSACTION SEGMENT CARD BOX WRAPPERS */
+.payment-wrapper-section {
+  background-color: var(--light-teal-bg);
+  border-radius: 30px;
+  margin: 15px;
+  padding: 80px 0;
+}
+
+.about-badge {
+  background: var(--light-teal-bg);
+  color: var(--teal-color);
+}
+
+.form-main-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dark-blue-bg);
+}
+
+/* SHIELD ENCRYPTION CONTAINER EMBED CODE */
+.shield-circle {
+  width: 90px;
+  height: 90px;
+  font-size: 38px;
+  border-color: #e2e8f0 !important;
+}
+
+.bg-light-teal {
+  background-color: rgba(0, 168, 189, 0.06);
+}
+
+.text-info {
+  color: var(--teal-color) !important;
+}
+
+/* UNIVERSAL REDESIGNED SLIDING INTERACTION ACTION BUTTON PANELS */
+.btn-theme-action {
+  padding: 14px 35px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 10px;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.redirect-button {
-  background-color: #28a745;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.redirect-button:hover {
-  background-color: #1e7e34;
+/* Primary transaction processing node button trigger layout */
+.btn-pay-solid {
+  background-color: var(--teal-color);
+  color: white !important;
+  border: 2px solid var(--teal-color);
+  box-shadow: 0 4px 15px rgba(0, 168, 189, 0.2);
+}
+
+.btn-pay-solid:hover {
+  background-color: var(--dark-blue-bg);
+  border-color: var(--dark-blue-bg);
+  box-shadow: 0 6px 20px rgba(7, 35, 49, 0.2);
+}
+
+/* Secondary pathway backup redirect button trigger layout */
+.btn-redirect-outline {
+  background-color: transparent;
+  color: #718096 !important;
+  border: 2px solid #e2e8f0;
+}
+
+.btn-redirect-outline:hover {
+  background-color: #f7fafc;
+  color: var(--dark-blue-bg) !important;
+  border-color: var(--dark-blue-bg);
+}
+
+/* RESPONSIVE MATRIX OVERRIDE QUERIES FOR SCREEN VIEWPORTS */
+@media (max-width: 768px) {
+  .hero-container-box {
+    margin: 10px;
+    border-radius: 20px;
+    min-height: 60vh;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .form-main-title {
+    font-size: 1.8rem;
+  }
+  .payment-wrapper-section {
+    margin: 10px;
+    padding: 40px 0 !important;
+  }
+  .container {
+    padding: 30px 20px !important;
+  }
+  .payment-action-group-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-theme-action {
+    width: 100%;
+  }
 }

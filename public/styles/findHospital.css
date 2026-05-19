@@ -1,326 +1,262 @@
-body,
-html {
-  width: 100%;
-  height: 100%;
-  background-color: #afd3e2;
-  font-family: "Outfit", sans-serif;
-}
-nav {
-  width: 100%;
-  height: 70px;
-  background-color: #afd3e2;
-  margin-bottom: 0;
-}
-label.logo {
-  margin: 0 70px;
-}
-nav ul {
-  float: right;
-  list-style-type: none;
-}
-nav ul li {
-  display: inline-block;
-  line-height: 70px;
-}
-.dropdown {
-  position: relative;
-  display: inline-block;
+:root {
+  --teal-color: #00a8bd;
+  --dark-overlay: rgba(7, 35, 49, 0.78);
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  background-color: #fff;
-  width: 120px;
-  z-index: 10;
-  border-radius: 8px;
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+/* 1. HERO ARCHITECTURE CONTAINER STYLING */
+.hero-container-box {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  border-radius: 30px;
   overflow: hidden;
+  padding-bottom: 70px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--dark-overlay) 0%,
+      rgba(4, 65, 65, 0.72) 20%,
+      rgba(7, 84, 114, 0.45) 45%,
+      rgba(14, 159, 169, 0.15) 60%,
+      transparent 100%
+    ),
+    url("../images/scope.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.dropdown-content li {
-  display: block;
+.hero-content {
+  max-width: 1000px;
+  padding-top: 140px;
 }
 
-.dropdown-content li a {
-  color: #333;
-  padding: 3px;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-.dropdown-content li a:hover {
-  background-color: #146c94;
+.hero-badge,
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
   color: white;
+  margin-bottom: 25px;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.icon-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  vertical-align: middle;
+.hero-badge::before,
+.dot-teal {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal-color);
 }
 
-.circle-bg {
-  position: absolute;
-  font-size: 40px;
-  color: #eee;
-  top: 0;
-  left: 0;
+.hero-text {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 600px;
 }
 
-.user-icon {
-  position: absolute;
-  top: 9px;
-  left: 9px;
-  font-size: 25px;
-  color: #333;
+.hero-search-wrapper-box {
+  max-width: 750px;
+  width: 100%;
+}
+
+/* FIXED: Added complete input styling attributes here */
+.form-control-custom {
+  width: 100%;
+  padding: 14px 15px 14px 50px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  background-color: #ffffff;
+  color: var(--dark-blue-bg);
+  transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+  border-color: var(--teal-color) !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 189, 0.12);
+}
+
+/* PREMIUM ACTION BUTTON */
+.btn-search-trigger {
+  background-color: var(--teal-color);
+  color: white;
+  border: 2px solid var(--teal-color);
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.btn-search-trigger:hover {
+  background-color: var(--dark-blue-bg);
+  border-color: var(--dark-blue-bg);
+}
+
+/* 2. MAP SECTION AND UNIFIED SIDEBAR */
+.map-visualization-section {
+  background-color: var(--light-teal-bg);
+  border-radius: 30px;
+  margin: 15px;
+  padding: 80px 0;
+}
+
+.showcase-badge {
+  background: #ffffff;
+  color: var(--dark-blue-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-main-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-blue-bg);
+}
+
+#map {
+  width: 100%;
+  height: 550px;
+  background-color: #e2e8f0;
   z-index: 1;
 }
 
-.icon-wrapper:hover .circle-bg {
-  color: #146c94;
-}
-
-.icon-wrapper:hover .user-icon {
-  color: white;
-}
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  padding: 8px 20px;
-}
-nav ul li a.active,
-a:hover {
-  background: #146c94;
-  color: white;
-}
-#checkbtn {
-  float: right;
-  line-height: 70px;
-  margin-right: 10px;
-  font-size: 30px;
-  color: white;
-  display: none;
-}
-#check {
-  display: none;
-}
-#check:checked ~ ul {
-  left: 0;
-}
-#check:checked ~ #checkbtn {
-  color: #146c94;
-}
-@media (max-width: 884px) {
-  #checkbtn {
-    display: block;
-  }
-  nav ul {
-    width: 100%;
-    height: 100vh;
-    background-color: #146c94;
-    position: fixed;
-    top: 70px;
-    left: -100%;
-    transition: 0.5s;
-  }
-  nav ul li {
-    display: block;
-    text-align: center;
-    line-height: 45px;
-    margin: 10px;
-  }
-  nav ul li a.active,
-  a:hover {
-    background: #afd3e2;
-    color: white;
-  }
-}
-#map {
-  height: 400px;
-  width: 100%;
-  margin-top: 40px;
-}
-#hospitalList {
-  list-style-type: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin: 20px 70px 20px 70px;
-}
-
-.hospital-card {
-  border: 1px solid #ddd;
-  padding: 10px;
-  width: 300px;
-
-  display: flex;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.hospital-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-.search-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 50px 90px 10px 90px;
-  margin-top: 40px;
-}
-
-.hospital-text {
+/* SIDEBAR CONTAINER BOX */
+.hospital-sidebar-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(7, 35, 49, 0.04);
+  height: 550px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 150px;
-}
-
-.hospital-text h1 {
-  font-size: 70px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 20px;
-}
-
-#searchBar {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  padding: 10px;
-  margin-top: 15px;
-}
-pre {
-  color: white;
-}
-#citySearch {
-  padding: 8px 90px 8px 8px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
-  font-size: 20px;
-  border-bottom: 1px solid #146c94;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-#citySearch:focus {
-  outline: none;
-  border-bottom: 2px solid black;
-}
-#loc {
-  transform: translateX(-17px);
-}
-#searchBar button {
-  padding: 8px 16px;
-  background-color: #146c94;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.search-section > div:first-child {
-  grid-column: 1;
-}
-
-.search-section > div:last-child {
-  grid-column: 2;
-}
-.hospital-image {
-  margin-left: 20%;
-}
-.hospital-image img {
-  border-radius: 10px;
-}
-footer {
-  background-color: #afd3e2;
-  border-top-left-radius: 100px;
-  width: 100%;
-}
-
-.fcontainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 7%;
-}
-
-.footer-col {
-  width: 25%;
-}
-
-.footer-col h2 {
-  color: #4785b8;
-  font-optical-sizing: 1.7em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.footer-col h3 {
-  color: #4785b8;
-  margin-bottom: 20px;
-}
-
-.footer-col a,
-p {
-  color: #4785b8;
-  text-decoration: none;
   text-align: left;
 }
 
-.footer-col ul {
-  list-style-type: none;
+.hospital-sidebar-header {
+  background: var(--dark-blue-bg);
+  padding: 22px 20px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.footer-col ul li {
-  margin: 10px;
+#hospitalList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #ffffff;
 }
 
-.footer-col form {
-  margin-top: 20px;
-  border-bottom: 1px solid rgba(38, 122, 231, 0.828);
-  padding-bottom: 10px;
+/* DYNAMIC JAVASCRIPT CARDS - CRITICAL FIX */
+.hospital-card {
   display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #edf2f7;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-col form input {
-  width: 70%;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding-left: 10px;
+.hospital-card:hover {
+  background-color: #f4fcfd;
+  border-color: rgba(0, 168, 189, 0.3);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(7, 35, 49, 0.05);
 }
 
-.footer-col form i {
-  font-size: 15px;
+.hospital-card img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  min-width: 52px;
 }
 
-.footer-col .social-icons {
-  margin-top: 20px;
+.hospital-card div {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-blue-bg);
+  line-height: 1.4;
 }
 
-.footer-col .social-icons i {
-  padding: 10px;
-  background-color: white;
-  color: #00093c;
-  border-radius: 50%;
-  margin: 5px;
+/* CUSTOM SIDEBAR SCROLLBARS */
+#hospitalList::-webkit-scrollbar {
+  width: 6px;
+}
+#hospitalList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.01);
+}
+#hospitalList::-webkit-scrollbar-thumb {
+  background: var(--teal-color);
+  border-radius: 10px;
 }
 
-.footer-para {
-  max-width: 250px;
+/* RESPONSIVE LAYOUT BREAKPOINTS */
+@media (max-width: 991px) {
+  .hero-container-box {
+    margin: 10px;
+    border-radius: 20px;
+    min-height: 70vh;
+  }
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .section-main-heading {
+    font-size: 1.8rem;
+  }
+  .map-visualization-section {
+    padding: 50px 0;
+    margin: 10px;
+  }
+  #map {
+    height: 400px;
+  }
+  .hospital-sidebar-card {
+    height: 400px;
+  }
+  #searchBar {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .btn-search-trigger {
+    justify-content: center;
+  }
 }

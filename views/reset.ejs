@@ -2,66 +2,108 @@
 <html lang="en">
   <head>
     <%- include('includes/head') %>
-    <link rel="stylesheet" href="styles/reset.css" />
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link href="styles/reset.css" rel="stylesheet" />
   </head>
   <body>
     <%- include('includes/header') %>
-    <main class="reset-password-container">
-      <form action="/api/users/reset" method="POST" class="reset-password-form">
-        <h2>Reset Password</h2>
-        <p>Please enter your email and new password.</p>
-        <% if (req.query.error === "UserNotFound") { %>
-        <div class="error-message">
-          User not found. Please check your email.
+
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Security & Recovery</div>
+          <h1 class="hero-title text-white">
+            Reset Your <br />
+            Account Security <br />
+            Credentials
+          </h1>
+          <p class="hero-text">
+            Recover lost passcode entries dynamically. Enter your registered
+            medical account email parameters below to receive an authenticated
+            credential reset link via our secure delivery system.
+          </p>
         </div>
-        <% } else if (req.query.error === "PasswordMismatch") { %>
-        <div class="error-message">Check your password again.</div>
-        <% } else if (req.query.error === "Length") { %>
-        <div class="error-message">
-          Password should contain more than 8 characters.
+      </div>
+    </section>
+
+    <section class="auth-form-section py-5">
+      <div
+        class="container bg-white shadow-sm border rounded-5 p-4 p-lg-5"
+        style="
+          margin-top: -40px;
+          position: relative;
+          z-index: 10;
+          max-width: 600px;
+        "
+      >
+        <div class="form-container">
+          <div class="about-badge mb-3">
+            <span class="dot-teal me-2"></span> Credential Recovery
+          </div>
+          <h2 class="form-main-title mb-2">Password Reset</h2>
+          <p class="text-muted small mb-4">
+            Provide your active email address to initialize verification
+            protocols.
+          </p>
+
+          <form
+            action="/reset"
+            method="POST"
+            class="contact-form d-flex flex-column gap-3"
+          >
+            <div class="form-group-custom position-relative">
+              <label for="email" class="form-label-text">Email Address</label>
+              <div class="position-relative">
+                <i class="fas fa-envelope input-inside-icon"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input-control"
+                  placeholder="Enter your registered email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group-custom mt-3">
+              <button type="submit" class="btn-submit-action w-100">
+                Send Recovery Link
+                <i class="fas fa-paper-plane ms-2 rotate-arrow"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-4 pt-3 border-top">
+            <p class="small text-muted mb-0">
+              Remembered your passcode sequence?
+            </p>
+            <a href="/login" class="auth-switch-link d-inline-block mt-1">
+              Back To Login
+              <i
+                class="fas fa-right-to-bracket ms-1"
+                style="font-size: 13px"
+              ></i>
+            </a>
+          </div>
         </div>
-        <% } %>
+      </div>
+    </section>
 
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-        />
-        <label for="new-password">New Password</label>
-        <input
-          type="password"
-          id="new-password"
-          name="newPassword"
-          placeholder="New Password"
-          required
-        />
-        <label for="confirm-password">Confirm Password</label>
-        <input
-          type="password"
-          id="confirm-password"
-          name="confirmPassword"
-          placeholder="Confirm New Password"
-          required
-        />
-
-        <input type="hidden" name="responseType" value="redirect" />
-        <button type="submit">Reset Password</button>
-      </form>
-    </main>
-
+    <script src="js/home1.js"></script>
     <%- include('includes/footer') %>
   </body>
 </html>

@@ -1,173 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MedLink</title>
-    <link rel="icon" href="images/iconhead.jpg" />
-    <link href="images/logo.jpg" rel="icon" />
-    <link href="styles/Aboutus.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <%- include('includes/head') %>
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
 
     <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link href="styles/Aboutus.css" rel="stylesheet" />
   </head>
   <body>
     <%- include('includes/header') %>
-    <section class="about-us">
+
+    <section class="hero-container-box">
       <div class="container">
-        <h1>About Us</h1>
-        <% if (req.user) { %>
-        <p>Welcome back, <%= req.user.name %>! Thanks for trusting MedLink.</p>
-        <% } else { %>
-        <p>
-          Welcome to <strong>MedLink</strong>, your trusted partner in finding
-          the best healthcare professionals and hospitals near you...
-        </p>
-        <% } %>
-
-        <h2>Our Vision</h2>
-        <p>
-          To revolutionize the healthcare experience by connecting patients with
-          highly-qualified doctors and hospitals, enabling them to make informed
-          decisions and receive the best care possible.
-        </p>
-
-        <h2>Our Services</h2>
-        <ul>
-          <li>
-            <strong>Search for Top Hospitals and Doctors:</strong> Our
-            comprehensive database helps you find trusted healthcare providers
-            based on your location, medical specialty, and patient reviews.
-          </li>
-          <li>
-            <strong>Doctor Appointments:</strong> Booking an appointment has
-            never been easier. Choose your preferred doctor and schedule a visit
-            online in just a few simple steps.
-          </li>
-          <li>
-            <strong>Location-Based Search:</strong> Whether you’re at home,
-            traveling, or on vacation, we make it easy to locate the best
-            healthcare providers in your current area.
-          </li>
-          <li>
-            <strong>Trusted Reviews and Ratings:</strong> We provide honest
-            feedback from real patients to help you make informed decisions
-            about your healthcare.
-          </li>
-        </ul>
-
-        <h2>Why Choose MedLink?</h2>
-        <ul>
-          <li>
-            <strong>Convenience:</strong> Search and book appointments from
-            anywhere, at any time.
-          </li>
-          <li>
-            <strong>Comprehensive Database:</strong> A wide variety of hospitals
-            and doctors across different specialties.
-          </li>
-          <li>
-            <strong>Personalized Experience:</strong> Tailored recommendations
-            based on your location and medical needs.
-          </li>
-          <li>
-            <strong>Trustworthy:</strong> Our platform ensures you connect with
-            reputable healthcare professionals and facilities.
-          </li>
-        </ul>
-
-        <p>
-          At <strong>MedLink</strong>, we are committed to your health and
-          well-being. Whether you're seeking a routine check-up or specialized
-          treatment, our goal is to help you get the care you need, when you
-          need it.
-        </p>
-        <p>
-          Thank you for choosing <strong>MedLink</strong> — Your Health, Our
-          Priority.
-        </p>
-      </div>
-    </section>
-
-    <section class="appointment-hospital">
-      <div class="section-container">
-        <div class="appointment-section">
-          <img
-            src="images/appointmentbooking.avif"
-            alt="Appointment Image"
-            class="section-img"
-          />
-          <div class="text-container">
-            <h2>Book an Appointment</h2>
-            <p>
-              Find the best doctors and schedule your appointment easily through
-              our platform. We make booking healthcare appointments hassle-free!
+        <div class="hero-content">
+          <div class="hero-badge">Who We Are</div>
+          <h1 class="hero-title text-white">
+            Your Trusted <br />
+            Healthcare Partner <br />
+            Since Day One
+          </h1>
+          
+          <% if (typeof req !== 'undefined' && req.user) { %>
+            <p class="hero-text">
+              Welcome back, <%= req.user.name %>! Thanks for trusting MedLink as your direct avenue to advanced medical wellness.
             </p>
-            <a href="/Appointment" class="btn">Book Now</a>
-          </div>
-        </div>
-        <div class="hospital-section">
-          <div class="text-container">
-            <h2>Top Hospitals</h2>
-            <p>
-              Search through a wide range of trusted hospitals near you. Whether
-              it's for routine checkups or emergencies, we connect you to the
-              right facility.
+          <% } else { %>
+            <p class="hero-text">
+              Welcome to <strong>MedLink</strong>, your trusted partner in finding the best healthcare professionals and hospitals near you. We adapt modern technological frameworks to put health mapping right at your fingertips.
             </p>
-            <a href="/findhospital" class="btn">Explore Hospitals</a>
-          </div>
-          <img
-            src="images/hospital.avif"
-            alt="Hospital Image"
-            class="section-img"
-          />
+          <% } %>
         </div>
       </div>
     </section>
 
-    <section class="appointment-hospital">
-      <div class="section-container">
-        <div class="appointment-section">
-          <img src="images/doctor.png" alt="Doctor Image" class="section-img" />
-          <div class="text-container">
-            <h2>Top Doctors</h2>
-            <p>
-              Search through a wide range of trusted doctors. Either for
-              surgeries or checkups. Find the best doctors and schedule your
-              appointment easily.
-            </p>
-            <a href="/finddoctor" class="btn">Book Now</a>
-          </div>
+    <section class="vision-section py-5">
+      <div class="container text-center">
+        <div class="about-badge mb-3">
+          <span class="dot-teal me-2"></span> Core Philosophy
         </div>
-        <div class="hospital-section">
-          <div class="text-container">
-            <h2>Location Service</h2>
-            <p>Search for Healthcare Providers Near You.</p>
-            <a href="/findhospital" class="btn">Explore</a>
+        <h2 class="about-title mb-4">Our Vision</h2>
+        <p class="about-description mx-auto mb-0" style="max-width: 800px; font-size: 18px; line-height: 1.8;">
+          To revolutionize the healthcare experience by connecting patients with highly-qualified doctors and hospitals, enabling them to make informed decisions and receive the best care possible.
+        </p>
+      </div>
+    </section>
+
+    <section class="services-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> Integrated Capabilities
+        </div>
+        <h2 class="services-main-title mb-5">
+          Comprehensive Healthcare Services <br />
+          Optimized For Smooth Living
+        </h2>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/finddoctor'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-hospital-user"></i></div>
+                <h5 class="fw-bold">Search Experts</h5>
+                <p class="small text-muted">
+                  Our comprehensive database helps you find trusted healthcare providers based on your location, medical specialty, and patient reviews.
+                </p>
+              </div>
+            </div>
           </div>
-          <img
-            src="images/location.avif"
-            alt="Hospital Image"
-            class="section-img"
-          />
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/Appointment'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
+                <h5 class="fw-bold">Doctor Appointments</h5>
+                <p class="small text-muted">
+                  Booking an appointment has never been easier. Choose your preferred doctor and schedule a visit online in just a few simple steps.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/findhospital'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-map-location-dot"></i></div>
+                <h5 class="fw-bold">Location-Based</h5>
+                <p class="small text-muted">
+                  Whether you’re at home, traveling, or on vacation, we make it easy to locate the best healthcare providers in your current area.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-star-half-stroke"></i></div>
+                <h5 class="fw-bold">Trusted Reviews</h5>
+                <p class="small text-muted">
+                  We provide honest feedback from real patients to help you make informed decisions about your healthcare parameters.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <section class="why-choose-us py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="about-badge mb-3">
+              <span class="dot-teal me-2"></span> System Advantages
+            </div>
+            <h2 class="about-title mb-4">Why Choose MedLink?</h2>
+            <p class="about-description mb-4">
+              At <strong>MedLink</strong>, we are committed to your health and well-being. Whether you're seeking a routine check-up or specialized treatment, our goal is to help you get the care you need, when you need it.
+            </p>
+            <p class="fw-bold text-dark mb-0">
+              Thank you for choosing MedLink — Your Health, Our Priority.
+            </p>
+          </div>
+
+          <div class="col-lg-7 ps-lg-5">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="stats-card p-4 shadow-sm border rounded-4 bg-white">
+                  <h5 class="fw-bold mb-2 text-dark"><i class="fas fa-clock text-info me-2"></i> Convenience</h5>
+                  <p class="small text-muted mb-0">Search and book professional medical appointments from anywhere, at any given time seamlessly.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stats-card p-4 shadow-sm border rounded-4 bg-white">
+                  <h5 class="fw-bold mb-2 text-dark"><i class="fas fa-database text-info me-2"></i> Comprehensive</h5>
+                  <p class="small text-muted mb-0">A remarkably wide variety of public hospitals and specialist doctors indexed across different technical domains.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stats-card p-4 shadow-sm border rounded-4 bg-white">
+                  <h5 class="fw-bold mb-2 text-dark"><i class="fas fa-sliders text-info me-2"></i> Personalized</h5>
+                  <p class="small text-muted mb-0">Tailored recommendation sheets and routing nodes based dynamically on your current geolocations.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stats-card p-4 shadow-sm border rounded-4 bg-white">
+                  <h5 class="fw-bold mb-2 text-dark"><i class="fas fa-shield-halved text-info me-2"></i> Trustworthy</h5>
+                  <p class="small text-muted mb-0">Our structured platform filtering layers ensure you connect with reputable, certified medical personnel.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section py-5" style="background-color: #fcfdfe;">
+      <div class="container d-flex flex-column gap-5">
+        
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-column flex-md-row align-items-center bg-white p-4 rounded-4 shadow-sm border gap-4">
+              <img src="images/appointmentbooking.avif" alt="Appointment" class="img-fluid rounded-3 split-thumbnail shadow-sm" style="width: 140px; height: 140px; object-fit: cover;" />
+              <div>
+                <h4 class="fw-bold text-dark h5 mb-2">Book an Appointment</h4>
+                <p class="small text-muted mb-3">Find the best doctors and schedule your appointment easily through our platform. We make booking healthcare appointments hassle-free!</p>
+                <a href="/Appointment" class="btn-details-slide">Book Now <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex flex-column flex-md-row-reverse align-items-center bg-white p-4 rounded-4 shadow-sm border gap-4">
+              <img src="images/hospital.avif" alt="Hospital" class="img-fluid rounded-3 split-thumbnail shadow-sm" style="width: 140px; height: 140px; object-fit: cover;" />
+              <div class="text-start">
+                <h4 class="fw-bold text-dark h5 mb-2">Top Hospitals</h4>
+                <p class="small text-muted mb-3">Search through a wide range of trusted hospitals near you. Whether it's for routine checkups or emergencies, we connect you to the right facility.</p>
+                <a href="/findhospital" class="btn-details-slide">Explore Hospitals <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="d-flex flex-column flex-md-row align-items-center bg-white p-4 rounded-4 shadow-sm border gap-4">
+              <img src="images/doctor.png" alt="Doctor" class="img-fluid rounded-3 split-thumbnail shadow-sm" style="width: 140px; height: 140px; object-fit: cover;" />
+              <div>
+                <h4 class="fw-bold text-dark h5 mb-2">Top Doctors</h4>
+                <p class="small text-muted mb-3">Search through a wide range of trusted doctors. Either for surgeries or checkups, find the best doctors and schedule your appointment easily.</p>
+                <a href="/finddoctor" class="btn-details-slide">Book Now <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex flex-column flex-md-row-reverse align-items-center bg-white p-4 rounded-4 shadow-sm border gap-4">
+              <img src="images/location.avif" alt="Location Map" class="img-fluid rounded-3 split-thumbnail shadow-sm" style="width: 140px; height: 140px; object-fit: cover;" />
+              <div class="text-start">
+                <h4 class="fw-bold text-dark h5 mb-2">Location Service</h4>
+                <p class="small text-muted mb-3">Utilize advanced tracking modules to run automated database queries. Search for reputable verified healthcare providers located right near you with precision.</p>
+                <a href="/findhospital" class="btn-details-slide">Explore <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <%- include('includes/footer') %>
   </body>
 </html>

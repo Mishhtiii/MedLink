@@ -1,7 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <%- include('includes/head') %>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link href="styles/home1.css" rel="stylesheet" />
   </head>
 
@@ -14,199 +28,421 @@
     </script>
     <% } %>
 
-    <section class="container1">
-      <div class="left-section">
-        <h1>Connect with top-rated doctors in just a few clicks</h1>
-        <div class="appointment-form">
-          <p>
-            To find your preferred doctor, please click the button below to
-            visit our Find Doctor page where you can browse specialists and book
-            appointments.
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Better Care For Better Life.</div>
+          <h1 class="hero-title text-white">
+            Connect with trusted <br />
+            doctors in just a <br />
+            few clicks
+          </h1>
+          <p class="hero-text">
+            We provide advanced healthcare solutions designed to improve the
+            well-being of every patient. With experienced medical professionals,
+            modern technology.
           </p>
-          <style>
-            .custom-button {
-              background-color: green !important;
-              color: white !important;
-              border: 2px solid green !important;
-              padding: 10px 20px !important;
-              border-radius: 5px !important;
-              cursor: pointer !important;
-              transition: background-color 0.3s ease, border-color 0.3s ease !important;
-            }
-            .custom-button:hover {
-              background-color: #007bff !important;
-              border-color: #007bff !important;
-            }
-          </style>
-          <button
-            onclick="window.location.href='/finddoctor'"
-            class="custom-button"
-          >
-            Find Doctor
-          </button>
-          <p>
-            For convenient and quick access to your medicines, please use our
-            Medicine Cart to easily add and manage your medicine orders. We are
-            currently offering discounts on selected medicines.
-          </p>
-          <button
-            onclick="window.location.href='/pharmacy'"
-            class="custom-button"
-          >
-            Buy Medicine
-          </button>
         </div>
-      </div>
-      <div class="right-section">
-        <img
-          src="https://media.istockphoto.com/id/1189304032/photo/doctor-holding-digital-tablet-at-meeting-room.jpg?s=612x612&w=0&k=20&c=RtQn8w_vhzGYbflSa1B5ea9Ji70O8wHpSgGBSh0anUg="
-          alt="Doctor"
-          class="doctor-image"
-        />
-        <div class="stats">
-          <div class="stat">
-            <p>200,000+</p>
-            <span>Registered Patients</span>
-          </div>
-          <div class="stat">
-            <p>5,000+</p>
-            <span>Doctors on Call</span>
-          </div>
-        </div>
-        <% if (req.isUser) { %>
-        <a href="/profile"><button class="join-btn">My Profile</button></a>
-        <% } else { %>
-        <a href="/register"><button class="join-btn">Join Today!</button></a>
-        <% } %>
-        <a href="/doctorRegister"
-          ><button class="join-btn" style="margin-left: 10px">
-            Doctor Register/Login
-          </button></a
-        >
-      </div>
-    </section>
 
-    <section class="categories">
-      <div class="title">How It Works?</div>
-      <div class="category-content">
-        <div class="category-line">
-          <div class="image">
-            <img
-              src="https://i.pinimg.com/564x/64/34/d7/6434d72ce9e16251c4f41f4e5a146567.jpg"
-            />
+        <div class="hero-footer d-flex align-items-center mt-5 flex-wrap gap-4">
+          <a href="/finddoctor" class="btn-consultation">
+            Start Consultation
+            <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+          </a>
+          
+          <div class="review-box d-flex align-items-center">
+            <div class="review-avatars me-3">
+              <img src="https://i.pravatar.cc/40?u=1" alt="User" class="avatar" />
+              <img src="https://i.pravatar.cc/40?u=2" alt="User" class="avatar" />
+              <img src="https://i.pravatar.cc/40?u=3" alt="User" class="avatar" />
+            </div>
+            <div class="review-text text-white">
+              <div class="fw-bold">
+                4.9/5 <i class="fas fa-star text-warning"></i>
+              </div>
+              <div class="small opacity-75">More Than 2500 Reviews</div>
+            </div>
           </div>
-          <a href="/finddoctor" style="text-decoration: none"
-            ><h4>Find your Doctor</h4></a
-          >
-          <p>Choose from variety of our medical specialists</p>
-        </div>
-        <div class="category-line">
-          <div class="image">
-            <img
-              src="https://static.vecteezy.com/system/resources/previews/009/742/342/non_2x/3d-location-point-marker-of-map-or-navigation-pin-icon-sign-on-isolated-white-background-navigation-is-blue-pastel-colour-with-shadow-on-map-direction-3d-gps-pin-rendering-illustration-vector.jpg"
-            />
+
+          <div class="medlink-auth-gate ms-lg-auto d-flex gap-2">
+            <% if (req.isUser) { %>
+              <a href="/profile" class="btn-appointment" style="background-color: transparent; border-color: rgba(255,255,255,0.35);">My Profile</a>
+            <% } else { %>
+              <a href="/register" class="btn-appointment" style="background-color: transparent; border-color: rgba(255,255,255,0.35);">Join Today!</a>
+            <% } %>
+            <a href="/doctorRegister" class="btn-appointment" style="background-color: transparent; border-color: rgba(255,255,255,0.35);">Doctor Portal</a>
           </div>
-          <a href="/findhospital" style="text-decoration: none"
-            ><h4>Choose Location</h4></a
-          >
-          <p>Find doctors and medical offices in your area</p>
-        </div>
-        <div class="category-line">
-          <div class="image">
-            <img
-              src="https://i.pinimg.com/originals/db/0c/d6/db0cd67428185be3e9fe48e31e724de2.jpg"
-            />
-          </div>
-          <a href="/Appointment" style="text-decoration: none"
-            ><h4>Select Time Slot</h4></a
-          >
-          <p>Choose a time that is most convenient for you</p>
-        </div>
-        <div class="category-line">
-          <div class="image">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_JlTBWbMrX73Zt75VmC0jKtrw9gRUngLhQA&s"
-            />
-          </div>
-          <a href="/pharmacy" style="text-decoration: none"
-            ><h4>Get a solution</h4></a
-          >
-          <p>We can hold an appointment either on call or video chat</p>
         </div>
       </div>
     </section>
 
-    <section class="container2">
-      <main class="content">
-        <div class="left-section2">
-          <div class="doctor-image2">
-            <img src="images/doctor.jpg" alt="Dr. Andrew Eyeball" />
-            <div class="badge">Dr. Andrew Eyeball</div>
-            <div class="signup">
-              Sign up now<br />
-              <span>for your regular checkup!</span>
+    <section class="about-section py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 position-relative mb-5 mb-lg-0">
+            <div class="about-image-wrapper">
+              <img
+                src="images/doctor.jpg"
+                alt="Our Medical Staff"
+                class="img-fluid rounded-4 shadow-lg"
+              />
+
+              <div class="about-review-badge">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="review-avatars">
+                    <img src="https://i.pravatar.cc/40?u=1" alt="User" class="avatar border-white" />
+                    <img src="https://i.pravatar.cc/40?u=2" alt="User" class="avatar border-white" />
+                    <img src="https://i.pravatar.cc/40?u=3" alt="User" class="avatar border-white" />
+                  </div>
+                  <div class="text-white">
+                    <div class="fw-bold h5 mb-0">
+                      4.9/5 <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <div class="small opacity-75">More Than 2500 Reviews</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 ps-lg-5">
+            <div class="about-badge mb-3">
+              <span class="dot-teal me-2"></span> Find Doctors
+            </div>
+            <h2 class="about-title mb-4">
+              Find Experienced Medical Specialists
+            </h2>
+            <p class="about-description mb-4">
+              Find the right doctor for your healthcare needs with ease. Browse
+              through our experienced multi-speciality doctors, explore their
+              expertise, and connect with trusted medical professionals
+              dedicated to providing the best care for you and your family.
+            </p>
+
+            <div class="row mb-5">
+              <div class="col-md-6 mb-3">
+                <div class="d-flex gap-2">
+                  <i class="fas fa-check-circle text-info mt-1"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">Expert Specialist Doctors</h6>
+                    <p class="small text-muted mb-0">
+                      Connect with experienced multi-speciality doctors.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="d-flex gap-2">
+                  <i class="fas fa-check-circle text-info mt-1"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">Easy Doctor Consultation</h6>
+                    <p class="small text-muted mb-0">
+                      Book consultations quickly with confidence and
+                      convenience.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center flex-wrap gap-4">
+              <a href="/finddoctor" class="btn-consultation">
+                Find Doctor
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+              <div class="d-flex align-items-center">
+                <img
+                  src="https://i.pravatar.cc/50?u=8"
+                  alt="Devon Lane"
+                  class="rounded-circle me-3 border shadow-sm"
+                />
+                <div>
+                  <h6 class="fw-bold mb-0">Devon Lane</h6>
+                  <p class="small text-muted mb-0">
+                    Internal Medicine Specialist
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="right-section2">
-          <h1>Booking made easy</h1>
-          <ul>
-            <li>Find your specialist</li>
-            <li>Describe your problem</li>
-            <li>Set a meeting type</li>
-            <li>Book your time</li>
-          </ul>
-          <a href="/Appointment"
-            ><button class="appointment-btn">Book an appointment</button></a
-          >
-        </div>
-      </main>
+      </div>
     </section>
 
-    <div class="container3">
-      <div class="text-section">
-        <h1 class="heading">
-          We offer a wide range of specialists for your health
-        </h1>
-        <div class="specialties">
-          <div class="specialty">
-            <i
-              class="fas fa-tooth"
-              style="color: #7fddff; font-size: 1.5rem"
-            ></i>
-            <span>Dentistry</span>
+    <section class="services-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> Our Services
+        </div>
+        <h2 class="services-main-title mb-5">
+          Expert healthcare services for <br />
+          better living
+        </h2>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/pharmacy'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-dna"></i></div>
+                <h5 class="fw-bold">Pharmacy</h5>
+                <p class="small text-muted">
+                  Our Pharmacy offers quick and convenient access to medicines
+                  with easy ordering.
+                </p>
+              </div>
+              <a href="/pharmacy" class="view-details-btn">
+                View Details
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
           </div>
-          <div class="specialty">
-            <i
-              class="fas fa-stethoscope"
-              style="color: #33aa96; font-size: 1.5rem"
-            ></i>
-            <span>General health</span>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/findhospital'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-flask"></i></div>
+                <h5 class="fw-bold">Find Hospitals</h5>
+                <p class="small text-muted">
+                  Locate the best hospitals in your area in case of emergency.
+                </p>
+              </div>
+              <a href="/findhospital" class="view-details-btn">
+                View Details
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
           </div>
-          <div class="specialty">
-            <i
-              class="fas fa-brain"
-              style="color: #9f66a6; font-size: 1.5rem"
-            ></i>
-            <span>Psychiatry</span>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card" onclick="window.location.href='/Appointment'">
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-peace"></i></div>
+                <h5 class="fw-bold">Client Zone</h5>
+                <p class="small text-muted">
+                  Manage appointments and health records.
+                </p>
+              </div>
+              <a href="/Appointment" class="view-details-btn">
+                View Details
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
           </div>
-          <div class="specialty">
-            <i
-              class="fas fa-brain"
-              style="color: #d7d72e; font-size: 1.5rem"
-            ></i>
-            <span>Neurology</span>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="service-cta-card">
+              <h5 class="text-white fw-bold mb-4">
+                Your Health Starts With One Call
+              </h5>
+              <img src="images/doctor.jpg" alt="Doctor" class="cta-doctor-img" />
+            </div>
           </div>
         </div>
-        <div class="show-more">Show more →</div>
       </div>
+    </section>
 
-      <div class="image-section">
-        <div class="badge1">8.8 / 10.0 Avg doctor rating</div>
-        <img class="doctor-image3" src="images/scope.jpg" alt="Doctor" />
-        <div class="rating">All Fields of specialization</div>
+    <section class="why-choose-us py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="about-badge mb-3">
+              <span class="dot-teal me-2"></span> Why Choose Us
+            </div>
+            <h2 class="about-title mb-4">
+              Why choose us for quality <br />
+              healthcare services
+            </h2>
+            <p class="about-description mb-5">
+              We offer expert care across Dentistry, Neurology, Cardiology,
+              Orthopedics, Pediatrics, and many more specializations.
+            </p>
+
+            <div class="row g-4 align-items-center">
+              <div class="col-md-6">
+                <div class="stats-card p-4 shadow-sm border rounded-4">
+                  <div class="mb-4">
+                    <h3 class="fw-bold mb-0">25+</h3>
+                    <p class="small text-muted">Years Experience</p>
+                  </div>
+                  <hr class="opacity-10" />
+                  <div class="mt-4">
+                    <h3 class="fw-bold mb-0">24/7</h3>
+                    <p class="small text-muted">Emergency Support</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <img
+                  src="images/doctor.jpg"
+                  alt="Team"
+                  class="img-fluid rounded-4 side-img shadow"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 position-relative ps-lg-5 mt-5 mt-lg-0">
+            <div class="main-img-container">
+              <img
+                src="images/doctor.jpg"
+                alt="Doctor"
+                class="img-fluid rounded-5 main-doctor-img shadow-lg"
+              />
+
+              <div class="dept-floating-card shadow">
+                <div class="service-icon mb-0 me-3">
+                  <i class="fas fa-dna"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-0">12+</h5>
+                  <p class="small text-muted mb-0">Medical Departments</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="how-it-works py-5">
+      <div class="container core-features-box">
+        <div class="row align-items-center">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="core-badge mb-3">
+              <span class="dot-teal me-2"></span> Core Process
+            </div>
+            <h2 class="text-white display-5 fw-bold mb-4">How It Works?</h2>
+            <p class="text-white-50 mb-5">
+              Our medical services are designed to provide reliable,
+              high-quality care with a strong focus on patient comfort and
+              safety.
+            </p>
+            <a href="/contact" class="btn-consultation">
+              Contact Us
+              <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+            </a>
+          </div>
+
+          <div class="col-lg-7 ps-lg-5">
+            <div class="row g-4">
+              <div class="col-md-6" onclick="window.location.href='/finddoctor'" style="cursor: pointer;">
+                <div class="feature-card">
+                  <div class="feature-icon bg-warning">
+                    <i class="fas fa-user-doctor"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">Find your Doctor</h6>
+                    <p class="small text-white-50 mb-0">
+                      Choose from variety of our medical specialists
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" onclick="window.location.href='/findhospital'" style="cursor: pointer;">
+                <div class="feature-card">
+                  <div class="feature-icon bg-primary">
+                    <i class="fas fa-location-dot"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">Choose Location</h6>
+                    <p class="small text-white-50 mb-0">
+                      Find doctors and medical offices in your area
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" onclick="window.location.href='/Appointment'" style="cursor: pointer;">
+                <div class="feature-card">
+                  <div class="feature-icon bg-info">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">Select Time Slot</h6>
+                    <p class="small text-white-50 mb-0">
+                      Choose a time that is most convenient for you
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" onclick="window.location.href='/pharmacy'" style="cursor: pointer;">
+                <div class="feature-card">
+                  <div class="feature-icon bg-danger">
+                    <i class="fas fa-suitcase-medical"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">Get a solution</h6>
+                    <p class="small text-white-50 mb-0">
+                      Hold an appointment either on call or video chat
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> FAQ
+        </div>
+        <h2 class="services-main-title mb-5">
+          Commonly asked questions about <br />
+          our medical services
+        </h2>
+
+        <div class="faq-card-wrapper shadow-sm">
+          <div class="faq-scroll-area">
+            <div class="faq-item">
+              <h6 class="faq-question">Q1: How can I find nearby hospitals?</h6>
+              <p class="faq-answer">
+                A: You can use our search feature by entering your location to
+                find hospitals near you.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">
+                Q2: How do I book an appointment with a doctor?
+              </h6>
+              <p class="faq-answer">
+                A: You can book an appointment by visiting the doctor’s profile
+                and selecting the available time slots.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">
+                Q3: What are the hospital services offered?
+              </h6>
+              <p class="faq-answer">
+                A: Our hospitals provide various services including emergency
+                care, surgeries, diagnostic testing, and more.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">Q4: Can I consult a doctor online?</h6>
+              <p class="faq-answer">
+                A: Yes, we offer online consultations. Simply choose the "Online
+                Consultation" option when booking an appointment.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">Q5: Do you accept insurance?</h6>
+              <p class="faq-answer">
+                A: Yes, we accept a variety of health insurance providers.
+                Please check our website for a list of accepted insurance
+                companies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <%- include('includes/footer') %>
   </body>

@@ -1,90 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MedLink</title>
-  <link rel="icon" href="images/iconhead.jpg" />
-  <link href="styles/Services.css" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-</head>
-<body>
-  <%- include('includes/header') %>
+  <head>
+    <%- include('includes/head') %>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <header>
-    <h1>Emergency Helpline Numbers</h1>
-    <p>Call the following numbers for immediate emergency assistance.</p>
-  </header>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-  <style>
-    .helpline-numbers {
-      text-align: center;
-      font-size: 1.2em;
-      margin-top: 2rem;
-    }
-    .helpline-numbers ul {
-      list-style: none;
-      padding: 0;
-    }
-    .helpline-numbers li {
-      margin: 1.5rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-    .helpline-numbers i {
-      font-size: 2em;
-      color: #146C94;
-    }
-    .helpline-caption {
-      font-style: italic;
-      color: #555;
-      margin-left: 0.5rem;
-    }
-    .helpline-number {
-      user-select: text;
-      font-weight: bold;
-    }
-  </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles/emergency.css" rel="stylesheet" />
+  </head>
 
-  <section class="helpline-numbers">
-    <ul>
-      <li>
-        <i class="fa-solid fa-ambulance"></i>
-        <span><strong>Emergency Ambulance:</strong> <span class="helpline-number">102</span></span>
-        <span class="helpline-caption">Rapid ambulance response</span>
-      </li>
-      <li>
-        <i class="fa-solid fa-fire-flame-curved"></i>
-        <span><strong>Fire Brigade:</strong> <span class="helpline-number">101</span></span>
-        <span class="helpline-caption">Fire emergency services</span>
-      </li>
-      <li>
-        <i class="fa-solid fa-shield-halved"></i>
-        <span><strong>Police:</strong> <span class="helpline-number">100</span></span>
-        <span class="helpline-caption">Law enforcement assistance</span>
-      </li>
-      <li>
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <span><strong>Disaster Management:</strong> <span class="helpline-number">108</span></span>
-        <span class="helpline-caption">Disaster response and relief</span>
-      </li>
-      <li>
-        <i class="fa-solid fa-female"></i>
-        <span><strong>Women Helpline:</strong> <span class="helpline-number">1091</span></span>
-        <span class="helpline-caption">Support for women in distress</span>
-      </li>
-    </ul>
-  </section>
+  <body>
+    <%- include('includes/header') %>
 
-  <%- include('includes/footer') %>
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge emergency-pulse-badge">
+            <span class="pulse-glow-dot"></span> 24/7 Critical Response Unit
+          </div>
+          <h1 class="hero-title text-white">
+            Instant Emergency <br />
+            Medical Support <br />
+            When Seconds Count
+          </h1>
+          <p class="hero-text">
+            In case of critical medical emergencies, speed saves lives. Our
+            platform connects you instantly with immediate on-call emergency
+            medical squads, trauma centers, and rapid ambulance dispatches in
+            just a single click.
+          </p>
+        </div>
 
-</body>
+        <div class="hero-footer d-flex align-items-center mt-5 flex-wrap gap-4">
+          <a href="tel:102" class="btn-emergency-hotline">
+            <i class="fas fa-phone-flip me-2 shake-icon"></i> Call Ambulance
+            (102)
+          </a>
+
+          <a
+            href="/findhospital"
+            class="btn-appointment"
+            style="
+              background-color: transparent;
+              border-color: rgba(255, 255, 255, 0.35);
+            "
+          >
+            Locate Trauma Center
+            <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+          </a>
+
+          <div
+            class="emergency-counter-box ms-lg-auto d-flex align-items-center gap-3 bg-white-5 p-3 rounded-4"
+          >
+            <div class="counter-item text-white border-end pe-3">
+              <div class="fw-bold h5 mb-0" style="color: #ff4d4d">
+                &lt; 12 Mins
+              </div>
+              <div class="small opacity-75" style="font-size: 11px">
+                Avg Dispatch Time
+              </div>
+            </div>
+            <div class="counter-item text-white">
+              <div class="fw-bold h5 mb-0 text-warning">250+</div>
+              <div class="small opacity-75" style="font-size: 11px">
+                Active Squads On-Road
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> Quick Dispatch Modules
+        </div>
+        <h2 class="services-main-title mb-5">
+          Select Emergency Category For <br />
+          Immediate Action
+        </h2>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card critical-alert-border"
+              onclick="window.location.href = '/findhospital'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon alert-bg-red">
+                  <i class="fas fa-heart-pulse"></i>
+                </div>
+                <h3 class="fw-bold h5 text-dark">Cardiac Care & Trauma</h3>
+                <p class="small text-muted">
+                  Instantly route highly specialized Advanced Life Support (ALS)
+                  ambulances equipped with ventilators, monitors, and paramedics
+                  to your exact location coordinates.
+                </p>
+              </div>
+              <a href="/findhospital" class="view-details-btn btn-red-variant">
+                Request ALS Unit
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/findhospital'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-bed-pulse"></i></div>
+                <h3 class="fw-bold h5 text-dark">ICU Bed Allocator</h3>
+                <p class="small text-muted">
+                  Query real-time database registers to locate open intensive
+                  care beds and specialized ventilators across major hospitals
+                  close to your zone.
+                </p>
+              </div>
+              <a href="/findhospital" class="view-details-btn">
+                Live Bed Count
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/pharmacy'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-droplet"></i></div>
+                <h3 class="fw-bold h5 text-dark">Emergency Blood Match</h3>
+                <p class="small text-muted">
+                  Locate immediate plasma, platelets, and whole blood units
+                  across state blood banks and verified emergency volunteer
+                  pools.
+                </p>
+              </div>
+              <a href="/pharmacy" class="view-details-btn">
+                Find Blood Stocks
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works py-5">
+      <div class="container core-features-box">
+        <div class="row align-items-center">
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <div class="core-badge mb-3">
+              <span class="dot-teal me-2"></span> Emergency Guide
+            </div>
+            <h2 class="text-white display-5 fw-bold mb-4">
+              What To Do In A Crisis?
+            </h2>
+            <p class="text-white-50 mb-5">
+              While our paramedics are en route to your destination tracking
+              marker, execute these basic systematic protocols to preserve
+              maximum patient safety.
+            </p>
+            <a href="/contact" class="btn-consultation">
+              Call Support Desk
+              <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+            </a>
+          </div>
+
+          <div class="col-lg-7 ps-lg-5">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="feature-card">
+                  <div class="feature-icon bg-warning">
+                    <i class="fas fa-shield-heart"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">
+                      1. Stay Calm & Secure
+                    </h6>
+                    <p class="small text-white-50 mb-0">
+                      Move the patient away from hazardous spaces into a
+                      well-ventilated open area.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-card">
+                  <div class="feature-icon bg-primary">
+                    <i class="fas fa-map-pin"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">
+                      2. Keep Location Open
+                    </h6>
+                    <p class="small text-white-50 mb-0">
+                      Ensure your mobile GPS link stays active for accurate
+                      ambient routing metrics.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-card">
+                  <div class="feature-icon bg-info">
+                    <i class="fas fa-kit-medical"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">
+                      3. Prepare Documents
+                    </h6>
+                    <p class="small text-white-50 mb-0">
+                      Gather any active prescription sheets or health IDs for
+                      immediate handovers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="feature-card">
+                  <div class="feature-icon bg-danger">
+                    <i class="fas fa-phone-volume"></i>
+                  </div>
+                  <div class="feature-info">
+                    <h6 class="text-white fw-bold mb-1">
+                      4. Tele-First Aid Guidance
+                    </h6>
+                    <p class="small text-white-50 mb-0">
+                      Keep your audio channel free. Our certified squad will
+                      walk you through CPR or basic first aid if required.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> Emergency FAQ
+        </div>
+        <h2 class="services-main-title mb-5">
+          Critical Questions Regarding Emergency <br />
+          Medical Dispatches
+        </h2>
+
+        <div class="faq-card-wrapper shadow-sm border">
+          <div class="faq-scroll-area">
+            <div class="faq-item">
+              <h6 class="faq-question">
+                Q1: Are ambulance dispatches completely free under medical
+                insurance policies?
+              </h6>
+              <p class="faq-answer">
+                A: Most verified multi-speciality insurance covers emergency
+                trauma dispatches completely. Our team automatically handles
+                documentation during the hospital intake cycle.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">
+                Q2: How does the location tracker route vehicles effectively?
+              </h6>
+              <p class="faq-answer">
+                A: Our systems employ real-time advanced geofencing protocols to
+                route the nearest on-road vehicle instantly, completely avoiding
+                regular traffic clusters.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <h6 class="faq-question">
+                Q3: Can I coordinate blood donor reserves prior to arriving at
+                the facility?
+              </h6>
+              <p class="faq-answer">
+                A: Yes. By interacting with the dynamic Blood Match interface,
+                our centralized networks pre-alert target blood registries
+                before the transport unit clears your coordinates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('includes/footer') %>
+  </body>
 </html>

@@ -1,34 +1,261 @@
-<nav>
-  <input type="checkbox" id="check" />
-  <label for="check" id="checkbtn">
-    <i class="fa fa-bars"></i>
-  </label>
-  <label class="logo">
-    <img src="/images/icon.jpg" height="70px" width="150px" />
-  </label>
-  <ul>
-    <li><a href="/api/doctors/profile">Doctor Dashboard</a></li>
-    <li><a href="#" onclick="showSection('slots')">Manage Slots</a></li>
+<style>
+  :root {
+    --teal-color: #00a8bd;
+    --dark-blue-bg: #072331;
+    --font-primary: 'Poppins', sans-serif;
+    /* Distinct elegant font style explicitly tracking identity structures */
+    --font-auth-distinct: 'Playfair Display', 'Georgia', serif;
+  }
+  
+  /* Navigation Link Hover & Active State Animation */
+  .medlink-doc-nav-link {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .medlink-doc-nav-link:hover {
+    color: var(--teal-color) !important;
+  }
 
-    <% let profileLink = null; let logoutLink = null; if (req.isUser) {
-    profileLink = '/profile'; logoutLink = '/api/users/logout'; } else if
-    (req.isDoctor) { profileLink = '/doctorProfile'; logoutLink =
-    '/api/doctors/logout'; } %> <% if (profileLink) { %>
-    <li class="dropdown">
-      <a href="#" class="icon-wrapper">
-        <i class="fas fa-circle circle-bg"></i>
-        <i class="fas fa-user user-icon"> </i>
+  /* Main Action Button Styling (Slide-in white background fill effect matching header.ejs) */
+  .medlink-doc-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .medlink-doc-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  .medlink-doc-btn:hover::before {
+    left: 0;
+  }
+  .medlink-doc-btn:hover {
+    color: var(--teal-color) !important;
+    border-color: white !important;
+  }
+
+  /* Customized distinct font layout for Login/Signup structures if triggered */
+  .auth-trigger-text-link {
+    font-family: var(--font-auth-distinct) !important;
+    font-style: italic;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    letter-spacing: 0.5px;
+    color: #ffffff !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .auth-trigger-text-link:hover {
+    color: var(--teal-color) !important;
+  }
+
+  /* ABSOLUTE FORCE FIXED DROPDOWN BOX VISIBILITY MECHANISM */
+  .medlink-doc-custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .medlink-doc-dropdown-menu-wrapper {
+    display: none; /* Controlled dynamically via vanilla JS click listener below */
+    position: absolute;
+    top: 100%;
+    left: 0; 
+    background-color: var(--dark-blue-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 15px 35px rgba(7, 35, 49, 0.5) !important;
+    margin-top: 12px !important;
+    padding: 8px !important;
+    min-width: 200px;
+    z-index: 999999 !important; /* Higher rendering layout layer priority */
+  }
+
+  .medlink-doc-dropdown-menu-wrapper.show-active {
+    display: block !important;
+  }
+
+  .medlink-doc-dropdown-item {
+    font-family: var(--font-auth-distinct) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px 16px !important;
+    display: block;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .medlink-doc-dropdown-item:hover {
+    background-color: var(--teal-color) !important;
+    color: white !important;
+  }
+
+  /* Responsive Adjustments for Mobile Viewports */
+  @media (max-width: 991px) {
+    .medlink-doc-navbar-collapse {
+      background: #0d233e;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .medlink-doc-header {
+      position: relative !important;
+      top: 10px !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100% !important;
+      padding: 0 15px;
+    }
+    .doc-auth-after-links {
+      margin-left: 0 !important;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .medlink-doc-dropdown-menu-wrapper {
+      position: static !important;
+      box-shadow: none !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      width: 100%;
+    }
+  }
+</style>
+
+<header class="main-header medlink-doc-header" style="position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: calc(100% - 60px); max-width: 1280px; z-index: 999;">
+  <nav class="navbar navbar-expand-lg pluxes-navbar" style="background: rgba(255, 255, 255, 0.05); border-radius: 25px; padding: 20px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+    <div class="container-fluid px-lg-4">
+      
+      <a class="navbar-brand d-flex align-items-center" href="/api/doctors/profile" style="text-decoration: none;">
+        <div class="logo-icon me-2" style="background-color: #00a8bd; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 18px;">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <span class="fw-bold text-white" style="font-size: 24px; font-family: var(--font-primary);">
+          MedLink<span style="color: #00a8bd;">Doc.</span>
+        </span>
       </a>
-      <ul class="dropdown-content">
-        <li><a href="<%= profileLink %>">Your Profile</a></li>
-        <li><a href="<%= logoutLink %>">Logout</a></li>
-      </ul>
-    </li>
 
-    <% } else { %>
-    <li id="login">
-      <a href="/login">Login/Signup</a>
-    </li>
-    <% } %>
-  </ul>
-</nav>
+      <% 
+        let profileLink = null; 
+        let logoutLink = null; 
+        if (req.isUser) {
+          profileLink = '/profile'; 
+          logoutLink = '/api/users/logout'; 
+        } else if (req.isDoctor) { 
+          profileLink = '/doctorProfile'; 
+          logoutLink = '/api/doctors/logout'; 
+        } 
+      %>
+
+      <button
+        class="navbar-toggler text-white border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#doctorNavCollapse"
+        style="box-shadow: none; background: none; padding: 5px;"
+      >
+        <i class="fas fa-bars" style="font-size: 22px;"></i>
+      </button>
+
+      <div class="collapse navbar-collapse medlink-doc-navbar-collapse" id="doctorNavCollapse">
+        
+        <ul class="navbar-nav ms-auto me-lg-4 mb-2 mb-lg-0">
+          <li class="nav-item me-lg-3">
+            <a class="nav-link medlink-doc-nav-link text-white" href="#" onclick="showSection('slots')">Manage Slots</a>
+          </li>
+        </ul>
+
+        <div class="doc-auth-after-links d-flex align-items-center me-lg-4">
+          <% if (profileLink) { %>
+            <div class="medlink-doc-custom-dropdown">
+              <a href="#" class="custom-doc-toggle text-white d-flex align-items-center justify-content-center" style="text-decoration: none; width: 42px; height: 42px; background-color: rgba(255,255,255,0.1); border-radius: 50%; font-size: 20px; border: 1px solid rgba(255,255,255,0.15);">
+                <i class="fas fa-user-shield" style="color: var(--teal-color);"></i>
+              </a>
+              <div class="medlink-doc-dropdown-menu-wrapper">
+                <a class="medlink-doc-dropdown-item" href="<%= profileLink %>">
+                  <i class="fas fa-id-card me-2" style="width: 18px; color: var(--teal-color);"></i> Your Profile
+                </a>
+                <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 6px 0;">
+                <a class="medlink-doc-dropdown-item" href="<%= logoutLink %>" style="color: #ff4d4d !important;">
+                  <i class="fas fa-sign-out-alt me-2" style="width: 18px;"></i> Logout
+                </a>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="medlink-doc-custom-dropdown">
+              <a href="/login" class="auth-trigger-text-link">
+                Login/Signup <i class="fas fa-right-to-bracket ms-1" style="font-size: 12px; opacity: 0.8;"></i>
+              </a>
+            </div>
+          <% } %>
+        </div>
+
+        <div class="header-btn d-none d-lg-block">
+          <a href="/api/doctors/profile" class="medlink-doc-btn" style="background-color: #00a8bd; color: white; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; border: 2px solid #00a8bd;">
+            Doctor Dashboard
+            <i class="fas fa-circle-h ms-2" style="font-size: 14px;"></i>
+          </a>
+        </div>
+
+        <div class="d-block d-lg-none mt-3">
+          <a href="/api/doctors/profile" class="btn btn-info w-100 text-white py-2" style="background-color: #00a8bd; border: none; font-weight: 600;">Doctor Dashboard</a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const docDropdowns = document.querySelectorAll(".medlink-doc-custom-dropdown");
+
+    docDropdowns.forEach(container => {
+      const toggleBtn = container.querySelector(".custom-doc-toggle");
+      const listWrapper = container.querySelector(".medlink-doc-dropdown-menu-wrapper");
+
+      if (toggleBtn && listWrapper) {
+        toggleBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          // Close matching open wrapper elements instantly
+          document.querySelectorAll(".medlink-doc-dropdown-menu-wrapper").forEach(openMenu => {
+            if (openMenu !== listWrapper) {
+              openMenu.classList.remove("show-active");
+            }
+          });
+
+          // Toggle drawer focus states
+          listWrapper.classList.toggle("show-active");
+        });
+      }
+    });
+
+    // Close drawers context if viewport captures outside clicks stream
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".medlink-doc-custom-dropdown")) {
+        document.querySelectorAll(".medlink-doc-dropdown-menu-wrapper").forEach(openMenu => {
+          openMenu.classList.remove("show-active");
+        });
+      }
+    });
+  });
+</script>

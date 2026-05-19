@@ -1,93 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MedLink</title>
-  <link rel="icon" href="images/iconhead.jpg">
-  <link href="styles/Services.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+  <head>
+    <%- include('includes/head') %>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <%- include('includes/header') %>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-  <header>
-    <h1>Our Services</h1>
-    <p>Explore the services we offer to enhance your healthcare experience.</p>
-  </header>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles/Services.css" rel="stylesheet" />
+  </head>
 
-  <section class="services-grid">
-    <div class="service-card">
-      <i class="fa-solid fa-user-md"></i>
-      <h2>Find My Doctor</h2>
-      <p>Search for top-rated doctors near you.</p>
-      <a href="/finddoctor">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-users"></i>
-      <h2>Client Zone</h2>
-      <p>Manage appointments and health records.</p>
-      <a href="/profile">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-hospital"></i>
-      <h2>Find Hospital Near You</h2>
-      <p>Locate the best hospitals in your area.</p>
-      <a href="/findhospital">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-calendar-check"></i>
-      <h2>Book an Appointment</h2>
-      <p>Schedule appointments with doctors online.</p>
-      <a href="/Appointment">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-ambulance"></i>
-      <h2>Emergency Services</h2>
-      <p>Quick access to emergency medical help.</p>
-      <a href="/emergency">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-video"></i>
-      <h2>Online Consultation</h2>
-      <p>Consult with doctors via video calls.</p>
-      <a href="/Appointment">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-prescription-bottle"></i>
-      <h2>Pharmacy & Medicine Delivery</h2>
-      <p>Order medicines and get them delivered.</p>
-      <a href="/pharmacy">Learn More →</a>
-    </div>
-    <div class="service-card">
-      <i class="fa-solid fa-heartbeat"></i>
-      <h2>Health Packages</h2>
-      <p>Checkups and health screenings for all.</p>
-      <a href="/pharmacy">Learn More →</a>
-    </div>
-  </section>
+  <body>
+    <%- include('includes/header') %>
 
-  <section class="testimonials">
-    <h2>What Our Users Say</h2>
-    <div class="testimonial-container">
-      <div class="testimonial">
-        <p>"MedLink helped me find the best doctor in my area. Booking was so easy!"</p>
-        <h4>- Rahul S.</h4>
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Our Medical Expertise</div>
+          <h1 class="hero-title text-white">
+            Comprehensive <br />
+            Healthcare Services <br />
+            For Everyone
+          </h1>
+          <p class="hero-text">
+            Explore our wide range of professional medical services optimized
+            for your well-being. From instant digital prescriptions and hospital
+            mapping to emergency call support, we ensure seamless health
+            management.
+          </p>
+        </div>
       </div>
-      <div class="testimonial">
-        <p>"I love the online consultation feature. It saved me a trip to the hospital!"</p>
-        <h4>- Priya M.</h4>
-      </div>
-      <div class="testimonial">
-        <p>"Emergency services were quick and reliable. Highly recommend MedLink!"</p>
-        <h4>- Anjali K.</h4>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <%- include('includes/footer') %>
+    <section class="services-section py-5">
+      <div class="container text-center">
+        <div class="services-badge mb-3">
+          <span class="dot-teal me-2"></span> Medical Solutions
+        </div>
+        <h2 class="services-main-title mb-5">
+          Expert healthcare facilities designed <br />
+          for smooth living
+        </h2>
 
-</body>
-<script src="js/home1.js"></script>
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/finddoctor'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-user-md"></i></div>
+                <h3 class="fw-bold h5">Find Specialists</h3>
+                <p class="small text-muted">
+                  Browse verified multi-speciality doctors, check real-time
+                  availability, and connect with experts instantly.
+                </p>
+              </div>
+              <a href="/finddoctor" class="view-details-btn">
+                Find Doctor
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/pharmacy'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon">
+                  <i class="fas fa-prescription-bottle-medical"></i>
+                </div>
+                <h3 class="fw-bold h5">Digital Pharmacy</h3>
+                <p class="small text-muted">
+                  Order your required medicines safely with our integrated cart
+                  ecosystem and fast door-step delivery options.
+                </p>
+              </div>
+              <a href="/pharmacy" class="view-details-btn">
+                Buy Medicine
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/findhospital'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-hospital"></i></div>
+                <h3 class="fw-bold h5">Locate Hospitals</h3>
+                <p class="small text-muted">
+                  Map out the closest healthcare clinics and major medical
+                  institutions around your immediate coordinates.
+                </p>
+              </div>
+              <a href="/findhospital" class="view-details-btn">
+                Search Map
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/Appointment'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3 class="fw-bold h5">Book Slot</h3>
+                <p class="small text-muted">
+                  Schedule appointments seamlessly by choosing your custom time
+                  slot for physical or remote video calls.
+                </p>
+              </div>
+              <a href="/Appointment" class="view-details-btn">
+                Book Slot
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/Emergency'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon">
+                  <i class="fas fa-truck-medical"></i>
+                </div>
+                <h3 class="fw-bold h5">Emergency Unit</h3>
+                <p class="small text-muted">
+                  Get immediate access to critical care assistance, emergency
+                  alerts, and 24/7 technical help support.
+                </p>
+              </div>
+              <a href="/Emergency" class="view-details-btn">
+                Get Support
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="service-card"
+              onclick="window.location.href = '/profile'"
+            >
+              <div class="service-card-top">
+                <div class="service-icon"><i class="fas fa-id-card"></i></div>
+                <h3 class="fw-bold h5">Client Profile Zone</h3>
+                <p class="small text-muted">
+                  Safely maintain your active profile status, current
+                  prescription sheets, and tracking logs database.
+                </p>
+              </div>
+              <a href="/profile" class="view-details-btn">
+                View Profile
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include('includes/footer') %>
+  </body>
 </html>

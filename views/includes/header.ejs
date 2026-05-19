@@ -1,38 +1,292 @@
-<nav>
-  <input type="checkbox" id="check" />
-  <label for="check" id="checkbtn">
-    <i class="fa fa-bars"></i>
-  </label>
-  <label class="logo">
-    <img src="/images/icon.jpg" height="70px" width="150px" />
-  </label>
-  <ul>
-    <li><a href="/" class="active">Home</a></li>
-    <li><a href="/services">Services</a></li>
-    <li><a href="/pharmacy">Pharmacy</a></li>
+<style>
+  :root {
+    --teal-color: #00a8bd;
+    --dark-blue-bg: #072331;
+    --font-primary: 'Poppins', sans-serif;
+    /* Distinct elegant font style explicitly for Login / Signup structures */
+    --font-auth-distinct: 'Playfair Display', 'Georgia', serif;
+  }
+  
+  /* Navigation Link Hover & Active State Animation */
+  .medlink-nav-link {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+  }
+  .medlink-nav-link:hover, 
+  .medlink-nav-link.active {
+    color: var(--teal-color) !important;
+  }
 
-    <li><a href="/about">About us</a></li>
-    <li><a href="/contact">Contact us</a></li>
+  /* Button Animation (Slide-in white background fill effect) */
+  .medlink-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+  }
+  .medlink-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+  .medlink-btn:hover::before {
+    left: 0;
+  }
+  .medlink-btn:hover {
+    color: var(--teal-color) !important;
+    border-color: white !important;
+  }
 
-    <% let profileLink = null; let logoutLink = null; if (req.isUser) {
-    profileLink = '/profile'; logoutLink = '/api/users/logout'; } else if
-    (req.isDoctor) { profileLink = '/doctorProfile'; logoutLink =
-    '/api/doctors/logout'; } %> <% if (profileLink) { %>
-    <li class="dropdown">
-      <a href="#" class="icon-wrapper">
-        <i class="fas fa-circle circle-bg"></i>
-        <i class="fas fa-user user-icon"> </i>
+  /* Customized distinct font layout for Login | Signup trigger link */
+  .auth-trigger-text-link {
+    font-family: var(--font-auth-distinct) !important;
+    font-style: italic;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    letter-spacing: 0.5px;
+    color: #ffffff !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .auth-trigger-text-link:hover {
+    color: var(--teal-color) !important;
+  }
+
+  /* CRITICAL FORCE FIXED DROPDOWN BOX VISIBILITY MECHANISM */
+  .medlink-custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .medlink-dropdown-menu-wrapper {
+    display: none; /* Controlled dynamically below via class toggles */
+    position: absolute;
+    top: 100%;
+    left: 0; /* Left aligned directly after links stream */
+    background-color: var(--dark-blue-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 15px 35px rgba(7, 35, 49, 0.6) !important;
+    margin-top: 12px !important;
+    padding: 8px !important;
+    min-width: 210px;
+    /* Highest possible viewport priority index to render over GIS maps & slider panels */
+    z-index: 9999999 !important; 
+  }
+
+  /* Show class triggered explicitly via dynamic JS event hook */
+  .medlink-dropdown-menu-wrapper.show-active {
+    display: block !important;
+  }
+
+  .medlink-dropdown-item {
+    font-family: var(--font-auth-distinct) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px 16px !important;
+    display: block;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .medlink-dropdown-item:hover {
+    background-color: var(--teal-color) !important;
+    color: white !important;
+  }
+
+  /* Responsive Mobile Media Adaptation Layers */
+  @media (max-width: 991px) {
+    .medlink-navbar-collapse {
+      background: #0d233e;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .medlink-header {
+      position: relative !important;
+      top: 10px !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100% !important;
+      padding: 0 15px;
+    }
+    .auth-after-links-container {
+      margin-left: 0 !important;
+      margin-top: 12px;
+      margin-bottom: 20px;
+    }
+    .medlink-dropdown-menu-wrapper {
+      position: static !important;
+      box-shadow: none !important;
+      background: rgba(255,255,255,0.03) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+      width: 100%;
+    }
+  }
+</style>
+
+<header class="main-header medlink-header" style="position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: calc(100% - 20px); max-width: 1480px; z-index: 999;">
+  <nav class="navbar navbar-expand-lg pluxes-navbar" style="background: rgba(255, 255, 255, 0.05); border-radius: 25px; padding: 20px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+    <div class="container-fluid px-lg-4">
+      
+      <a class="navbar-brand d-flex align-items-center" href="/" style="text-decoration: none;">
+        <div class="logo-icon me-2" style="background-color: #00a8bd; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 18px;">
+          <i class="fas fa-hand-holding-medical"></i>
+        </div>
+        <span class="fw-bold text-white" style="font-size: 24px; font-family: var(--font-primary);">
+          MedLink<span style="color: #00a8bd;">.</span>
+        </span>
       </a>
-      <ul class="dropdown-content">
-        <li><a href="<%= profileLink %>">Your Profile</a></li>
-        <li><a href="<%= logoutLink %>">Logout</a></li>
-      </ul>
-    </li>
 
-    <% } else { %>
-    <li id="login">
-      <a href="/login">Login/Signup</a>
-    </li>
-    <% } %>
-  </ul>
-</nav>
+      <% 
+        let profileLink = null;
+        let logoutLink = null; 
+        if (typeof req !== 'undefined') {
+            if (req.isUser) {
+                profileLink = '/profile'; 
+                logoutLink = '/api/users/logout';
+            } else if (req.isDoctor) { 
+                profileLink = '/doctorProfile'; 
+                logoutLink = '/api/doctors/logout';
+            } 
+        }
+      %>
+
+      <button
+        class="navbar-toggler text-white border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+        style="box-shadow: none; background: none; padding: 5px;"
+      >
+        <i class="fas fa-bars" style="font-size: 22px;"></i>
+      </button>
+
+      <div class="collapse navbar-collapse medlink-navbar-collapse" id="navMenu">
+        
+        <ul class="navbar-nav ms-auto me-lg-4 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link medlink-nav-link text-white" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link medlink-nav-link text-white" href="/services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link medlink-nav-link text-white" href="/pharmacy">Pharmacy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link medlink-nav-link text-white" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link medlink-nav-link text-white" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+
+        <div class="auth-after-links-container d-flex align-items-center me-lg-4">
+          <% if (profileLink) { %>
+            <div class="medlink-custom-dropdown">
+              <a href="#" class="custom-js-toggle text-white d-flex align-items-center justify-content-center" style="text-decoration: none; width: 42px; height: 42px; background-color: rgba(255,255,255,0.1); border-radius: 50%; font-size: 20px; border: 1px solid rgba(255,255,255,0.15);">
+                <i class="fas fa-user-circle" style="color: var(--teal-color);"></i>
+              </a>
+              <div class="medlink-dropdown-menu-wrapper">
+                <a class="medlink-dropdown-item" href="<%= profileLink %>">
+                  <i class="fas fa-id-card me-2" style="width: 18px; color: var(--teal-color);"></i> My Profile
+                </a>
+                <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 6px 0;">
+                <a class="medlink-dropdown-item" href="<%= logoutLink %>" style="color: #ff4d4d !important;">
+                  <i class="fas fa-sign-out-alt me-2" style="width: 18px;"></i> Logout
+                </a>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="medlink-custom-dropdown">
+              <a href="#" class="custom-js-toggle auth-trigger-text-link">
+                Login | Signup <i class="fas fa-chevron-down" style="font-size: 11px; opacity: 0.8; transition: transform 0.3s;"></i>
+              </a>
+              <div class="medlink-dropdown-menu-wrapper">
+                <a class="medlink-dropdown-item" href="/login">
+                  <i class="fas fa-user me-2" style="width: 18px; color: var(--teal-color);"></i> Login as Patient
+                </a>
+                <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 6px 0;">
+                <a class="medlink-dropdown-item" href="/doctorLogin">
+                  <i class="fas fa-user-md me-2" style="width: 18px; color: var(--teal-color);"></i> Login as Doctor
+                </a>
+              </div>
+            </div>
+          <% } %>
+        </div>
+
+        <div class="header-btn d-none d-lg-block">
+          <a href="/Appointment" class="medlink-btn" style="background-color: #00a8bd; color: white; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; border: 2px solid #00a8bd;">
+            Book Appointment
+            <i class="fas fa-arrow-right-long ms-2" style="font-size: 14px;"></i>
+          </a>
+        </div>
+
+        <div class="d-block d-lg-none mt-3">
+          <a href="/Appointment" class="btn btn-info w-100 text-white py-2" style="background-color: #00a8bd; border: none; font-weight: 600;">Book Appointment</a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdownContainers = document.querySelectorAll(".medlink-custom-dropdown");
+
+    dropdownContainers.forEach(container => {
+      const toggleButton = container.querySelector(".custom-js-toggle");
+      const menuWrapper = container.querySelector(".medlink-dropdown-menu-wrapper");
+      const arrowIcon = container.querySelector(".fa-chevron-down");
+
+      toggleButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Close other dropdowns if open
+        document.querySelectorAll(".medlink-dropdown-menu-wrapper").forEach(openMenu => {
+          if (openMenu !== menuWrapper) {
+            openMenu.classList.remove("show-active");
+            const structuralContainer = openMenu.closest(".medlink-custom-dropdown");
+            const activeArrow = structuralContainer.querySelector(".fa-chevron-down");
+            if (activeArrow) activeArrow.style.transform = "rotate(0deg)";
+          }
+        });
+
+        // Toggle active view states
+        const isActive = menuWrapper.classList.toggle("show-active");
+        if (arrowIcon) {
+          arrowIcon.style.transform = isActive ? "rotate(180deg)" : "rotate(0deg)";
+        }
+      });
+    });
+
+    // Close active drawers immediately if clicked outside container bounds
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".medlink-custom-dropdown")) {
+        document.querySelectorAll(".medlink-dropdown-menu-wrapper").forEach(openMenu => {
+          openMenu.classList.remove("show-active");
+          const structuralContainer = openMenu.closest(".medlink-custom-dropdown");
+          const activeArrow = structuralContainer.querySelector(".fa-chevron-down");
+          if (activeArrow) activeArrow.style.transform = "rotate(0deg)";
+        });
+      }
+    });
+  });
+</script>

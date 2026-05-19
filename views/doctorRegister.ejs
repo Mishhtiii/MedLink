@@ -2,326 +2,260 @@
 <html lang="en">
   <head>
     <%- include('includes/head') %>
-    <link href="/styles/login.css" rel="stylesheet" />
-    <link href="/styles/register.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles/register.css" rel="stylesheet" />
     <style>
-      /* --- LAYOUT FIXES --- */
-
-      .container {
-        height: 700px !important;
-        position: relative;
-        overflow: hidden; /* Keeps everything neat inside */
-      }
-
-      /* 1. Force REGISTER FORM to the LEFT */
-      .formbox.register {
-        position: absolute !important;
-        left: 0 !important;
-        right: auto !important;
-        width: 50% !important;
-        height: 100% !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        z-index: 5 !important;
-        transition: none !important;
-      }
-
-      /* 2. Hide Login Form */
-      .formbox.login {
-        display: none !important;
-      }
-
-      /* 3. Force BLUE BACKGROUND to the RIGHT */
-      .toggle-box::before {
-        left: 50% !important;
-        width: 50% !important;
-        height: 100% !important;
-        border-radius: 0 30px 30px 0 !important;
-        transition: none !important;
-        z-index: 2 !important; /* Lower than the text panel */
-      }
-
-      /* 4. Force TEXT PANEL ("Welcome Back") to the RIGHT & ON TOP */
-      .toggle-panel.toggle-right {
-        right: 0 !important;
-        left: auto !important;
-        width: 50% !important;
-        height: 100% !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        transition: none !important;
-        transform: none !important;
-        z-index: 10 !important; /* CRITICAL FIX: Sits on top of blue background */
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .toggle-panel.toggle-left {
-        display: none !important;
-      }
-
-      /* --- Step Wizard Styles --- */
+      /* Wizard Step Transitions mapping code */
       .form-step {
         display: none;
-        animation: fadeIn 0.3s ease-in-out;
+        animation: formFadeSlideIn 0.4s ease-in-out;
       }
       .form-step.active {
         display: block;
       }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(5px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .inputbox {
-        margin: 15px 0 !important;
-      }
-      .btn-group {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-      }
-      .btn-half {
-        width: 50%;
-      }
-      .error-msg {
-        background: #ffe6e6;
-        color: #d93025;
-        padding: 8px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        font-size: 0.9rem;
+      @keyframes formFadeSlideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
     </style>
   </head>
   <body>
     <%- include('includes/header') %>
 
-    <div class="container" id="mainContainer">
-      <div class="formbox register">
-        <form
-          action="/doctorRegister"
-          method="POST"
-          enctype="multipart/form-data"
-          id="multiStepForm"
-        >
-          <h1>Doctor Registration</h1>
-
-          <% if (req.query.error === "UsernameTaken") { %>
-          <div class="error-msg">Username is already taken.</div>
-          <% } else if (req.query.error === "Length") { %>
-          <div class="error-msg">Password must be at least 8 characters.</div>
-          <% } else if (req.query.error === "MissingFields") { %>
-          <div class="error-msg">Please fill in all fields.</div>
-          <% } %>
-
-          <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px">
-            Step <span id="step-count">1</span> of 3
+    <section class="hero-container-box">
+      <div class="container-fluid max-bounds">
+        <div class="hero-content text-start">
+          <div class="hero-badge">Medical Practitioner Enrollment</div>
+          <h1 class="hero-title text-white">
+            Join MedLink Network <br />
+            & Expand Your <br />
+            Clinical Practice
+          </h1>
+          <p class="hero-text">
+            Register as a certified health expert onto our integrated servers. 
+            Connect seamlessly with incoming patient diagnostics streams, schedule token sessions, and coordinate care workflows digitally.
           </p>
-
-          <div class="form-step active" id="step1">
-            <div class="inputbox">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                required
-              /><i class="bx bxs-user"></i>
-            </div>
-            <div class="inputbox">
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
-              /><i class="bx bxs-user-badge"></i>
-            </div>
-            <div class="inputbox">
-              <input type="email" name="email" placeholder="Email" required /><i
-                class="bx bxs-envelope"
-              ></i>
-            </div>
-            <div class="inputbox">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              /><i class="bx bxs-lock-alt"></i>
-            </div>
-            <div class="inputbox">
-              <input type="tel" name="phone" placeholder="Phone" required /><i
-                class="bx bxs-phone"
-              ></i>
-            </div>
-            <button type="button" class="btn" onclick="nextStep(1)">
-              Next
-            </button>
-          </div>
-
-          <div class="form-step" id="step2">
-            <div class="inputbox">
-              <select
-                name="specialization"
-                required
-                style="
-                  width: 100%;
-                  padding: 13px 20px;
-                  border: none;
-                  background: #eee;
-                  border-radius: 8px;
-                "
-              >
-                <option value="">Select Speciality</option>
-                <option value="General practitioner">
-                  General practitioner
-                </option>
-                <option value="Dentistry">Dentistry</option>
-                <option value="Neurology">Neurology</option>
-                <option value="Dermatology">Dermatology</option>
-                <option value="X-Ray">X-Ray</option>
-                <option value="Urology">Urology</option>
-                <option value="Psychiatry">Psychiatry</option>
-              </select>
-            </div>
-            <div class="inputbox">
-              <input
-                type="text"
-                name="qualification"
-                placeholder="Qualification (e.g. MBBS)"
-                required
-              /><i class="bx bxs-graduation"></i>
-            </div>
-            <div class="inputbox">
-              <input
-                type="text"
-                name="experience"
-                placeholder="Experience (e.g. 5 years)"
-                required
-              /><i class="bx bxs-time"></i>
-            </div>
-            <div class="inputbox">
-              <input
-                type="text"
-                name="hospital"
-                placeholder="Hospital Name"
-                required
-              /><i class="bx bxs-building"></i>
-            </div>
-            <div class="inputbox">
-              <input
-                type="text"
-                name="location"
-                placeholder="City"
-                required
-              /><i class="bx bxs-map"></i>
-            </div>
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-half"
-                style="background: #777"
-                onclick="prevStep(2)"
-              >
-                Back
-              </button>
-              <button type="button" class="btn btn-half" onclick="nextStep(2)">
-                Next
-              </button>
-            </div>
-          </div>
-
-          <div class="form-step" id="step3">
-            <div class="inputbox">
-              <input
-                type="number"
-                name="fees"
-                placeholder="Fees (₹)"
-                required
-              /><i class="bx bxs-dollar-circle"></i>
-            </div>
-            <div class="inputbox">
-              <select
-                name="availability"
-                required
-                style="
-                  width: 100%;
-                  padding: 13px 20px;
-                  border: none;
-                  background: #eee;
-                  border-radius: 8px;
-                "
-              >
-                <option value="">Select Availability</option>
-                <option value="Morning">Morning</option>
-                <option value="Afternoon">Afternoon</option>
-                <option value="Evening">Evening</option>
-                <option value="Full Day">Full Day</option>
-              </select>
-            </div>
-            <div class="inputbox" style="text-align: left">
-              <label style="font-size: 0.8rem; margin-left: 5px"
-                >Profile Image</label
-              >
-              <input
-                type="file"
-                name="image"
-                required
-                style="padding: 10px; width: 100%"
-              />
-            </div>
-            <input type="hidden" name="rating" value="0" />
-            <input type="hidden" name="responseType" value="redirect" />
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-half"
-                style="background: #777"
-                onclick="prevStep(3)"
-              >
-                Back
-              </button>
-              <button type="submit" class="btn btn-half">Register</button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="toggle-box">
-        <div class="toggle-panel toggle-right">
-          <h1>Welcome Back!</h1>
-          <p>Already have a doctor account?</p>
-          <a href="/doctorLogin">
-            <button
-              class="btn"
-              style="
-                background: transparent;
-                border: 2px solid #fff;
-                width: 150px;
-              "
-            >
-              Login
-            </button>
-          </a>
         </div>
       </div>
-    </div>
+    </section>
 
+    <section class="auth-form-section py-5">
+      <div
+        class="container bg-white shadow-sm border rounded-5 p-4 p-md-5"
+        style="
+          margin-top: -40px;
+          position: relative;
+          z-index: 10;
+          max-width: 650px;
+        "
+      >
+        <div class="form-container">
+          <div class="about-badge mb-3">
+            <span class="dot-teal me-2"></span> Practitioner Enrollment
+          </div>
+          <h2 class="form-main-title mb-2">Create Doctor Account</h2>
+          <p class="text-muted small mb-4">
+            Please fill in your authentic medical parameters to configure your specialist portal file node.
+          </p>
+
+          <form
+            action="/doctorRegister"
+            method="POST"
+            enctype="multipart/form-data"
+            id="multiStepForm"
+            class="contact-form d-flex flex-column gap-2"
+          >
+            <% if (req.query.error === "UsernameTaken") { %>
+              <div class="error-message p-3 mb-2 rounded-3 text-center small bg-danger text-white fw-bold">
+                <i class="fas fa-circle-exclamation me-2"></i> Username is already taken.
+              </div>
+            <% } else if (req.query.error === "Length") { %>
+              <div class="error-message p-3 mb-2 rounded-3 text-center small bg-danger text-white fw-bold">
+                <i class="fas fa-key me-2"></i> Password must be at least 8 characters.
+              </div>
+            <% } else if (req.query.error === "MissingFields") { %>
+              <div class="error-message p-3 mb-2 rounded-3 text-center small bg-danger text-white fw-bold">
+                <i class="fas fa-triangle-exclamation me-2"></i> Please fill in all fields.
+              </div>
+            <% } %>
+
+            <div class="step-wizard-indicator mb-3 p-2 bg-light rounded-3 d-flex justify-content-between align-items-center">
+              <span class="small text-muted fw-medium">Wizard Navigation Progression:</span>
+              <span class="badge bg-teal-accent text-white px-3 py-2 rounded-pill" style="font-size: 12px; background-color: #00a8bd;">
+                Step <span id="step-count">1</span> of 3
+              </span>
+            </div>
+
+            <div class="form-step active" id="step1">
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Full Name</label>
+                <div class="position-relative">
+                  <i class="fas fa-user-md input-inside-icon"></i>
+                  <input type="text" name="name" class="form-input-control" placeholder="Full Name" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Username Profile ID</label>
+                <div class="position-relative">
+                  <i class="fas fa-id-badge input-inside-icon"></i>
+                  <input type="text" name="username" class="form-input-control" placeholder="Username" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Email Address</label>
+                <div class="position-relative">
+                  <i class="fas fa-envelope input-inside-icon"></i>
+                  <input type="email" name="email" class="form-input-control" placeholder="Email" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Password Security ID</label>
+                <div class="position-relative">
+                  <i class="fas fa-lock input-inside-icon"></i>
+                  <input type="password" name="password" class="form-input-control" placeholder="Password" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-4">
+                <label class="form-label-text">Contact Phone</label>
+                <div class="position-relative">
+                  <i class="fas fa-phone input-inside-icon"></i>
+                  <input type="tel" name="phone" class="form-input-control" placeholder="Phone" required />
+                </div>
+              </div>
+              
+              <button type="button" class="btn-submit-action w-100" onclick="nextStep(1)">
+                Next Step <i class="fas fa-chevron-right ms-2"></i>
+              </button>
+            </div>
+
+            <div class="form-step" id="step2">
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Select Domain Speciality</label>
+                <div class="position-relative">
+                  <i class="fas fa-stethoscope input-inside-icon"></i>
+                  <select name="specialization" class="form-input-control select-arrow-pad" required>
+                    <option value="">Select Speciality</option>
+                    <option value="General practitioner">General practitioner</option>
+                    <option value="Dentistry">Dentistry</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="X-Ray">X-Ray</option>
+                    <option value="Urology">Urology</option>
+                    <option value="Psychiatry">Psychiatry</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Qualification Credentials</label>
+                <div class="position-relative">
+                  <i class="fas fa-graduation-cap input-inside-icon"></i>
+                  <input type="text" name="qualification" class="form-input-control" placeholder="Qualification (e.g. MBBS)" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Practice Experience</label>
+                <div class="position-relative">
+                  <i class="fas fa-business-time input-inside-icon"></i>
+                  <input type="text" name="experience" class="form-input-control" placeholder="Experience (e.g. 5 years)" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Clinic / Hospital Attachment</label>
+                <div class="position-relative">
+                  <i class="fas fa-hospital input-inside-icon"></i>
+                  <input type="text" name="hospital" class="form-input-control" placeholder="Hospital Name" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-4">
+                <label class="form-label-text">Operational City Location</label>
+                <div class="position-relative">
+                  <i class="fas fa-map-location-dot input-inside-icon"></i>
+                  <input type="text" name="location" class="form-input-control" placeholder="City" required />
+                </div>
+              </div>
+
+              <div class="d-flex gap-3">
+                <button type="button" class="btn-submit-action btn-back-muted w-50" onclick="prevStep(2)">
+                  <i class="fas fa-chevron-left me-2"></i> Back
+                </button>
+                <button type="button" class="btn-submit-action w-50" onclick="nextStep(2)">
+                  Next <i class="fas fa-chevron-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step3">
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Consultation Fees (INR)</label>
+                <div class="position-relative">
+                  <i class="fas fa-indian-rupee-sign input-inside-icon"></i>
+                  <input type="number" name="fees" class="form-input-control" placeholder="Fees (₹)" required />
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Daily Operation Availability Shift</label>
+                <div class="position-relative">
+                  <i class="fas fa-clock-rotate-left input-inside-icon"></i>
+                  <select name="availability" class="form-input-control select-arrow-pad" required>
+                    <option value="">Select Availability</option>
+                    <option value="Morning">Morning</option>
+                    <option value="Afternoon">Afternoon</option>
+                    <option value="Evening">Evening</option>
+                    <option value="Full Day">Full Day</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group-custom position-relative mb-4">
+                <label class="form-label-text bg-light p-2 rounded d-block border small text-secondary">
+                  <i class="fas fa-image me-1"></i> Upload Professional Profile Image
+                </label>
+                <input type="file" name="image" class="form-control p-2 mt-1 border-2" style="border-radius:10px;" required />
+              </div>
+
+              <input type="hidden" name="rating" value="0" />
+              <input type="hidden" name="responseType" value="redirect" />
+
+              <div class="d-flex gap-3">
+                <button type="button" class="btn-submit-action btn-back-muted w-50" onclick="prevStep(3)">
+                  <i class="fas fa-chevron-left me-2"></i> Back
+                </button>
+                <button type="submit" class="btn-submit-action w-50 btn-solid-teal">
+                  Register File <i class="fas fa-user-plus ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="text-center mt-4 pt-3 border-top">
+            <p class="small text-muted mb-0">
+              Already verified or have an active practitioner login file?
+            </p>
+            <a href="/doctorLogin" class="auth-switch-link d-inline-block mt-1" style="text-decoration: none;">
+              Practitioner Log In Instead
+              <i class="fas fa-right-to-bracket ms-1" style="font-size: 13px"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script src="js/home1.js"></script>
     <%- include('includes/footer') %>
 
     <script>
@@ -331,10 +265,10 @@
         let valid = true;
         inputs.forEach((inp) => {
           if (inp.hasAttribute("required") && !inp.value) {
-            inp.style.border = "1px solid red";
+            inp.style.border = "1px solid #ff4d4d";
             valid = false;
           } else {
-            inp.style.border = "none";
+            inp.style.border = "2px solid #e2e8f0";
           }
         });
         if (!valid) return alert("Please fill all fields.");

@@ -1,26 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <%- include('includes/head') %>
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/navbar.css">
-    <link rel="stylesheet" href="/styles/medcart.css">
-    <script src="/js/medcart.js" defer></script>
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/medcart.css" />
+    <script src="/js/medcart.js" defer></script>
+  </head>
+
+  <body>
     <%- include('includes/header') %>
 
-    <section class="cart-section">
-        <h2>Your Shopping Cart</h2>
-        <div id="cart-items"></div>
-        <p id="cart-total"></p>
-        <div class="cart-actions">
-            <button id="clear-cart-btn">Clear Cart</button>
-            <button id="buy-btn">Buy</button>
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Checkout Stage</div>
+          <h1 class="hero-title text-white">
+            Review Your <br />
+            Selected Items & <br />
+            Medical Essentials
+          </h1>
+          <p class="hero-text">
+            Verify the accuracy of your pharmaceutical quantities before
+            submitting your secure payment gateway transaction. Your order will
+            be dynamically optimized for fast logistics distribution channels.
+          </p>
         </div>
+      </div>
+    </section>
+
+    <section class="cart-wrapper-main py-5">
+      <div class="container">
+        <div
+          class="cart-section-card shadow-sm border p-4 p-md-5 bg-white rounded-5"
+        >
+          <div
+            class="d-flex align-items-center justify-content-between border-bottom pb-4 mb-4 flex-wrap gap-3"
+          >
+            <div class="section-title-block text-start">
+              <div class="showcase-badge mb-2">
+                <span class="dot-teal me-2"></span> Final Steps
+              </div>
+              <h2 class="cart-main-heading mb-0">Your Shopping Cart</h2>
+            </div>
+            <a href="/pharmacy" class="btn-continue-shopping">
+              <i class="fas fa-arrow-left-long me-2"></i> Continue Shopping
+            </a>
+          </div>
+
+          <div id="cart-items" class="d-flex flex-column gap-3"></div>
+
+          <div class="total-summary-card-wrapper border-top pt-4 mt-4 text-end">
+            <p id="cart-total" class="fw-bold text-dark mb-0"></p>
+          </div>
+
+          <div
+            class="cart-actions-panel d-flex justify-content-between align-items-center mt-5 flex-wrap gap-3"
+          >
+            <button
+              id="clear-cart-btn"
+              class="btn-theme-action btn-clear-outline"
+            >
+              <i class="fas fa-trash-can me-2"></i> Clear Cart
+            </button>
+            <button id="buy-btn" class="btn-theme-action btn-buy-solid">
+              Proceed To Payment
+              <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <%- include('includes/footer') %>
-</body>
+  </body>
 </html>

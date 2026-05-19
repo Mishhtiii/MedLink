@@ -1,0 +1,126 @@
+:root {
+  --teal-color: #00a8bd;
+  --dark-overlay: rgba(7, 35, 49, 0.78);
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+/* 1. HERO HOME ARCHITECTURE COMPONENT SLIDER BACKDROPS (MATCHING HOME1.CSS) */
+.hero-container-box {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  border-radius: 30px;
+  overflow: hidden;
+  padding-bottom: 70px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--dark-overlay) 0%,
+      rgba(4, 65, 65, 0.72) 20%,
+      rgba(7, 84, 114, 0.45) 45%,
+      rgba(14, 159, 169, 0.15) 60%,
+      transparent 100%
+    ),
+    url("../images/scope.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-content {
+  max-width: 1000px;
+  padding-top: 140px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hero-badge-panel {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dot-teal {
+  width: 8px;
+  height: 8px;
+  background: var(--teal-color);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hero-text {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+}
+
+/* 2. DYNAMIC PRACTITIONER WORKSPACE DATA WRAPPERS */
+.profile-dashboard-wrapper {
+  background-color: var(--light-teal-bg);
+  border-radius: 35px 35px 0 0;
+  margin: 0 15px 15px 15px;
+  position: relative;
+  z-index: 10;
+  padding-top: 50px !important;
+}
+
+.profile-user-header-card,
+.profile-meta-card {
+  border-color: #edf2f7 !important;
+}
+
+/* Row elements spacing vectors fields layout adjustments */
+.info-profile-lines .col-md-6 {
+  border-color: #f1f5f9 !important;
+}
+
+.info-profile-lines strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark-blue-bg) !important;
+}
+
+/* RESPONSIVE SUB-BREAKPOINTS AT VIEWPORTS */
+@media (max-width: 991px) {
+  .hero-container-box {
+    margin: 10px;
+    border-radius: 20px;
+    min-height: 65vh;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .profile-dashboard-wrapper {
+    margin: 10px;
+    padding: 30px 0 !important;
+  }
+  .profile-user-header-card {
+    margin-top: -60px !important;
+  }
+  .profile-user-header-card,
+  .profile-meta-card {
+    padding: 25px 20px !important;
+  }
+}

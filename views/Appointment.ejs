@@ -1,144 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MedLink</title>
-    <link rel="icon" href="images/iconhead.jpg" />
-    <link href="images/logo.jpg" rel="icon" />
+    <%- include('includes/head') %>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link href="styles/Appointment.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <%- include('includes/header') %>
-    <section class="appointment-container">
-      <h2>
-        <i class="fa-solid fa-calendar-check"></i> Book Your Appointment
-        <i class="fa-solid fa-calendar-check"></i>
-      </h2>
-      <% if (req.user) { %>
 
-      <form id="appointmentForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              value="<%= req.user ?
-req.user.name : '' %>"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required value="<%= req.user ? req.user.email : '' %>" />
-          </div>
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Scheduling Desk</div>
+          <h1 class="hero-title text-white">
+            Book Your Next <br />
+            Medical Consultation <br />
+            Seamlessly
+          </h1>
+          <p class="hero-text">
+            Secure your preferred time slot with verified medical specialists. 
+            Our automated configuration systems lock your calendar reservation instantly for either physical visits or remote tele-health channels.
+          </p>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required />
-          </div>
-          <div class="form-group">
-            <label for="appointment-date">Select Date:</label>
-            <input
-              type="date"
-              id="appointment-date"
-              name="appointmentDate"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="speciality">Speciality</label>
-            <select id="speciality" name="speciality" required>
-              <option value="">--Select Speciality--</option>
-              <option value="General practitioner" <%= selectedDoctor && selectedDoctor.field === 'general' ? 'selected' : '' %>>General practitioner</option>
-              <option value="Dentistry" <%= selectedDoctor && selectedDoctor.field === 'dentistry' ? 'selected' : '' %>>Dentistry</option>
-              <option value="Neurology" <%= selectedDoctor && selectedDoctor.field === 'neurology' ? 'selected' : '' %>>Neurology</option>
-              <option value="X-Ray" <%= selectedDoctor && selectedDoctor.field === 'xray' ? 'selected' : '' %>>X-Ray</option>
-              <option value="Dermatology" <%= selectedDoctor && selectedDoctor.field === 'dermatology' ? 'selected' : '' %>>Dermatology</option>
-              <option value="Urology" <%= selectedDoctor && selectedDoctor.field === 'urology' ? 'selected' : '' %>>Urology</option>
-              <option value="Psychiatry" <%= selectedDoctor && selectedDoctor.field === 'psychiatry' ? 'selected' : '' %>>Psychiatry</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="doctor">Select Doctor</label>
-            <select id="doctor" name="doctor" required>
-              <option value="">--Choose a Doctor--</option>
-              <% if (selectedDoctor) { %>
-              <option value="<%= selectedDoctor._id %>" selected><%= selectedDoctor.name %></option>
-              <% } %>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="timeslot">Available Timeslots</label>
-          <select id="timeslot" name="timeslot" required>
-            <option value="">--Select a Timeslot--</option>
-          </select>
-        </div>
-
-        <div class="form-group full-width">
-          <label for="message">Additional Notes</label>
-          <textarea id="message" name="message" rows="4"></textarea>
-        </div>
-
-        <button type="submit">Book Appointment</button>
-      </form>
-      <% } else { %>
-      <p>
-        Please <a href="/login">login</a> or <a href="/register">register</a> to
-        book an appointment.
-      </p>
-      <% } %>
+      </div>
     </section>
 
-    <%- include('includes/footer') %>
-  </body>
-  <script src="js/home1.js"></script>
-  <script>
-    document
-      .getElementById("speciality")
-      .addEventListener("change", function () {
+    <section class="appointment-form-section py-5">
+      <div class="container bg-white shadow-sm border rounded-5 p-4 p-lg-5" style="margin-top: -40px; position: relative; z-index: 10; max-width: 700px;">
+        <div class="form-container">
+          
+          <div class="about-badge mb-3">
+            <span class="dot-teal me-2"></span> Calendar Allocation
+          </div>
+          <h2 class="form-main-title mb-2">Schedule Session</h2>
+          <p class="text-muted small mb-4">Provide accurate slots parameters below to commit your consultation request onto the server registers.</p>
+
+          <form id="appointmentForm" class="contact-form d-flex flex-column gap-3">
+            
+            <div class="form-group-custom position-relative">
+              <label for="name" class="form-label-text">Full Name</label>
+              <div class="position-relative">
+                <i class="fas fa-user input-inside-icon"></i>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  class="form-input-control" 
+                  placeholder="Enter your full name" 
+                  required 
+                />
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="phone" class="form-label-text">Contact Number</label>
+              <div class="position-relative">
+                <i class="fas fa-phone input-inside-icon"></i>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  class="form-input-control" 
+                  placeholder="Enter your phone number" 
+                  required 
+                />
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="speciality" class="form-label-text">Select Speciality</label>
+              <div class="position-relative">
+                <i class="fas fa-stethoscope input-inside-icon"></i>
+                <select id="speciality" name="speciality" class="form-input-control select-arrow-pad" required>
+                  <option value="">Choose a speciality...</option>
+                  <option value="Cardiologist">Cardiologist</option>
+                  <option value="Dermatologist">Dermatologist</option>
+                  <option value="General Physician">General Physician</option>
+                  <option value="Neurologist">Neurologist</option>
+                  <option value="Pediatrician">Pediatrician</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="doctor" class="form-label-text">Select Practitioner</label>
+              <div class="position-relative">
+                <i class="fas fa-user-md input-inside-icon"></i>
+                <select id="doctor" name="doctor" class="form-input-control select-arrow-pad" required>
+                  <option value="">Choose a specialist...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="date" class="form-label-text">Consultation Date</label>
+              <div class="position-relative">
+                <i class="fas fa-calendar-day input-inside-icon"></i>
+                <input 
+                  type="date" 
+                  id="date" 
+                  name="date" 
+                  class="form-input-control date-picker-pad" 
+                  required 
+                />
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="time" class="form-label-text">Preferred Time Slot</label>
+              <div class="position-relative">
+                <i class="fas fa-clock input-inside-icon"></i>
+                <select id="time" name="time" class="form-input-control select-arrow-pad" required>
+                  <option value="">Choose an available hour...</option>
+                  <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                  <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                  <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                  <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                  <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom mt-4">
+              <button type="submit" class="btn-submit-action w-100">
+                Confirm Booking Slot
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <script src="js/home1.js"></script>
+    <%- include('includes/footer') %> 
+
+    <script>
+      // Populate doctors collection asynchronously based on dynamic speciality value changes
+      document.getElementById("speciality").addEventListener("change", function () {
         const speciality = this.value;
         const doctorSelect = document.getElementById("doctor");
-        const timeslotSelect = document.getElementById("timeslot");
 
-        // Clear previous options
-        doctorSelect.innerHTML =
-          '<option value="">--Choose a Doctor--</option>';
-        timeslotSelect.innerHTML =
-          '<option value="">--Select a Timeslot--</option>';
+        doctorSelect.innerHTML = '<option value="">Choose a specialist...</option>';
 
         if (speciality) {
-          fetch(
-            `/api/doctors/speciality?speciality=${encodeURIComponent(
-              speciality
-            )}`
-          )
+          fetch(`/api/doctors/speciality/${speciality}`)
             .then((response) => response.json())
             .then((doctors) => {
               doctors.forEach((doctor) => {
@@ -148,88 +167,24 @@ req.user.name : '' %>"
                 doctorSelect.appendChild(option);
               });
             })
-            .catch((error) => console.error("Error fetching doctors:", error));
+            .catch((error) => console.error("Error loading doctors payload:", error));
         }
       });
 
-    document.getElementById("doctor").addEventListener("change", function () {
-      const doctor = this.value;
-      const date = document.getElementById("appointment-date").value;
-      const timeslotSelect = document.getElementById("timeslot");
+      // Secure payment payload interceptor data submission mechanism
+      document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      timeslotSelect.innerHTML =
-        '<option value="">--Select a Timeslot--</option>';
-
-      if (doctor && date) {
-        // CALL NEW PUBLIC ENDPOINT
-        fetch(
-          `/api/doctors/available-slots?doctor=${encodeURIComponent(
-            doctor
-          )}&date=${encodeURIComponent(date)}`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.slots && data.slots.length > 0) {
-              data.slots.forEach((slot) => {
-                const option = document.createElement("option");
-                option.value = slot;
-                option.textContent = slot;
-                timeslotSelect.appendChild(option);
-              });
-            } else {
-              // Provide feedback if no slots are found for the date
-              timeslotSelect.innerHTML =
-                '<option value="">--No Available Slots--</option>';
-            }
-          })
-          .catch((error) => console.error("Error fetching slots:", error));
-      }
-    });
-    document
-      .getElementById("appointment-date")
-      .addEventListener("change", function () {
+        // Catching values from all required fields to sync with network payloads
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
         const doctor = document.getElementById("doctor").value;
-        const date = this.value;
-        const timeslotSelect = document.getElementById("timeslot");
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
 
-        timeslotSelect.innerHTML =
-          '<option value="">--Select a Timeslot--</option>';
+        const data = { name, phone, doctor, date, time };
 
-        if (doctor && date) {
-          // CALL NEW PUBLIC ENDPOINT
-          fetch(
-            `/api/doctors/available-slots?doctor=${encodeURIComponent(
-              doctor
-            )}&date=${encodeURIComponent(date)}`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.slots && data.slots.length > 0) {
-                data.slots.forEach((slot) => {
-                  const option = document.createElement("option");
-                  option.value = slot;
-                  option.textContent = slot;
-                  timeslotSelect.appendChild(option);
-                });
-              } else {
-                timeslotSelect.innerHTML =
-                  '<option value="">--No Available Slots--</option>';
-              }
-            })
-            .catch((error) => console.error("Error fetching slots:", error));
-        }
-      });
-
-    // Handle form submission asynchronously
-    document
-      .getElementById("appointmentForm")
-      .addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
-
-        fetch("/api/users/book-appointment", {
+        fetch("/Appointment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -240,36 +195,37 @@ req.user.name : '' %>"
           .then((data) => {
             if (data.message === "Appointment booked successfully") {
               alert("Appointment booked successfully!");
-              window.location.href = "/"; // Redirect to home page
+              window.location.href = "/";
             } else {
-              alert("Error: " + (data.message || "Unknown error"));
+              alert("Error: " + (data.message || "Unknown error parsing request tokens"));
             }
           })
           .catch((error) => {
-            console.error("Error:", error);
+            console.error("Error submitting appointment structure:", error);
             alert("An error occurred while booking the appointment.");
           });
       });
-  </script>
-  <% if (selectedDoctor) { %>
-  <script>
-    // Load slots if doctor is pre-selected
-    window.addEventListener('DOMContentLoaded', function() {
-      const doctorSelect = document.getElementById("doctor");
-      const specialitySelect = document.getElementById("speciality");
+    </script>
 
-      // Set speciality based on selected doctor
-      specialitySelect.value = "<%= selectedDoctor.field %>";
+    <% if (typeof selectedDoctor !== 'undefined' && selectedDoctor) { %>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        const doctorSelect = document.getElementById("doctor");
+        const specialitySelect = document.getElementById("speciality");
 
-      // Trigger speciality change to load doctors
-      specialitySelect.dispatchEvent(new Event('change'));
+        // Set speciality based on selected doctor parameters
+        specialitySelect.value = "<%= selectedDoctor.field %>";
 
-      // Wait a bit for doctors to load, then set the selected doctor
-      setTimeout(() => {
-        doctorSelect.value = "<%= selectedDoctor._id %>";
-        doctorSelect.dispatchEvent(new Event('change'));
-      }, 500);
-    });
-  </script>
-  <% } %>
+        // Trigger chain event to populate list rows asynchronously
+        specialitySelect.dispatchEvent(new Event('change'));
+
+        // Delay instantiation payload mapping until loop finishes loading elements
+        setTimeout(() => {
+          doctorSelect.value = "<%= selectedDoctor._id %>";
+          doctorSelect.dispatchEvent(new Event('change'));
+        }, 500);
+      });
+    </script>
+    <% } %>
+  </body>
 </html>

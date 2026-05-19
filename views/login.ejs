@@ -2,88 +2,156 @@
 <html lang="en">
   <head>
     <%- include('includes/head') %>
-    <link href="styles/login.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles/login.css" rel="stylesheet" />
   </head>
   <body>
     <%- include('includes/header') %>
-    <div class="container">
-      <div class="formbox login">
-        <form action="/api/users/login" method="POST">
-          <h1>Login</h1>
-          <% if (typeof error !== 'undefined' && error === 'InvalidCredentials')
-          { %>
-          <div
-            class="error-message"
-            style="color: red; margin-bottom: 10px; text-align: center"
-          >
-            Invalid username or password. Please try again.
-          </div>
-          <% } %>
-          <div class="inputbox">
-            <input
-              type="text"
-              placeholder="Username"
-              id="login-username"
-              name="username"
-              required
-            />
-            <i class="bx bxs-user"></i>
-          </div>
-          <div class="inputbox">
-            <input
-              type="password"
-              placeholder="Password"
-              id="login-password"
-              minlength="8"
-              name="password"
-              required
-            />
-            <i class="bx bxs-lock-alt"></i>
-          </div>
-          <div class="forgotlink">
-            <a href="/reset">Forgot password?</a>
-          </div>
-          <input type="hidden" name="responseType" value="redirect" />
-          <button type="submit" class="btn">Login</button>
-          <p>or login with social platforms</p>
-          <div class="socialicons">
-            <a href="https://accounts.google.com/" target="_blank"
-              ><i class="bx bxl-google"></i
-            ></a>
-            <a href="https://www.facebook.com/" target="_blank"
-              ><i class="bx bxl-facebook"></i
-            ></a>
-            <a href="https://github.com/login" target="_blank "
-              ><i class="bx bxl-github"></i
-            ></a>
-            <a href="https://www.linkedin.com/login" target="_blank"
-              ><i class="bx bxl-linkedin"></i
-            ></a>
-          </div>
-        </form>
-      </div>
 
-      <div class="toggle-box">
-        <div class="toggle-panel toggle-left">
-          <h1>Hello,welcome!</h1>
-          <p>Don't have an account?</p>
-          <a href="/register">
-            <button class="btn register-btn">Register</button>
-          </a>
+    <section class="hero-container-box">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Secure Access Gateway</div>
+          <h1 class="hero-title text-white">
+            Welcome Back <br />
+            To Your Digital <br />
+            Health Portal
+          </h1>
+          <p class="hero-text">
+            Access your personalized healthcare workspace. Safe, encrypted
+            authentication built to keep your patient history records,
+            prescription trackers, and upcoming scheduled consultations
+            completely private.
+          </p>
         </div>
       </div>
-    </div>
+    </section>
 
+    <section class="auth-form-section py-5">
+      <div
+        class="container bg-white shadow-sm border rounded-5 p-4 p-lg-5"
+        style="
+          margin-top: -40px;
+          position: relative;
+          z-index: 10;
+          max-width: 600px;
+        "
+      >
+        <div class="form-container">
+          <div class="about-badge mb-3">
+            <span class="dot-teal me-2"></span> Member Verification
+          </div>
+          <h2 class="form-main-title mb-2">Account Login</h2>
+          <p class="text-muted small mb-4">
+            Enter your registered parameters to unlock dashboard access nodes.
+          </p>
+
+          <form
+            action="/api/users/login"
+            method="POST"
+            class="contact-form d-flex flex-column gap-3"
+          >
+            <% if (typeof error !== 'undefined' && error === 'InvalidCredentials') { %>
+            <div
+              class="error-message p-3 mb-2 rounded-3 text-center small"
+              style="color: #ffffff; background-color: #ff4d4d; font-weight: 500;"
+            >
+              <i class="fas fa-circle-exclamation me-2"></i> Invalid username or password. Please try again.
+            </div>
+            <% } %>
+
+            <div class="form-group-custom position-relative">
+              <label for="username" class="form-label-text">Username ID</label>
+              <div class="position-relative">
+                <i class="fas fa-user input-inside-icon"></i>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  class="form-input-control"
+                  placeholder="Enter your unique username"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group-custom position-relative">
+              <label for="login-password" class="form-label-text">Password Security ID</label>
+              <div class="position-relative">
+                <i class="fas fa-lock input-inside-icon"></i>
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  minlength="8"
+                  class="form-input-control"
+                  placeholder="Enter your security passcode"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="text-end mt-1">
+              <a href="/reset" class="forgot-pass-link" style="text-decoration: none;">Forgot Password?</a>
+            </div>
+
+            <input type="hidden" name="responseType" value="redirect" />
+
+            <div class="form-group-custom mt-3">
+              <button type="submit" class="btn-submit-action w-100">
+                Secure Login
+                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
+              </button>
+            </div>
+
+            <div class="social-auth-wrapper text-center mt-4 pt-2 border-top">
+              <p class="small text-muted mb-3">Or login with social platforms</p>
+              <div class="socialicons d-flex justify-content-center gap-3">
+                <a href="https://accounts.google.com/" target="_blank" class="social-icon-btn">
+                  <i class="bx bxl-google"></i>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn">
+                  <i class="bx bxl-facebook"></i>
+                </a>
+                <a href="https://github.com/login" target="_blank" class="social-icon-btn">
+                  <i class="bx bxl-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/login" target="_blank" class="social-icon-btn">
+                  <i class="bx bxl-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </form>
+
+          <div class="text-center mt-4 pt-3 border-top">
+            <p class="small text-muted mb-0">
+              Don't have an active health account yet?
+            </p>
+            <a href="/register" class="auth-switch-link d-inline-block mt-1" style="text-decoration: none;">
+              Create New Account
+              <i class="fas fa-user-plus ms-1" style="font-size: 13px"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/home1.js"></script>
     <%- include('includes/footer') %>
   </body>
 </html>

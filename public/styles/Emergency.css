@@ -1,113 +1,425 @@
-.emergency-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+:root {
+  --teal-color: #00a8bd;
+  --dark-overlay: rgba(7, 35, 49, 0.82);
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
+  --emergency-red: #ff4d4d;
 }
 
-.emergency-container h1 {
-    text-align: center;
-    color: #d9534f;
-    margin-bottom: 20px;
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
 }
 
-.emergency-container p {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 40px;
+/* 1. HERO ARCHITECTURE COMPONENT WITH INTENSE OVERLAYS */
+.hero-container-box {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  border-radius: 30px;
+  overflow: hidden;
+  padding-bottom: 70px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--dark-overlay) 0%,
+      rgba(7, 25, 35, 0.8) 20%,
+      rgba(7, 84, 114, 0.45) 55%,
+      transparent 100%
+    ),
+    url("../images/scope.jpg"); /* Reusing shared background canvas */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.emergency-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
+.hero-content {
+  max-width: 1000px;
+  padding-top: 140px;
 }
 
-.emergency-form, .emergency-info {
-    flex: 1;
-    min-width: 300px;
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-.emergency-form h2, .emergency-info h2 {
-    color: #333;
-    margin-bottom: 20px;
+.hero-badge,
+.services-badge,
+.core-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.hero-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: white;
+  margin-bottom: 30px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+/* CUSTOM GLOW AND CALL ACTIONS FOR CRISIS OPERATIONS */
+.emergency-pulse-badge {
+  border-color: rgba(255, 77, 77, 0.4) !important;
+  background: rgba(255, 77, 77, 0.1) !important;
+  color: #ffb3b3 !important;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+.pulse-glow-dot {
+  width: 9px;
+  height: 9px;
+  background-color: var(--emergency-red);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+  animation: pulseBlink 1.6s infinite;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
+@keyframes pulseBlink {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 77, 77, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+  }
 }
 
-.submit-btn {
-    background: #d9534f;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
+.btn-emergency-hotline {
+  background-color: var(--emergency-red);
+  color: white !important;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--emergency-red);
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
-    background: #c9302c;
+.btn-emergency-hotline:hover {
+  background-color: white;
+  color: var(--emergency-red) !important;
+  box-shadow: 0 4px 25px rgba(255, 77, 77, 0.5);
 }
 
-.contact-list {
-    list-style: none;
-    padding: 0;
+.shake-icon {
+  animation: iconShake 0.6s infinite alternate;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 10px;
-    background: white;
-    border-radius: 4px;
+@keyframes iconShake {
+  0% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
 }
 
-.contact-item i {
-    font-size: 24px;
-    margin-right: 15px;
-    color: #d9534f;
+.hero-text {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 650px;
 }
 
-.contact-item h3 {
-    margin: 0;
-    color: #333;
+.bg-white-5 {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.contact-item p {
-    margin: 5px 0 0 0;
-    color: #666;
+/* 2. CARD MODALS AND DISPATCH PANELS */
+.services-section {
+  background-color: var(--light-teal-bg);
+  border-radius: 30px;
+  margin: 15px;
+  padding: 80px 0;
 }
 
-@media (max-width: 768px) {
-    .emergency-content {
-        flex-direction: column;
-    }
+.services-badge {
+  background: #ffffff;
+  color: #072331;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dot-teal {
+  width: 8px;
+  height: 8px;
+  background-color: var(--teal-color);
+  border-radius: 50%;
+}
+
+.services-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #072331;
+}
+
+.service-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: left;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.critical-alert-border {
+  border: 1px solid rgba(255, 77, 77, 0.15) !important;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(7, 35, 49, 0.06);
+}
+
+.service-icon {
+  width: 50px;
+  height: 50px;
+  background-color: var(--teal-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: color 0.4s ease;
+}
+
+.alert-bg-red {
+  background-color: var(--emergency-red) !important;
+}
+
+.service-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #072331;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s ease,
+    height 0.4s ease;
+  z-index: -1;
+}
+
+.service-card:hover .service-icon::after {
+  width: 150%;
+  height: 150%;
+}
+
+.service-icon i {
+  position: relative;
+  z-index: 2;
+}
+
+.view-details-btn {
+  position: relative;
+  background-color: transparent;
+  color: var(--teal-color);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease;
+  border: 1px solid var(--teal-color);
+  width: fit-content;
+  margin-top: 20px;
+}
+
+.view-details-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--teal-color);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn-red-variant {
+  color: var(--emergency-red) !important;
+  border-color: var(--emergency-red) !important;
+}
+
+.btn-red-variant::before {
+  background-color: var(--emergency-red) !important;
+}
+
+.view-details-btn:hover::before {
+  left: 0;
+}
+
+.view-details-btn:hover {
+  color: white !important;
+}
+
+.rotate-arrow {
+  display: inline-block;
+  transition: transform 0.4s ease;
+  transform: rotate(-45deg);
+}
+
+.service-card:hover .rotate-arrow {
+  transform: rotate(0deg);
+}
+
+/* 3. PROTOCOLS BOX GRID AREA */
+.core-features-box {
+  background: linear-gradient(135deg, #072331 0%, #0a3d4d 100%);
+  border-radius: 30px;
+  padding: 80px 90px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.core-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+.bg-warning {
+  background-color: #ffc107 !important;
+}
+.bg-primary {
+  background-color: #4facfe !important;
+}
+.bg-info {
+  background-color: #b88a5d !important;
+}
+.bg-danger {
+  background-color: #e53e3e !important;
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* 4. SCROLLABLE FAQ MECHANISM */
+.faq-card-wrapper {
+  background-color: #ffffff;
+  border-radius: 25px;
+  padding: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-scroll-area {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 25px;
+}
+
+.faq-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.faq-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--teal-color);
+  border-radius: 10px;
+}
+
+.faq-item {
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 20px;
+}
+
+.faq-question {
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.faq-answer {
+  color: #6c757d;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE RETROFITS */
+@media (max-width: 991px) {
+  .hero-container-box {
+    margin: 10px;
+    border-radius: 20px;
+    min-height: 70vh;
+  }
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .services-main-title {
+    font-size: 1.8rem;
+  }
+  .core-features-box {
+    padding: 40px 20px;
+  }
+  .services-section {
+    padding: 50px 0;
+    margin: 10px;
+  }
 }
