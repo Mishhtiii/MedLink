@@ -3,6 +3,7 @@ const Doctor = require('../models/doctor');
 const User = require('../models/user');
 const Appointment = require('../models/appointment');
 const bcrypt = require('bcryptjs');
+const emailService = require('../utils/emailService'); // Integrated automated mailing dispatch
 
 const getPendingDoctors = async (req, res, next) => {
     try {
@@ -23,20 +24,28 @@ const approveDoctor = async (req, res, next) => {
         }
 
         const newDoctor = new Doctor({
-            img: pendingDoctor.image,
             name: pendingDoctor.name,
-            field: pendingDoctor.specialization,
-            experience: pendingDoctor.experience,
-            qualification: pendingDoctor.qualification,
-            rating: pendingDoctor.rating,
             username: pendingDoctor.username,
             email: pendingDoctor.email,
             password: pendingDoctor.password,
-            location: pendingDoctor.location
+            field: pendingDoctor.specialization,   // Maps 'specialization' to 'field'
+            qualification: pendingDoctor.qualification,
+            experience: pendingDoctor.experience,
+            location: pendingDoctor.location,
+            phone: pendingDoctor.phone,
+            hospital: pendingDoctor.hospital,
+            fees: pendingDoctor.fees,
+            img: pendingDoctor.image,              // Maps 'image' to 'img'
+            availability: pendingDoctor.availability,
+            rating: pendingDoctor.rating
         });
 
         await newDoctor.save();
         await PendingDoctor.findByIdAndDelete(id);
+
+        // Trigger Nodemailer Doctor Approval Notice Asynchronously
+        // Dispatches a platform activation alert to the doctor's email inbox logs
+        emailService.sendDoctorApprovalNotice(newDoctor.email, newDoctor.name);
 
         res.status(200).json({ message: 'Doctor approved successfully', doctor: newDoctor });
     } catch (err) {

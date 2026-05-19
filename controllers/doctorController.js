@@ -5,6 +5,7 @@ const Appointment = require('../models/appointment');
 const DoctorSlot = require('../models/doctorSlot');
 const redisClient = require('../utils/redisClient');
 const { sendToken } = require('../utils/jwtHelper');
+const emailService = require('../utils/emailService'); // Integrated automated mailing dispatch
 
 // Strong password validation function
 const validatePassword = (password) => {
@@ -98,6 +99,9 @@ const registerDoctor = async (req, res, next) => {
         });
 
         if (pendingDoctor) {
+            // Trigger Nodemailer Doctor Staged/Pending notification
+            emailService.sendDoctorPendingReview(pendingDoctor.email, pendingDoctor.name);
+
             if (req.body.responseType === 'redirect') {
                 return res.redirect('/?message=Please wait for the confirmation of admin for registration as a doctor');
             }
@@ -149,7 +153,6 @@ const getDoctorProfile = async (req, res, next) => {
     try {
         const doctorData = await Doctor.findById(req.user._id).select('-password').exec();
         if (doctorData) {
-            
             res.render('doctorDashboard', { req: req, doctor: doctorData });
         } else {
             res.status(404).json({ message: 'Doctor not found' });
@@ -267,7 +270,6 @@ const getAvailableSlots = async (req, res, next) => {
             return res.status(400).json({ message: 'Doctor and date are required' });
         }
 
-        // 1. Date ka Timezone/Midnight issue fix karein
         const queryDate = new Date(date);
         queryDate.setHours(0, 0, 0, 0);
 
@@ -276,10 +278,8 @@ const getAvailableSlots = async (req, res, next) => {
             return res.status(404).json({ message: 'Doctor not found' });
         }
 
-        // 2. Database mei exact date ke liye slots dhoondhein
         let slots = await DoctorSlot.find({ doctor, date: queryDate });
 
-        // 3. Agar us din ke liye slots nahi bane hain, toh fresh generate karein
         if (slots.length === 0) {
             const availability = doctorDoc.availability || 'Full Day';
             let startHour, endHour;
@@ -318,12 +318,10 @@ const getAvailableSlots = async (req, res, next) => {
             }
         }
 
-        // 4. Sirf wahi slots nikalien jo AVAILABLE (true) hain
         const availableSlots = slots
             .filter(slot => slot.available === true)
             .map(slot => slot.time);
 
-        // 5. Response send karein
         return res.status(200).json({ slots: availableSlots });
 
     } catch (err) {
@@ -331,22 +329,30 @@ const getAvailableSlots = async (req, res, next) => {
         next(err);
     }
 };
+
 const completeAppointment = async (req, res, next) => {
     const { appointmentId } = req.params;
 
     try {
-        const appointment = await Appointment.findById(appointmentId);
+        // Populate patient user metadata details to resolve outbound care emails safely
+        const appointment = await Appointment.findById(appointmentId).populate('user', 'name email');
         if (!appointment) {
             return res.status(404).json({ message: 'Appointment not found' });
         }
 
-        // Ensure the doctor requesting the completion owns this appointment
         if (appointment.doctor.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: 'Not authorized to update this appointment' });
         }
 
+        const doctorDoc = await Doctor.findById(appointment.doctor);
+
         appointment.status = 'completed';
         await appointment.save();
+
+        // Dispatch clinical completion record notice straight to patient file
+        if (appointment.user && appointment.user.email) {
+            emailService.sendAppointmentCompletionAlert(appointment.user.email, appointment.user.name, doctorDoc.name);
+        }
 
         res.status(200).json({ 
             message: 'Appointment successfully marked as completed', 

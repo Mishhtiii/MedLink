@@ -5,6 +5,7 @@ const DoctorSlot = require('../models/doctorSlot');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { sendToken } = require('../utils/jwtHelper');
+const emailService = require('../utils/emailService'); // Integrated automated mailing dispatch 
 
 // Strong password validation function
 const validatePassword = (password) => {
@@ -64,6 +65,9 @@ const registerUser = async (req, res, next) => {
 
         if (user) {
             sendToken(res, user._id);
+
+            // Trigger Nodemailer Patient Welcome Sequence Asynchronously
+            emailService.sendPatientWelcome(user.email, user.name);
 
             if (responseType === 'redirect') {
                 if (user.role === 'admin') {
@@ -154,7 +158,12 @@ const purchaseMedicines = async (req, res, next) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        let orderTotalAmount = 0;
+
         medicines.forEach(newMed => {
+            // Invoice calculation parameters compile karein
+            orderTotalAmount += newMed.price;
+
             const existing = user.purchasedMedicines.find(med => med.name === newMed.name);
             if (existing) {
                 existing.quantity += newMed.quantity;
@@ -164,11 +173,20 @@ const purchaseMedicines = async (req, res, next) => {
                 user.purchasedMedicines.push(newMed);
             }
         });
+
         if (user.purchasedMedicines.length > 10) {
             user.purchasedMedicines = user.purchasedMedicines.slice(-10); 
         }
 
         await user.save();
+
+        // ✅ ADDED EMAIL SEQUENCE HERE:
+        // Transaction signature validation pass hone par automatic mail dispatch hoga
+        try {
+            await emailService.sendMedicineInvoice(user.email, user.name, medicines, orderTotalAmount);
+        } catch (mailErr) {
+            console.error("Nodemailer failed to send medicine invoice, but transaction saved:", mailErr);
+        }
 
         res.status(200).json({ message: 'Medicines purchased successfully' });
     } catch (err) {
@@ -272,6 +290,11 @@ const bookAppointment = async (req, res, next) => {
         });
         slot.available = false;
         await slot.save();
+
+        // Twin Email Notification Trigger Chain Sequence
+        // Dispatch booking receipt confirmation logs back to Patient and Doctor alerts asynchronously
+        emailService.sendAppointmentBookingConfirmation(req.user.email, name, doctorDoc.name, appointmentDate, timeslot);
+        emailService.sendDoctorAppointmentReceived(doctorDoc.email, doctorDoc.name, name, appointmentDate, timeslot);
 
         res.status(201).json({ message: 'Appointment booked successfully', appointment });
     } catch (err) {
