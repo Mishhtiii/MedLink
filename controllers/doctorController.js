@@ -267,26 +267,30 @@ const getAvailableSlots = async (req, res, next) => {
             return res.status(400).json({ message: 'Doctor and date are required' });
         }
 
-        // Get doctor's availability
+        // 1. Date ka Timezone/Midnight issue fix karein
+        const queryDate = new Date(date);
+        queryDate.setHours(0, 0, 0, 0);
+
         const doctorDoc = await Doctor.findById(doctor);
         if (!doctorDoc) {
             return res.status(404).json({ message: 'Doctor not found' });
         }
 
-        let slots = await DoctorSlot.find({ doctor, date: new Date(date) });
+        // 2. Database mei exact date ke liye slots dhoondhein
+        let slots = await DoctorSlot.find({ doctor, date: queryDate });
 
+        // 3. Agar us din ke liye slots nahi bane hain, toh fresh generate karein
         if (slots.length === 0) {
-            // Generate slots based on doctor's availability
-            const availability = doctorDoc.availability;
+            const availability = doctorDoc.availability || 'Full Day';
             let startHour, endHour;
 
             switch (availability) {
                 case 'Morning':
                     startHour = 9;
-                    endHour = 12;
+                    endHour = 13;
                     break;
                 case 'Afternoon':
-                    startHour = 12;
+                    startHour = 13;
                     endHour = 17;
                     break;
                 case 'Evening':
@@ -296,25 +300,58 @@ const getAvailableSlots = async (req, res, next) => {
                 case 'Full Day':
                 default:
                     startHour = 9;
-                    endHour = 17;
+                    endHour = 18;
                     break;
             }
 
             slots = [];
             for (let hour = startHour; hour < endHour; hour++) {
-                const time = `${hour}:00`;
+                const timeStr = `${hour < 10 ? '0' + hour : hour}:00`;
+                
                 const slot = await DoctorSlot.create({
                     doctor,
-                    date: new Date(date),
-                    time,
+                    date: queryDate,
+                    time: timeStr,
                     available: true
                 });
                 slots.push(slot);
             }
         }
 
-        const availableSlots = slots.filter(slot => slot.available).map(slot => slot.time);
-        res.status(200).json({ slots: availableSlots });
+        // 4. Sirf wahi slots nikalien jo AVAILABLE (true) hain
+        const availableSlots = slots
+            .filter(slot => slot.available === true)
+            .map(slot => slot.time);
+
+        // 5. Response send karein
+        return res.status(200).json({ slots: availableSlots });
+
+    } catch (err) {
+        console.error("Error in getAvailableSlots:", err);
+        next(err);
+    }
+};
+const completeAppointment = async (req, res, next) => {
+    const { appointmentId } = req.params;
+
+    try {
+        const appointment = await Appointment.findById(appointmentId);
+        if (!appointment) {
+            return res.status(404).json({ message: 'Appointment not found' });
+        }
+
+        // Ensure the doctor requesting the completion owns this appointment
+        if (appointment.doctor.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: 'Not authorized to update this appointment' });
+        }
+
+        appointment.status = 'completed';
+        await appointment.save();
+
+        res.status(200).json({ 
+            message: 'Appointment successfully marked as completed', 
+            appointment 
+        });
     } catch (err) {
         next(err);
     }
@@ -432,6 +469,7 @@ module.exports = {
     getDoctorsBySpeciality,
     getAvailableSlots,
     getDoctorAppointments,
+    completeAppointment,
     manageSlotAvailability,
     getDoctorSlots,
     getDoctorDashboard,

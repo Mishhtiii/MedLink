@@ -2,18 +2,9 @@
 <html lang="en">
   <head>
     <%- include('includes/head') %>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/Appointment.css" rel="stylesheet" />
   </head>
   <body>
@@ -23,11 +14,7 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-badge">Scheduling Desk</div>
-          <h1 class="hero-title text-white">
-            Book Your Next <br />
-            Medical Consultation <br />
-            Seamlessly
-          </h1>
+          <h1 class="hero-title text-white">Book Your Next <br />Medical Consultation <br />Seamlessly</h1>
           <p class="hero-text">
             Secure your preferred time slot with verified medical specialists. 
             Our automated configuration systems lock your calendar reservation instantly for either physical visits or remote tele-health channels.
@@ -40,26 +27,16 @@
       <div class="container bg-white shadow-sm border rounded-5 p-4 p-lg-5" style="margin-top: -40px; position: relative; z-index: 10; max-width: 700px;">
         <div class="form-container">
           
-          <div class="about-badge mb-3">
-            <span class="dot-teal me-2"></span> Calendar Allocation
-          </div>
+          <div class="about-badge mb-3"><span class="dot-teal me-2"></span> Calendar Allocation</div>
           <h2 class="form-main-title mb-2">Schedule Session</h2>
           <p class="text-muted small mb-4">Provide accurate slots parameters below to commit your consultation request onto the server registers.</p>
 
           <form id="appointmentForm" class="contact-form d-flex flex-column gap-3">
-            
             <div class="form-group-custom position-relative">
               <label for="name" class="form-label-text">Full Name</label>
               <div class="position-relative">
                 <i class="fas fa-user input-inside-icon"></i>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  class="form-input-control" 
-                  placeholder="Enter your full name" 
-                  required 
-                />
+                <input type="text" id="name" name="name" class="form-input-control" placeholder="Enter your full name" required />
               </div>
             </div>
 
@@ -67,14 +44,7 @@
               <label for="phone" class="form-label-text">Contact Number</label>
               <div class="position-relative">
                 <i class="fas fa-phone input-inside-icon"></i>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone" 
-                  class="form-input-control" 
-                  placeholder="Enter your phone number" 
-                  required 
-                />
+                <input type="tel" id="phone" name="phone" class="form-input-control" placeholder="Enter your phone number" required />
               </div>
             </div>
 
@@ -84,11 +54,11 @@
                 <i class="fas fa-stethoscope input-inside-icon"></i>
                 <select id="speciality" name="speciality" class="form-input-control select-arrow-pad" required>
                   <option value="">Choose a speciality...</option>
-                  <option value="Cardiologist">Cardiologist</option>
-                  <option value="Dermatologist">Dermatologist</option>
-                  <option value="General Physician">General Physician</option>
-                  <option value="Neurologist">Neurologist</option>
-                  <option value="Pediatrician">Pediatrician</option>
+                  <option value="general">General Physician</option>
+                  <option value="cardiologist">Cardiologist</option>
+                  <option value="dermatologist">Dermatologist</option>
+                  <option value="neurology">Neurologist</option>
+                  <option value="pediatrician">Pediatrician</option>
                 </select>
               </div>
             </div>
@@ -107,13 +77,7 @@
               <label for="date" class="form-label-text">Consultation Date</label>
               <div class="position-relative">
                 <i class="fas fa-calendar-day input-inside-icon"></i>
-                <input 
-                  type="date" 
-                  id="date" 
-                  name="date" 
-                  class="form-input-control date-picker-pad" 
-                  required 
-                />
+                <input type="date" id="date" name="date" class="form-input-control date-picker-pad" required />
               </div>
             </div>
 
@@ -122,22 +86,13 @@
               <div class="position-relative">
                 <i class="fas fa-clock input-inside-icon"></i>
                 <select id="time" name="time" class="form-input-control select-arrow-pad" required>
-                  <option value="">Choose an available hour...</option>
-                  <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
-                  <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
-                  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
-                  <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
-                  <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
-                  <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                  <option value="">Choose a doctor and date first...</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group-custom mt-4">
-              <button type="submit" class="btn-submit-action w-100">
-                Confirm Booking Slot
-                <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i>
-              </button>
+              <button type="submit" class="btn-submit-action w-100">Confirm Booking Slot <i class="fas fa-arrow-right-long ms-2 rotate-arrow"></i></button>
             </div>
           </form>
 
@@ -149,53 +104,96 @@
     <%- include('includes/footer') %> 
 
     <script>
-      // Populate doctors collection asynchronously based on dynamic speciality value changes
-      document.getElementById("speciality").addEventListener("change", function () {
-        const speciality = this.value;
+      // 1. Speciality Select thava par Doctors load karava
+      function loadDoctorsBySpeciality(specialityValue, callback) {
         const doctorSelect = document.getElementById("doctor");
+        const timeSelect = document.getElementById("time");
 
         doctorSelect.innerHTML = '<option value="">Choose a specialist...</option>';
+        timeSelect.innerHTML = '<option value="">Choose a doctor and date first...</option>';
 
-        if (speciality) {
-          fetch(`/api/doctors/speciality/${speciality}`)
-            .then((response) => response.json())
-            .then((doctors) => {
-              doctors.forEach((doctor) => {
-                const option = document.createElement("option");
-                option.value = doctor._id;
-                option.textContent = doctor.name;
-                doctorSelect.appendChild(option);
-              });
-            })
-            .catch((error) => console.error("Error loading doctors payload:", error));
-        }
+        if (!specialityValue) return;
+
+        fetch(`/api/doctors/speciality?speciality=${encodeURIComponent(specialityValue)}`)
+          .then((response) => response.json())
+          .then((doctors) => {
+            doctors.forEach((doctor) => {
+              const option = document.createElement("option");
+              option.value = doctor._id;
+              option.textContent = doctor.name;
+              doctorSelect.appendChild(option);
+            });
+            
+            // Jetlo data load thaya pachhi jo callback function hoy to run thai
+            if (callback) callback();
+          })
+          .catch((error) => console.error("Error loading doctors payload:", error));
+      }
+
+      document.getElementById("speciality").addEventListener("change", function () {
+        loadDoctorsBySpeciality(this.value);
       });
 
-      // Secure payment payload interceptor data submission mechanism
+      // 2. Doctor ane Date select thava par dynamic Time Slots generate karava
+      function fetchAvailableSlots() {
+        const doctorId = document.getElementById("doctor").value;
+        const selectedDate = document.getElementById("date").value;
+        const timeSelect = document.getElementById("time");
+
+        if (!doctorId || !selectedDate) return;
+
+        timeSelect.innerHTML = '<option value="">Loading operational hours...</option>';
+
+        fetch(`/api/doctors/available-slots?doctor=${doctorId}&date=${selectedDate}`)
+          .then((response) => response.json())
+          .then((data) => {
+            timeSelect.innerHTML = '<option value="">Choose an available hour...</option>';
+            
+            if (!data.slots || data.slots.length === 0) {
+              timeSelect.innerHTML = '<option value="">No fully available slots left for today</option>';
+              return;
+            }
+
+            data.slots.forEach((slotTime) => {
+              const option = document.createElement("option");
+              option.value = slotTime;
+              option.textContent = slotTime;
+              timeSelect.appendChild(option);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching slots logs:", error);
+            timeSelect.innerHTML = '<option value="">Error loading slot metrics</option>';
+          });
+      }
+
+      document.getElementById("doctor").addEventListener("change", fetchAvailableSlots);
+      document.getElementById("date").addEventListener("change", fetchAvailableSlots);
+
+      // 3. Form Submit validation
       document.getElementById("appointmentForm").addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Catching values from all required fields to sync with network payloads
         const name = document.getElementById("name").value;
+        const email = "<%= req.user ? req.user.email : '' %>";
         const phone = document.getElementById("phone").value;
+        const speciality = document.getElementById("speciality").value;
         const doctor = document.getElementById("doctor").value;
-        const date = document.getElementById("date").value;
-        const time = document.getElementById("time").value;
+        const appointmentDate = document.getElementById("date").value; 
+        const timeslot = document.getElementById("time").value;         
 
-        const data = { name, phone, doctor, date, time };
+        const data = { name, email, phone, speciality, doctor, appointmentDate, timeslot };
 
-        fetch("/Appointment", {
+        fetch("/api/users/book-appointment", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         })
           .then((response) => response.json())
           .then((data) => {
-            if (data.message === "Appointment booked successfully") {
+            if (data.appointment || data.message === "Appointment booked successfully") {
               alert("Appointment booked successfully!");
-              window.location.href = "/";
+              window.location.href = "/profile"; 
             } else {
               alert("Error: " + (data.message || "Unknown error parsing request tokens"));
             }
@@ -213,17 +211,31 @@
         const doctorSelect = document.getElementById("doctor");
         const specialitySelect = document.getElementById("speciality");
 
-        // Set speciality based on selected doctor parameters
-        specialitySelect.value = "<%= selectedDoctor.field %>";
+        // Lowercase normalization + partial matching for string values
+        const rawField = "<%= selectedDoctor.field %>".toLowerCase();
+        let matchedValue = "";
 
-        // Trigger chain event to populate list rows asynchronously
-        specialitySelect.dispatchEvent(new Event('change'));
+        // Check options value inside speciality list structure
+        for (let option of specialitySelect.options) {
+          if (option.value && (rawField.includes(option.value) || option.value.includes(rawField))) {
+            matchedValue = option.value;
+            break;
+          }
+        }
 
-        // Delay instantiation payload mapping until loop finishes loading elements
-        setTimeout(() => {
-          doctorSelect.value = "<%= selectedDoctor._id %>";
-          doctorSelect.dispatchEvent(new Event('change'));
-        }, 500);
+        if (matchedValue) {
+          specialitySelect.value = matchedValue;
+          
+          // Custom loadDoctors dynamically call thashe callback na help thi
+          loadDoctorsBySpeciality(matchedValue, function() {
+            // Options complete load thaya pachhi j doctor select thashe
+            doctorSelect.value = "<%= selectedDoctor._id %>";
+            doctorSelect.dispatchEvent(new Event('change'));
+            
+            // Cursor automatic date option par focus thashe
+            document.getElementById("date").focus();
+          });
+        }
       });
     </script>
     <% } %>

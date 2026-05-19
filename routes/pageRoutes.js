@@ -24,15 +24,26 @@ router.get('/register', (req, res) => res.render('register', { req }));
 router.get('/about', (req, res) => res.render('Aboutus', { req }));
 router.get('/contact', (req, res) => res.render('contact', { req }));
 router.get('/reset', (req, res) => res.render('reset', { req }));
+
+// Updated Route: Safely extracts query markers to pre-populate parameters
 router.get('/Appointment', async (req, res) => {
   if (!req.isLoggedIn) return res.redirect('/login');
-  const specialities = await Doctor.distinct('field');
-  let selectedDoctor = null;
-  if (req.query.doctorId) {
-    selectedDoctor = await Doctor.findById(req.query.doctorId);
+  
+  try {
+    const specialities = await Doctor.distinct('field');
+    let selectedDoctor = null;
+    
+    if (req.query.doctorId) {
+      selectedDoctor = await Doctor.findById(req.query.doctorId);
+    }
+    
+    res.render('Appointment', { req, specialities, selectedDoctor });
+  } catch (err) {
+    console.error("Error setting up appointment view routing:", err);
+    res.status(500).send("Internal Server View Engine Exception");
   }
-  res.render('Appointment', { req, specialities, selectedDoctor })
-})
+});
+
 router.get('/findhospital', (req, res) => res.render('findHospital', { req }));
 router.get('/profile', (req, res) => {
   if (!req.isUser) return res.redirect('/login');
@@ -47,6 +58,7 @@ router.get('/finddoctor', findDoctorPage);
 router.get('/doctorRegister', (req, res) => res.render('doctorRegister', { req }));
 router.post('/doctorRegister', upload.single('image'), registerDoctor);
 router.get('/doctorLogin', (req, res) => res.render('doctorLogin', { req }));
+
 router.get('/pharmacy', async (req, res) => {
     const { loadMedicines, loadSliderImages, loadFitnessDeals, loadPersonalCareProducts, loadSurgicalDeals, loadSurgicalDevices } = require('../api/dataLoader');
     const medicines = await loadMedicines();
@@ -57,9 +69,11 @@ router.get('/pharmacy', async (req, res) => {
     const surgicalDevices = await loadSurgicalDevices();
     res.render('medicine', { req, medicines, sliderImages, fitnessDeals, personalCareProducts, surgicalDeals, surgicalDevices });
 });
+
 router.get('/cart', (req, res) => res.render('medcart', { req }));
 router.get('/payment', (req, res) => res.render('payment', { req }));
 router.get('/order-by-prescription', (req, res) => res.render('orderByPrescription', { req }));
+
 router.get('/admin', async (req, res, next) => {
   if (!req.user || req.user.role !== 'admin') {
     return res.redirect('/login');

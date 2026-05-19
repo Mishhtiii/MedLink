@@ -26,7 +26,7 @@ router.get('/profile', authenticateDoctorToken, doctorController.getDoctorProfil
 router.get('/profile-data', authenticateDoctorToken, doctorController.getDoctorProfileData);
 
 router.get('/appointments', authenticateDoctorToken, doctorController.getDoctorAppointments);
-
+router.patch('/appointments/:appointmentId/complete', authenticateDoctorToken, doctorController.completeAppointment);
 router.get('/available-slots', doctorController.getAvailableSlots);
 
 router.get('/slots', authenticateDoctorToken, doctorController.getDoctorSlots);
