@@ -1,55 +1,269 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard - MedLink</title>
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="stylesheet" href="/styles/adminDashboard.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <%- include('includes/adminHeader') %>
-    <div class="container">
-      <h1>Admin Dashboard</h1>
 
-      <div class="tabs">
-        <button class="tab-link active" data-tab="pending-doctors">
-          Pending Doctors
-        </button>
-        <button class="tab-link" data-tab="users">Users</button>
-        <button class="tab-link" data-tab="doctors">Doctors</button>
-        <button class="tab-link" data-tab="appointments">Appointments</button>
+    <section class="home" id="home">
+      <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+          <div
+            class="box"
+            style="
+              background:
+                linear-gradient(rgba(7, 35, 49, 0.75), rgba(7, 35, 49, 0.8)),
+                url(&quot;images/scope.jpg&quot;) no-repeat;
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div class="content text-start">
+              <div class="hero-badge-panel mb-3">
+                <span class="dot-teal me-2"></span> System Console Terminal
+              </div>
+              <h3>
+                Root Administrator <br />
+                &amp; Core Operations Desk
+              </h3>
+              <p>
+                Oversee system metrics, verify incoming dynamic medical
+                practitioner licenses, manage registered active customer
+                records, and coordinate overall clinical session records.
+              </p>
+              <div class="button-group-row d-flex gap-3 flex-wrap mt-4">
+                <a
+                  href="#workspace"
+                  class="btn-theme-solid"
+                  onclick="switchTab('pending-doctors')"
+                  >Pending Approvals</a
+                >
+                <a
+                  href="#workspace"
+                  class="btn-theme-outline"
+                  onclick="switchTab('appointments')"
+                  >System Bookings</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div id="pending-doctors" class="tab-content active">
-        <h2>Pending Doctor Approvals</h2>
-        <div id="pending-doctors-list"></div>
-      </div>
+    <section class="dashboard-core-wrapper py-5" id="workspace">
+      <div class="container">
+        <div
+          class="practitioner-profile-card bg-white border shadow-sm p-4 rounded-5 mb-5 d-flex flex-wrap align-items-center justify-content-between gap-3"
+        >
+          <div class="d-flex align-items-center gap-3">
+            <div
+              class="admin-avatar-placeholder d-flex align-items-center justify-content-center text-white font-bold rounded-circle border shadow-sm"
+            >
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="text-start">
+              <div class="showcase-badge mb-1">
+                <span class="dot-teal me-2"></span> Security Clearances
+                Authenticated
+              </div>
+              <h2 class="fw-bold text-dark mb-0">
+                System Administrator Control Tower
+              </h2>
+              <div class="d-flex flex-wrap gap-3 mt-1 text-muted small">
+                <span
+                  ><i class="fas fa-lock text-info me-1"></i> Root Level
+                  Access</span
+                >
+                <span
+                  ><i class="fas fa-server text-info me-1"></i> Node Production
+                  Backplane</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div id="users" class="tab-content">
-        <h2>User Management</h2>
-        <div id="users-list"></div>
-      </div>
+        <div class="row g-4 mb-5">
+          <div class="col-md-4">
+            <div
+              class="metric-status-card bg-white border shadow-sm p-4 rounded-5 text-start d-flex align-items-center gap-3"
+            >
+              <div
+                class="metric-icon text-warning rounded-4 d-flex align-items-center justify-content-center"
+              >
+                <i class="fas fa-user-md"></i>
+              </div>
+              <div>
+                <h4 class="text-muted small fw-medium mb-1">
+                  Authorization Pipeline
+                </h4>
+                <p class="h5 fw-bold text-dark mb-0">Licensing Credentials</p>
+              </div>
+            </div>
+          </div>
 
-      <div id="doctors" class="tab-content">
-        <h2>Doctor Management</h2>
-        <div id="doctors-list"></div>
-      </div>
+          <div class="col-md-4">
+            <div
+              class="metric-status-card bg-white border shadow-sm p-4 rounded-5 text-start d-flex align-items-center gap-3"
+            >
+              <div
+                class="metric-icon text-success rounded-4 d-flex align-items-center justify-content-center"
+              >
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <h4 class="text-muted small fw-medium mb-1">
+                  Platform Population
+                </h4>
+                <p class="h5 fw-bold text-dark mb-0">Account Registries</p>
+              </div>
+            </div>
+          </div>
 
-      <div id="appointments" class="tab-content">
-        <h2>Appointment Management</h2>
-        <div id="appointments-list"></div>
+          <div class="col-md-4">
+            <div
+              class="metric-status-card bg-white border shadow-sm p-4 rounded-5 text-start d-flex align-items-center gap-3"
+            >
+              <div
+                class="metric-icon text-danger rounded-4 d-flex align-items-center justify-content-center"
+              >
+                <i class="fas fa-file-invoice-dollar"></i>
+              </div>
+              <div>
+                <h4 class="text-muted small fw-medium mb-1">
+                  Operational Velocity
+                </h4>
+                <p class="h5 fw-bold text-dark mb-0">System Transactions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-3">
+            <div
+              class="dashboard-nav bg-white border shadow-sm p-3 rounded-5 d-flex flex-column gap-2 text-start"
+            >
+              <span class="small text-muted px-3 py-1 uppercase tracking-wider"
+                >Navigation Menu</span
+              >
+
+              <button
+                class="nav-item tab-link active"
+                data-tab="pending-doctors"
+              >
+                <i class="fas fa-clock me-2"></i> Pending Doctors
+              </button>
+              <button class="nav-item tab-link" data-tab="users">
+                <i class="fas fa-users me-2"></i> Manage Users
+              </button>
+              <button class="nav-item tab-link" data-tab="doctors">
+                <i class="fas fa-user-md me-2"></i> Manage Doctors
+              </button>
+              <button class="nav-item tab-link" data-tab="appointments">
+                <i class="fas fa-calendar-check me-2"></i> Appointments
+              </button>
+
+              <hr class="my-2 opacity-10" />
+              <a
+                href="/api/users/logout"
+                class="nav-item text-danger decoration-none"
+              >
+                <i class="fas fa-sign-out-alt me-2"></i> Shutdown Session
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-9">
+            <div
+              class="dashboard-content bg-white border shadow-sm p-4 p-md-5 rounded-5 text-start min-height-lock"
+            >
+              <div id="pending-doctors" class="tab-content active">
+                <h3 class="panel-heading-title mb-2">
+                  <i class="fas fa-user-clock text-info me-2"></i> Pending
+                  Doctor Approvals
+                </h3>
+                <p class="small text-muted mb-4">
+                  Review incoming credential files before verifying security
+                  tokens onto production nodes.
+                </p>
+                <div
+                  id="pending-doctors-list"
+                  class="d-flex flex-column gap-3"
+                ></div>
+              </div>
+
+              <div id="users" class="tab-content">
+                <h3 class="panel-heading-title mb-2">
+                  <i class="fas fa-users-cog text-info me-2"></i> Registered
+                  Patient Accounts
+                </h3>
+                <p class="small text-muted mb-4">
+                  View active database accounts or drop indexes for platform
+                  policy infractions.
+                </p>
+                <div class="table-responsive">
+                  <div id="users-list"></div>
+                </div>
+              </div>
+
+              <div id="doctors" class="tab-content">
+                <h3 class="panel-heading-title mb-2">
+                  <i class="fas fa-stethoscope text-info me-2"></i> Activated
+                  Medical Specialists
+                </h3>
+                <p class="small text-muted mb-4">
+                  Full database mapping of validated professional healthcare
+                  networks on MedLink.
+                </p>
+                <div class="table-responsive">
+                  <div id="doctors-list"></div>
+                </div>
+              </div>
+
+              <div id="appointments" class="tab-content">
+                <h3 class="panel-heading-title mb-2">
+                  <i class="fas fa-notes-medical text-info me-2"></i>
+                  Cross-Platform Appointment Ledger
+                </h3>
+                <p class="small text-muted mb-4">
+                  Live tracking of ongoing and historical medical consultation
+                  pipelines globally.
+                </p>
+                <div class="table-responsive">
+                  <div id="appointments-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
     <%- include('includes/adminFooter') %>
 
     <script>
+      // External linkage utility caller for layout navbar interactions
       function switchTab(tabId) {
         const tabButton = $(`.tab-link[data-tab="${tabId}"]`);
         if (tabButton.length) {
@@ -58,7 +272,7 @@
       }
 
       $(document).ready(function () {
-        // Tab switching
+        // Asynchronous structural selector binding adjustments
         $(".tab-link").on("click", function () {
           const tabId = $(this).data("tab");
 
@@ -68,11 +282,10 @@
           $(".tab-content").removeClass("active");
           $("#" + tabId).addClass("active");
 
-          // Load content for the selected tab
           loadTabData(tabId);
         });
 
-        // Load initial tab
+        // Initialize framework and boot up initial indices logs load
         loadTabData("pending-doctors");
 
         function loadTabData(tabId) {
@@ -100,25 +313,32 @@
             success: function (data) {
               let html = "";
               if (data.length === 0) {
-                html = "<p>No pending doctors to show.</p>";
+                html =
+                  "<div class='p-4 bg-light text-center rounded-4 text-muted'><i class='fas fa-folder-open mb-2 d-block h4'></i>No pending authorization licenses registry logs found.</div>";
               } else {
                 data.forEach((doctor) => {
                   html += `
-                                    <div class="doctor-card">
-                                        <h3>${doctor.name}</h3>
-                                        <p>Specialization: ${doctor.specialization}</p>
-                                        <p>Experience: ${doctor.experience} years</p>
-                                        <button class="btn approve-btn" data-id="${doctor._id}">Approve</button>
-                                        <button class="btn reject-btn" data-id="${doctor._id}">Reject</button>
-                                    </div>
-                                `;
+                    <div class="admin-approval-card p-3 border rounded-4 bg-light-split d-flex justify-content-between align-items-center flex-wrap gap-3">
+                      <div class="text-start">
+                        <h4 class="fw-bold text-dark h6 mb-1">Dr. ${doctor.name}</h4>
+                        <p class="small text-muted mb-0">
+                          <span class="me-3"><i class="fas fa-stethoscope text-info me-1"></i> ${doctor.specialization}</span>
+                          <span><i class="fas fa-briefcase text-info me-1"></i> ${doctor.experience} Years Experience</span>
+                        </p>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 native-action-wrapper">
+                        <button class="btn approve-btn py-2 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-check-circle me-1"></i> Grant Access</button>
+                        <button class="btn reject-btn py-2 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-times-circle me-1"></i> Terminate</button>
+                      </div>
+                    </div>
+                  `;
                 });
               }
               $("#pending-doctors-list").html(html);
             },
             error: function (err) {
               $("#pending-doctors-list").html(
-                '<p style="color: red;">Error loading pending doctors.</p>'
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to load platform validation files.</div>',
               );
             },
           });
@@ -131,35 +351,36 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                        `;
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Account Owner Name</th>
+                      <th>Encrypted Core Email Identifier</th>
+                      <th class="text-end">Destructive Actions Base</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+              `;
               if (data.length > 0) {
                 data.forEach((user) => {
                   html += `
-                                    <tr>
-                                        <td>${user.name}</td>
-                                        <td>${user.email}</td>
-                                        <td><button class="btn delete-btn delete-user-btn" data-id="${user._id}">Delete</button></td>
-                                    </tr>
-                                `;
+                    <tr>
+                      <td class="fw-medium text-dark">${user.name}</td>
+                      <td class="text-secondary">${user.email}</td>
+                      <td class="text-end"><button class="btn delete-btn delete-user-btn py-1 px-3 rounded-3" data-id="${user._id}"><i class="fas fa-trash-alt me-1"></i> Wipe Index</button></td>
+                    </tr>
+                  `;
                 });
               } else {
-                html += '<tr><td colspan="3">No users found.</td></tr>';
+                html +=
+                  '<tr><td colspan="3" class="text-center text-muted p-4">No active user structures detected across cluster database.</td></tr>';
               }
               html += "</tbody></table>";
               $("#users-list").html(html);
             },
             error: function (err) {
               $("#users-list").html(
-                '<p style="color: red;">Error loading users.</p>'
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync client cluster nodes data logs.</div>',
               );
             },
           });
@@ -172,35 +393,36 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Specialization</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                        `;
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Practitioner Legal Identity</th>
+                      <th>Specialization Domain Descriptor</th>
+                      <th class="text-end">Operations Control Panel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+              `;
               if (data.length > 0) {
                 data.forEach((doctor) => {
                   html += `
-                                    <tr>
-                                        <td>${doctor.name}</td>
-                                        <td>${doctor.field}</td>
-                                        <td><button class="btn delete-btn delete-doctor-btn" data-id="${doctor._id}">Delete</button></td>
-                                    </tr>
-                                `;
+                    <tr>
+                      <td class="fw-medium text-dark">Dr. ${doctor.name}</td>
+                      <td><span class="badge rounded-pill bg-light text-dark border px-3 py-1">${doctor.field}</span></td>
+                      <td class="text-end"><button class="btn delete-btn delete-doctor-btn py-1 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-user-slash me-1"></i> Revoke Node</button></td>
+                    </tr>
+                  `;
                 });
               } else {
-                html += '<tr><td colspan="3">No doctors found.</td></tr>';
+                html +=
+                  '<tr><td colspan="3" class="text-center text-muted p-4">No medical records indexed inside platform shards.</td></tr>';
               }
               html += "</tbody></table>";
               $("#doctors-list").html(html);
             },
             error: function (err) {
               $("#doctors-list").html(
-                '<p style="color: red;">Error loading doctors.</p>'
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync active service provider databases.</div>',
               );
             },
           });
@@ -213,45 +435,44 @@
             xhrFields: { withCredentials: true },
             success: function (data) {
               let html = `
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Doctor</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                        `;
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Patient Consumer</th>
+                      <th>Assigned Specialist</th>
+                      <th>Scheduled Date</th>
+                      <th>Allocation Interval Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+              `;
               if (data.length > 0) {
                 data.forEach((appointment) => {
                   html += `
-                                    <tr>
-                                        <td>${appointment.user.name}</td>
-                                        <td>${appointment.doctor.name}</td>
-                                        <td>${new Date(
-                                          appointment.date
-                                        ).toLocaleDateString()}</td>
-                                        <td>${appointment.time}</td>
-                                    </tr>
-                                `;
+                    <tr>
+                      <td class="fw-medium text-dark">${appointment.user.name}</td>
+                      <td class="text-secondary">Dr. ${appointment.doctor.name}</td>
+                      <td><i class="far fa-calendar-alt text-muted me-1"></i> ${new Date(appointment.date).toLocaleDateString()}</td>
+                      <td><span class="badge rounded-pill bg-dark text-white px-3 py-1"><i class="far fa-clock me-1"></i> ${appointment.time}</span></td>
+                    </tr>
+                  `;
                 });
               } else {
-                html += '<tr><td colspan="4">No appointments found.</td></tr>';
+                html +=
+                  '<tr><td colspan="4" class="text-center text-muted p-4">No allocations processed over the platform network modules.</td></tr>';
               }
               html += "</tbody></table>";
               $("#appointments-list").html(html);
             },
             error: function (err) {
               $("#appointments-list").html(
-                '<p style="color: red;">Error loading appointments.</p>'
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to poll cluster pipeline registers.</div>',
               );
             },
           });
         }
 
-        // Action handlers
+        // Action Trigger Event Binding Handlers
         $(document).on("click", ".approve-btn", function () {
           const id = $(this).data("id");
           $.ajax({
@@ -259,11 +480,15 @@
             method: "POST",
             xhrFields: { withCredentials: true },
             success: function () {
-              alert("Doctor approved");
+              alert(
+                "Dynamic infrastructure update: Practitioner credentials approved successfully.",
+              );
               loadPendingDoctors();
             },
             error: function () {
-              alert("Error approving doctor");
+              alert(
+                "System Backplane Error: Licensing configuration deployment rejected.",
+              );
             },
           });
         });
@@ -275,28 +500,36 @@
             method: "DELETE",
             xhrFields: { withCredentials: true },
             success: function () {
-              alert("Doctor rejected");
+              alert(
+                "Credential registry wiped: Licensing verification discarded.",
+              );
               loadPendingDoctors();
             },
             error: function () {
-              alert("Error rejecting doctor");
+              alert("Error cleaning credential file cache buffers.");
             },
           });
         });
 
         $(document).on("click", ".delete-user-btn", function () {
           const id = $(this).data("id");
-          if (confirm("Are you sure you want to delete this user?")) {
+          if (
+            confirm(
+              "Execute absolute indexing removal for this specific customer entity record?",
+            )
+          ) {
             $.ajax({
               url: `/api/admin/users/${id}`,
               method: "DELETE",
               xhrFields: { withCredentials: true },
               success: function () {
-                alert("User deleted");
+                alert("Account database shards unlinked successfully.");
                 loadUsers();
               },
               error: function () {
-                alert("Error deleting user");
+                alert(
+                  "Database Exception: Cascading execution failure dropped execution context.",
+                );
               },
             });
           }
@@ -304,17 +537,21 @@
 
         $(document).on("click", ".delete-doctor-btn", function () {
           const id = $(this).data("id");
-          if (confirm("Are you sure you want to delete this doctor?")) {
+          if (
+            confirm(
+              "Revoke platform network accessibility layer tokens completely for this medical specialist?",
+            )
+          ) {
             $.ajax({
               url: `/api/admin/doctors/${id}`,
               method: "DELETE",
               xhrFields: { withCredentials: true },
               success: function () {
-                alert("Doctor deleted");
+                alert("Practitioner routing records de-indexed securely.");
                 loadDoctors();
               },
               error: function () {
-                alert("Error deleting doctor");
+                alert("Failover execution dropped connection endpoints.");
               },
             });
           }

@@ -1,28 +1,306 @@
-<nav>
-  <input type="checkbox" id="check" />
-  <label for="check" id="checkbtn">
-    <i class="fa fa-bars"></i>
-  </label>
-  <label class="logo">
-    <img src="/images/icon.jpg" height="70px" width="150px" />
-  </label>
-  <ul>
-    <li><a href="/adminDashboard" class="active">Admin Dashboard</a></li>
-    <li>
-      <a href="#" onclick="switchTab('pending-doctors')">Pending Doctors</a>
-    </li>
-    <li><a href="#" onclick="switchTab('users')">Users</a></li>
-    <li><a href="#" onclick="switchTab('doctors')">Doctors</a></li>
-    <li><a href="#" onclick="switchTab('appointments')">Appointments</a></li>
-    <li class="dropdown">
-      <a href="#" class="icon-wrapper">
-        <i class="fas fa-circle circle-bg"></i>
-        <i class="fas fa-user user-icon"> </i>
+<style>
+  :root {
+    --teal-color: #00a8bd;
+    --dark-blue-bg: #072331;
+    --font-primary: "Poppins", sans-serif;
+    --font-auth-distinct: "Playfair Display", "Georgia", serif;
+  }
+
+  /* Navigation Link Interactions */
+  .medlink-nav-link {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .medlink-nav-link:hover,
+  .medlink-nav-link.active {
+    color: var(--teal-color) !important;
+  }
+
+  /* Admin Configuration Dropdown Mechanisms */
+  .medlink-custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .medlink-dropdown-menu-wrapper {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; /* Right aligned for profile actions edge layout */
+    background-color: var(--dark-blue-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 15px 35px rgba(7, 35, 49, 0.6) !important;
+    margin-top: 12px !important;
+    padding: 8px !important;
+    min-width: 210px;
+    z-index: 9999999 !important;
+  }
+
+  .medlink-dropdown-menu-wrapper.show-active {
+    display: block !important;
+  }
+
+  .medlink-dropdown-item {
+    font-family: var(--font-auth-distinct) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px 16px !important;
+    display: block;
+    text-decoration: none;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+  }
+  .medlink-dropdown-item:hover {
+    background-color: var(--teal-color) !important;
+    color: white !important;
+  }
+
+  /* Responsive Media Adaptation Layers */
+  @media (max-width: 991px) {
+    .medlink-navbar-collapse {
+      background: #0d233e;
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .medlink-header {
+      position: relative !important;
+      top: 10px !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100% !important;
+      padding: 0 15px;
+    }
+    .admin-profile-dropdown-container {
+      margin-left: 0 !important;
+      margin-top: 12px;
+      margin-bottom: 10px;
+    }
+    .medlink-dropdown-menu-wrapper {
+      position: static !important;
+      box-shadow: none !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      width: 100%;
+    }
+  }
+</style>
+
+<header
+  class="main-header medlink-header"
+  style="
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    max-width: 1480px;
+    z-index: 999;
+  "
+>
+  <nav
+    class="navbar navbar-expand-lg pluxes-navbar"
+    style="
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    "
+  >
+    <div class="container-fluid px-lg-4">
+      <a
+        class="navbar-brand d-flex align-items-center"
+        href="/adminDashboard"
+        style="text-decoration: none"
+      >
+        <div
+          class="logo-icon me-2"
+          style="
+            background-color: #00a8bd;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+          "
+        >
+          <i class="fas fa-hand-holding-medical"></i>
+        </div>
+        <span
+          class="fw-bold text-white"
+          style="font-size: 24px; font-family: var(--font-primary)"
+        >
+          MedLink<span style="color: #00a8bd">.</span
+          ><span class="fs-6 opacity-75 ms-2 text-info fw-medium">Admin</span>
+        </span>
       </a>
-      <ul class="dropdown-content">
-        <li><a href="/profile">Your Profile</a></li>
-        <li><a href="/api/users/logout">Logout</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+
+      <button
+        class="navbar-toggler text-white border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#adminNavMenu"
+        style="box-shadow: none; background: none; padding: 5px"
+      >
+        <i class="fas fa-bars" style="font-size: 22px"></i>
+      </button>
+
+      <div
+        class="collapse navbar-collapse medlink-navbar-collapse"
+        id="adminNavMenu"
+      >
+        <ul class="navbar-nav ms-auto me-lg-4 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link medlink-nav-link text-white active"
+              href="/adminDashboard"
+              >Admin Dashboard</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link medlink-nav-link text-white"
+              href="#"
+              onclick="switchTab('pending-doctors')"
+              >Pending Doctors</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link medlink-nav-link text-white"
+              href="#"
+              onclick="switchTab('users')"
+              >Users</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link medlink-nav-link text-white"
+              href="#"
+              onclick="switchTab('doctors')"
+              >Doctors</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link medlink-nav-link text-white"
+              href="#"
+              onclick="switchTab('appointments')"
+              >Appointments</a
+            >
+          </li>
+        </ul>
+
+        <div class="admin-profile-dropdown-container d-flex align-items-center">
+          <div class="medlink-custom-dropdown">
+            <a
+              href="#"
+              class="custom-js-toggle text-white d-flex align-items-center justify-content-center"
+              style="
+                text-decoration: none;
+                width: 42px;
+                height: 42px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                font-size: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+              "
+            >
+              <i
+                class="fas fa-user-shield"
+                style="color: var(--teal-color)"
+              ></i>
+            </a>
+            <div class="medlink-dropdown-menu-wrapper">
+              <a class="medlink-dropdown-item" href="/profile">
+                <i
+                  class="fas fa-id-card me-2"
+                  style="width: 18px; color: var(--teal-color)"
+                ></i>
+                Your Profile
+              </a>
+              <hr
+                style="border-color: rgba(255, 255, 255, 0.1); margin: 6px 0"
+              />
+              <a
+                class="medlink-dropdown-item"
+                href="/api/users/logout"
+                style="color: #ff4d4d !important"
+              >
+                <i class="fas fa-sign-out-alt me-2" style="width: 18px"></i>
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdownContainers = document.querySelectorAll(
+      ".medlink-custom-dropdown",
+    );
+
+    dropdownContainers.forEach((container) => {
+      const toggleButton = container.querySelector(".custom-js-toggle");
+      const menuWrapper = container.querySelector(
+        ".medlink-dropdown-menu-wrapper",
+      );
+
+      toggleButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Close other active contextual wrappers if open
+        document
+          .querySelectorAll(".medlink-dropdown-menu-wrapper")
+          .forEach((openMenu) => {
+            if (openMenu !== menuWrapper) {
+              openMenu.classList.remove("show-active");
+            }
+          });
+
+        // Trigger local interface activation state
+        menuWrapper.classList.toggle("show-active");
+      });
+    });
+
+    // Close open context dropdown structures immediately if user clicks outside of bounds
+    document.addEventListener("click", function (event) {
+      if (!event.target.closest(".medlink-custom-dropdown")) {
+        document
+          .querySelectorAll(".medlink-dropdown-menu-wrapper")
+          .forEach((openMenu) => {
+            openMenu.classList.remove("show-active");
+          });
+      }
+    });
+
+    // Optional: Tab active styling link utility handler
+    const administrativeNavLinks =
+      document.querySelectorAll(".medlink-nav-link");
+    administrativeNavLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        administrativeNavLinks.forEach((item) =>
+          item.classList.remove("active"),
+        );
+        this.classList.add("active");
+      });
+    });
+  });
+</script>

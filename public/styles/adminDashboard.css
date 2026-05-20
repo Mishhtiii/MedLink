@@ -1,146 +1,321 @@
-/* General Dashboard Styles */
+:root {
+  --teal-color: #00a8bd;
+  --dark-blue-bg: #072331;
+  --light-teal-bg: #f3f9fb;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    color: #333;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* 1. HERO SLIDER BANNER INTERACTIVE PANELS */
+.home {
+  padding: 0;
+  position: relative;
 }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
+.home .home-slider .box {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
 }
 
-/* Tabs Navigation */
-.tabs {
-    display: flex;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px;
+.home .home-slider .box .content {
+  max-width: 750px;
+  padding-top: 100px;
 }
 
-.tab-link {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    font-size: 1em;
-    color: #555;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
+.home .home-slider .box .content h3 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
-.tab-link.active {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
+.home .home-slider .box .content p {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 1rem 0;
+  line-height: 1.8;
 }
 
-/* Tab Content */
+/* Badge overlay block indicators */
+.hero-badge-panel {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dot-teal {
+  width: 8px;
+  height: 8px;
+  background: var(--teal-color);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* CALL TO ACTION BUTTON INTERFACE COMPONENTS */
+.btn-theme-solid,
+.btn-theme-outline {
+  padding: 13px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-theme-solid {
+  background-color: var(--teal-color);
+  color: #ffffff !important;
+  border: 2px solid var(--teal-color);
+}
+.btn-theme-solid:hover {
+  background-color: var(--dark-blue-bg);
+  border-color: var(--dark-blue-bg);
+}
+
+.btn-theme-outline {
+  background-color: transparent;
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.btn-theme-outline:hover {
+  background-color: #ffffff;
+  color: var(--dark-blue-bg) !important;
+  border-color: #ffffff;
+}
+
+/* 2. CORE WORKSPACE ENVIRONMENT CONTAINER MODULES */
+.dashboard-core-wrapper {
+  background-color: var(--light-teal-bg);
+  border-radius: 35px 35px 0 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 10;
+  padding-top: 40px !important;
+}
+
+.practitioner-profile-card,
+.metric-status-card,
+.dashboard-nav,
+.dashboard-content {
+  border-color: #edf2f7 !important;
+}
+
+.admin-avatar-placeholder {
+  width: 75px;
+  height: 75px;
+  background-color: var(--dark-blue-bg);
+  font-size: 28px;
+  color: var(--teal-color) !important;
+}
+
+.showcase-badge {
+  font-size: 12px;
+  color: var(--teal-color);
+  font-weight: 500;
+}
+
+.metric-status-card {
+  transition: transform 0.3s ease;
+}
+.metric-status-card:hover {
+  transform: translateY(-4px);
+}
+
+.metric-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+}
+.metric-status-card .text-warning .metric-icon {
+  background: rgba(255, 193, 7, 0.08);
+  color: #ffc107 !important;
+}
+.metric-status-card .text-success .metric-icon {
+  background: rgba(40, 167, 69, 0.08);
+  color: #28a745 !important;
+}
+.metric-status-card .text-danger .metric-icon {
+  background: rgba(220, 53, 69, 0.08);
+  color: #dc3545 !important;
+}
+
+/* NAVIGATION INTERACTIVE MANAGEMENT MENU */
+.dashboard-nav .nav-item {
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  display: block;
+  padding: 12px 18px;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.dashboard-nav .nav-item:hover {
+  background-color: #f7fafc;
+  color: var(--dark-blue-bg);
+}
+.dashboard-nav .nav-item.active {
+  background-color: rgba(0, 168, 189, 0.08);
+  color: var(--teal-color) !important;
+  font-weight: 600;
+}
+.decoration-none {
+  text-decoration: none !important;
+}
+
+.panel-heading-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark-blue-bg);
+}
+.min-height-lock {
+  min-height: 450px;
+}
+
+/* TAB VISIBILITY STATE CONTROLLER */
 .tab-content {
-    display: none;
+  display: none !important;
 }
-
 .tab-content.active {
-    display: block;
+  display: block !important;
 }
 
-/* Section Styles */
-.section {
-    margin-bottom: 30px;
+/* DYNAMIC CONTENT REGISTRY LAYOUT NODES */
+.bg-light-split {
+  background-color: #f8fafc;
 }
 
-.section h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+.admin-approval-card {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.admin-approval-card:hover {
+  border-color: rgba(0, 168, 189, 0.2) !important;
+  box-shadow: 0 8px 20px rgba(7, 35, 49, 0.04);
 }
 
-/* Table Styles */
+/* PRODUCTION ENTERPRISE DATA TABLES SYSTEM */
 .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.data-table th, .data-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 15px;
 }
 
 .data-table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
+  background-color: #f8fafc;
+  color: #718096;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  border-bottom: 2px solid #edf2f7;
 }
 
-.data-table tr:hover {
-    background-color: #f1f1f1;
+.data-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: #4a5568;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
 }
 
-/* Doctor Card Styles */
-.doctor-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.data-table tr:hover td {
+  background-color: #f8fafc;
 }
 
-.doctor-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.doctor-card h3 {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.doctor-card p {
-    margin: 0;
-    color: #555;
-}
-
-/* Buttons */
+/* ADMINISTRATIVE ACTION HOVER ELEMENTS */
 .btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .approve-btn {
-    background-color: #28a745;
-    color: #fff;
+  background-color: #28a745;
+  color: #ffffff !important;
 }
-
 .approve-btn:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
-.reject-btn, .delete-btn {
-    background-color: #dc3545;
-    color: #fff;
+.reject-btn {
+  background-color: transparent;
+  border-color: #dc3545;
+  color: #dc3545 !important;
+}
+.reject-btn:hover {
+  background-color: #dc3545;
+  color: #ffffff !important;
 }
 
-.reject-btn:hover, .delete-btn:hover {
-    background-color: #c82333;
+.delete-btn {
+  background-color: rgba(220, 53, 69, 0.06);
+  color: #dc3545 !important;
+}
+.delete-btn:hover {
+  background-color: #dc3545;
+  color: #ffffff !important;
+}
+
+/* 3. RESPONSIVE SUB-BREAKPOINTS MEDIA ADAPTATION LAYERS */
+@media (max-width: 991px) {
+  .home .home-slider .box .content h3 {
+    font-size: 2.2rem;
+  }
+  .home .home-slider .box {
+    padding: 0 4%;
+    min-height: 70vh;
+  }
+  .button-group-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-theme-solid,
+  .btn-theme-outline {
+    width: 100%;
+  }
+  .practitioner-profile-card {
+    margin-top: -40px !important;
+  }
+  .dashboard-nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px !important;
+  }
+  .dashboard-nav .nav-item {
+    padding: 8px 16px;
+    width: auto;
+    display: inline-block;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
 }

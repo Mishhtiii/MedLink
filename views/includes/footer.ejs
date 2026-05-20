@@ -1,43 +1,205 @@
-    <footer>
-      <div class="fcontainer">
-        <div class="footer-col">
-          <h2>MedLink</h2>
-          <p class="footer-para">
-            It simplifies healthcare management, allows users to easily book
-            doctor appointments, select convenient time slots, and search for
-            doctors and hospitals in your area.
-          </p>
+<footer class="footer-section">
+  <div class="container footer-container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-start">
+        <div class="footer-badge mb-3">
+          <span class="dot-teal me-2"></span> Let's Start Your Project
         </div>
-        <div class="footer-col">
-          <h3>
-            Menu
-            <div class="underline"><span></span></div>
-          </h3>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/pharmacy">Pharmacy</a></li>
-            <li><a href="/login">Login</a></li>
-          </ul>
+        <div class="footer-cta-wrapper">
+          <h2 class="footer-cta-title text-white">Let's Talk</h2>
         </div>
-        <div class="footer-col">
-          <h3>
-            Newsletter
-            <div class="underline"><span></span></div>
-          </h3>
-          <form action="">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Enter Email" />
-            <a href=""><i class="fa-solid fa-arrow-right"></i></a>
-          </form>
-          <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+      </div>
+
+      <div class="col-lg-6">
+        <div
+          class="footer-brand mb-4 d-flex align-items-center justify-content-between"
+        >
+          <div class="d-flex align-items-center">
+            <div class="logo-icon me-2">
+              <i class="fas fa-hand-holding-medical"></i>
+            </div>
+            <span class="fw-bold text-white fs-4"
+              >Pluxes<span class="dot text-info">.</span></span
+            >
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <hr class="border-white opacity-10 mb-5" />
+
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h6 class="text-white fw-bold mb-4">Quick Links</h6>
+            <ul class="list-unstyled footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/services">Our Services</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6 class="text-white fw-bold mb-4">Medical Services</h6>
+            <ul class="list-unstyled footer-links">
+              <li><a href="/pharmacy">Pharmacy</a></li>
+              <li><a href="/find-hospital">Find Hospitals</a></li>
+              <li><a href="/appointments">Client Zone</a></li>
+              <li><a href="/login">User Access Portal</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6 class="text-white fw-bold mb-4">Support</h6>
+            <ul class="list-unstyled footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Contact Support</a></li>
+            </ul>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom text-center mt-5">
+      <p class="small text-white-50 mb-0">
+        Copyright © 2026 All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :root {
+    --teal-color: #00a8bd;
+    --dark-overlay: rgba(7, 35, 49, 0.78);
+  }
+
+  .footer-section {
+    background: linear-gradient(135deg, #072331 0%, #0a3d4d 100%);
+    border-radius: 30px;
+    margin: 15px;
+    padding: 80px 0 40px 0;
+    position: relative;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* Pattern Overlay Background */
+  .footer-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/hexellence.png");
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .footer-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 13px;
+  }
+
+  .dot-teal {
+    width: 8px;
+    height: 8px;
+    background-color: var(--teal-color);
+    border-radius: 50%;
+  }
+
+  .footer-cta-title {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    line-height: 1.1;
+  }
+
+  .logo-icon {
+    background-color: var(--teal-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+  }
+
+  .text-info {
+    color: var(--teal-color) !important;
+  }
+
+  .social-links a {
+    color: white;
+    margin-left: 15px;
+    font-size: 18px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .social-links a:hover {
+    color: var(--teal-color);
+    opacity: 1;
+  }
+
+  .footer-links {
+    padding-left: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--teal-color);
+    padding-left: 5px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+  }
+
+  .opacity-10 {
+    opacity: 0.1 !important;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .footer-cta-title {
+      font-size: 3.5rem;
+      justify-content: center;
+    }
+    .footer-brand {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    .social-links {
+      margin-top: 10px;
+    }
+    .social-links a:first-child {
+      margin-left: 0;
+    }
+  }
+</style>
