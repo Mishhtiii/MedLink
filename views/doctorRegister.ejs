@@ -38,8 +38,8 @@
     <%- include('includes/header') %>
 
     <section class="hero-container-box">
-      <div class="container-fluid max-bounds">
-        <div class="hero-content text-start">
+      <div class="container">
+        <div class="hero-content">
           <div class="hero-badge">Medical Practitioner Enrollment</div>
           <h1 class="hero-title text-white">
             Join MedLink Network <br />
@@ -95,9 +95,9 @@
             <% } %>
 
             <div class="step-wizard-indicator mb-3 p-2 bg-light rounded-3 d-flex justify-content-between align-items-center">
-              <span class="small text-muted fw-medium">Wizard Navigation Progression:</span>
+              <span class="small text-muted fw-medium">Steps:</span>
               <span class="badge bg-teal-accent text-white px-3 py-2 rounded-pill" style="font-size: 12px; background-color: #00a8bd;">
-                Step <span id="step-count">1</span> of 3
+                Step <span id="step-count">1</span> of 4
               </span>
             </div>
 
@@ -227,11 +227,44 @@
                 <input type="file" name="image" class="form-control p-2 mt-1 border-2" style="border-radius:10px;" required />
               </div>
 
+              <div class="d-flex gap-3">
+                <button type="button" class="btn-submit-action btn-back-muted w-50" onclick="prevStep(3)">
+                  <i class="fas fa-chevron-left me-2"></i> Back
+                </button>
+                <button type="button" class="btn-submit-action w-50" onclick="nextStep(3)">
+                  Next <i class="fas fa-chevron-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step4">
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text">Aadhar Card Number</label>
+                <div class="position-relative">
+                  <i class="fas fa-id-card input-inside-icon"></i>
+                  <input type="text" name="aadharNumber" class="form-input-control" placeholder="12-Digit Aadhar Card Number" pattern="[0-max]{12}" minlength="12" maxlength="12" required />
+                </div>
+              </div>
+
+              <div class="form-group-custom position-relative mb-3">
+                <label class="form-label-text bg-light p-2 rounded d-block border small text-secondary">
+                  <i class="fas fa-certificate me-1"></i> Upload Medical License Proof File
+                </label>
+                <input type="file" name="license" class="form-control p-2 mt-1 border-2" style="border-radius:10px;" required />
+              </div>
+
+              <div class="form-group-custom position-relative mb-4">
+                <label class="form-label-text bg-light p-2 rounded d-block border small text-secondary">
+                  <i class="fas fa-user-graduate me-1"></i> Upload Degree Qualification Proof File
+                </label>
+                <input type="file" name="degree" class="form-control p-2 mt-1 border-2" style="border-radius:10px;" required />
+              </div>
+
               <input type="hidden" name="rating" value="0" />
               <input type="hidden" name="responseType" value="redirect" />
 
               <div class="d-flex gap-3">
-                <button type="button" class="btn-submit-action btn-back-muted w-50" onclick="prevStep(3)">
+                <button type="button" class="btn-submit-action btn-back-muted w-50" onclick="prevStep(4)">
                   <i class="fas fa-chevron-left me-2"></i> Back
                 </button>
                 <button type="submit" class="btn-submit-action w-50 btn-solid-teal">
@@ -239,6 +272,7 @@
                 </button>
               </div>
             </div>
+
           </form>
 
           <div class="text-center mt-4 pt-3 border-top">
@@ -263,6 +297,7 @@
         const currentStepDiv = document.getElementById("step" + step);
         const inputs = currentStepDiv.querySelectorAll("input, select");
         let valid = true;
+        
         inputs.forEach((inp) => {
           if (inp.hasAttribute("required") && !inp.value) {
             inp.style.border = "1px solid #ff4d4d";
@@ -271,11 +306,14 @@
             inp.style.border = "2px solid #e2e8f0";
           }
         });
+        
         if (!valid) return alert("Please fill all fields.");
+        
         document.getElementById("step" + step).classList.remove("active");
         document.getElementById("step" + (step + 1)).classList.add("active");
         document.getElementById("step-count").innerText = step + 1;
       }
+
       function prevStep(step) {
         document.getElementById("step" + step).classList.remove("active");
         document.getElementById("step" + (step - 1)).classList.add("active");

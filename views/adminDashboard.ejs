@@ -27,28 +27,19 @@
     <section class="home" id="home">
       <div class="swiper home-slider">
         <div class="swiper-wrapper">
-          <div
-            class="box"
-            style="
-              background:
-                linear-gradient(rgba(7, 35, 49, 0.75), rgba(7, 35, 49, 0.8)),
-                url(&quot;images/scope.jpg&quot;) no-repeat;
-              background-size: cover;
-              background-position: center;
-            "
-          >
+          <div class="box">
             <div class="content text-start">
               <div class="hero-badge-panel mb-3">
-                <span class="dot-teal me-2"></span> System Console Terminal
+                <span class="dot-teal me-2"></span> Admin Panel
               </div>
               <h3>
-                Root Administrator <br />
-                &amp; Core Operations Desk
+                Welcome, Administrator <br />
+                & Operations Desk
               </h3>
               <p>
-                Oversee system metrics, verify incoming dynamic medical
-                practitioner licenses, manage registered active customer
-                records, and coordinate overall clinical session records.
+                Monitor platform performance, verify incoming medical doctor
+                licenses, manage registered patient records, and coordinate
+                doctor appointment bookings.
               </p>
               <div class="button-group-row d-flex gap-3 flex-wrap mt-4">
                 <a
@@ -61,7 +52,7 @@
                   href="#workspace"
                   class="btn-theme-outline"
                   onclick="switchTab('appointments')"
-                  >System Bookings</a
+                  >View Appointments</a
                 >
               </div>
             </div>
@@ -83,20 +74,15 @@
             </div>
             <div class="text-start">
               <div class="showcase-badge mb-1">
-                <span class="dot-teal me-2"></span> Security Clearances
-                Authenticated
+                <span class="dot-teal me-2"></span> Session Authenticated
               </div>
               <h2 class="fw-bold text-dark mb-0">
-                System Administrator Control Tower
+                System Administrator Control Center
               </h2>
               <div class="d-flex flex-wrap gap-3 mt-1 text-muted small">
                 <span
-                  ><i class="fas fa-lock text-info me-1"></i> Root Level
+                  ><i class="fas fa-lock text-info me-1"></i> Root Administrator
                   Access</span
-                >
-                <span
-                  ><i class="fas fa-server text-info me-1"></i> Node Production
-                  Backplane</span
                 >
               </div>
             </div>
@@ -115,9 +101,9 @@
               </div>
               <div>
                 <h4 class="text-muted small fw-medium mb-1">
-                  Authorization Pipeline
+                  Verification Queue
                 </h4>
-                <p class="h5 fw-bold text-dark mb-0">Licensing Credentials</p>
+                <p class="h5 fw-bold text-dark mb-0">Pending Approvals</p>
               </div>
             </div>
           </div>
@@ -132,10 +118,8 @@
                 <i class="fas fa-users"></i>
               </div>
               <div>
-                <h4 class="text-muted small fw-medium mb-1">
-                  Platform Population
-                </h4>
-                <p class="h5 fw-bold text-dark mb-0">Account Registries</p>
+                <h4 class="text-muted small fw-medium mb-1">Total Users</h4>
+                <p class="h5 fw-bold text-dark mb-0">Registered Patients</p>
               </div>
             </div>
           </div>
@@ -151,9 +135,9 @@
               </div>
               <div>
                 <h4 class="text-muted small fw-medium mb-1">
-                  Operational Velocity
+                  Activity Overview
                 </h4>
-                <p class="h5 fw-bold text-dark mb-0">System Transactions</p>
+                <p class="h5 fw-bold text-dark mb-0">Total Bookings</p>
               </div>
             </div>
           </div>
@@ -175,7 +159,7 @@
                 <i class="fas fa-clock me-2"></i> Pending Doctors
               </button>
               <button class="nav-item tab-link" data-tab="users">
-                <i class="fas fa-users me-2"></i> Manage Users
+                <i class="fas fa-users me-2"></i> Manage Patients
               </button>
               <button class="nav-item tab-link" data-tab="doctors">
                 <i class="fas fa-user-md me-2"></i> Manage Doctors
@@ -189,7 +173,7 @@
                 href="/api/users/logout"
                 class="nav-item text-danger decoration-none"
               >
-                <i class="fas fa-sign-out-alt me-2"></i> Shutdown Session
+                <i class="fas fa-sign-out-alt me-2"></i> Log Out
               </a>
             </div>
           </div>
@@ -204,8 +188,8 @@
                   Doctor Approvals
                 </h3>
                 <p class="small text-muted mb-4">
-                  Review incoming credential files before verifying security
-                  tokens onto production nodes.
+                  Review professional credential uploads and license details
+                  before granting platform access.
                 </p>
                 <div
                   id="pending-doctors-list"
@@ -219,8 +203,8 @@
                   Patient Accounts
                 </h3>
                 <p class="small text-muted mb-4">
-                  View active database accounts or drop indexes for platform
-                  policy infractions.
+                  View verified patient profiles or delete accounts due to
+                  platform violations.
                 </p>
                 <div class="table-responsive">
                   <div id="users-list"></div>
@@ -230,11 +214,11 @@
               <div id="doctors" class="tab-content">
                 <h3 class="panel-heading-title mb-2">
                   <i class="fas fa-stethoscope text-info me-2"></i> Activated
-                  Medical Specialists
+                  Doctors
                 </h3>
                 <p class="small text-muted mb-4">
-                  Full database mapping of validated professional healthcare
-                  networks on MedLink.
+                  Full list of all active, approved professional healthcare
+                  specialists on MedLink.
                 </p>
                 <div class="table-responsive">
                   <div id="doctors-list"></div>
@@ -244,11 +228,11 @@
               <div id="appointments" class="tab-content">
                 <h3 class="panel-heading-title mb-2">
                   <i class="fas fa-notes-medical text-info me-2"></i>
-                  Cross-Platform Appointment Ledger
+                  Appointment History
                 </h3>
                 <p class="small text-muted mb-4">
-                  Live tracking of ongoing and historical medical consultation
-                  pipelines globally.
+                  Live tracking of active and historic doctor consultations
+                  scheduled across the application.
                 </p>
                 <div class="table-responsive">
                   <div id="appointments-list"></div>
@@ -263,7 +247,6 @@
     <%- include('includes/adminFooter') %>
 
     <script>
-      // External linkage utility caller for layout navbar interactions
       function switchTab(tabId) {
         const tabButton = $(`.tab-link[data-tab="${tabId}"]`);
         if (tabButton.length) {
@@ -272,7 +255,6 @@
       }
 
       $(document).ready(function () {
-        // Asynchronous structural selector binding adjustments
         $(".tab-link").on("click", function () {
           const tabId = $(this).data("tab");
 
@@ -285,7 +267,6 @@
           loadTabData(tabId);
         });
 
-        // Initialize framework and boot up initial indices logs load
         loadTabData("pending-doctors");
 
         function loadTabData(tabId) {
@@ -314,31 +295,84 @@
               let html = "";
               if (data.length === 0) {
                 html =
-                  "<div class='p-4 bg-light text-center rounded-4 text-muted'><i class='fas fa-folder-open mb-2 d-block h4'></i>No pending authorization licenses registry logs found.</div>";
+                  "<div class='p-4 bg-light text-center rounded-4 text-muted'><i class='fas fa-folder-open mb-2 d-block h4'></i>No pending registration requests found.</div>";
               } else {
                 data.forEach((doctor) => {
+                  const imagePath = doctor.image
+                    ? `/images/${doctor.image}`
+                    : "/images/doctor.png";
+                  const licensePath = `/images/${doctor.license}`;
+                  const degreePath = `/images/${doctor.degree}`;
+
                   html += `
-                    <div class="admin-approval-card p-3 border rounded-4 bg-light-split d-flex justify-content-between align-items-center flex-wrap gap-3">
-                      <div class="text-start">
-                        <h4 class="fw-bold text-dark h6 mb-1">Dr. ${doctor.name}</h4>
-                        <p class="small text-muted mb-0">
-                          <span class="me-3"><i class="fas fa-stethoscope text-info me-1"></i> ${doctor.specialization}</span>
-                          <span><i class="fas fa-briefcase text-info me-1"></i> ${doctor.experience} Years Experience</span>
-                        </p>
-                      </div>
-                      <div class="d-flex align-items-center gap-2 native-action-wrapper">
-                        <button class="btn approve-btn py-2 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-check-circle me-1"></i> Grant Access</button>
-                        <button class="btn reject-btn py-2 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-times-circle me-1"></i> Terminate</button>
-                      </div>
-                    </div>
-                  `;
+            <div class="admin-approval-card p-4 border rounded-4 bg-light-split mb-3 shadow-sm">
+              <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3 border-bottom pb-3">
+                <div class="d-flex gap-3 align-items-center">
+                  <img src="${imagePath}" alt="Dr. ${doctor.name}" class="rounded-circle border" style="width: 65px; height: 65px; object-fit: cover;" onerror="this.src='/images/doctor.png'">
+                  <div class="text-start">
+                    <h4 class="fw-bold text-dark h6 mb-1">Dr. ${doctor.name}</h4>
+                    <p class="small text-muted mb-0">
+                      <span class="me-3"><i class="fas fa-stethoscope text-info me-1"></i> ${doctor.specialization}</span>
+                      <span><i class="fas fa-briefcase text-info me-1"></i> ${doctor.experience} Years Experience</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-2 native-action-wrapper">
+                  <button class="btn approve-btn py-2 px-3 rounded-3 btn-success text-white" data-id="${doctor._id}"><i class="fas fa-check-circle me-1"></i> Approve Doctor</button>
+                  <button class="btn reject-btn py-2 px-3 rounded-3 btn-danger text-white" data-id="${doctor._id}"><i class="fas fa-times-circle me-1"></i> Reject</button>
+                </div>
+              </div>
+
+              <div class="row g-3 text-start small text-muted mb-3">
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-envelope text-info me-1" style="width: 18px;"></i> <strong>Email:</strong> ${doctor.email}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-user-tag text-info me-1" style="width: 18px;"></i> <strong>Username:</strong> ${doctor.username}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-graduation-cap text-info me-1" style="width: 18px;"></i> <strong>Qualification:</strong> ${doctor.qualification}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-hospital text-info me-1" style="width: 18px;"></i> <strong>Hospital:</strong> ${doctor.hospital}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-map-marker-alt text-info me-1" style="width: 18px;"></i> <strong>Location:</strong> ${doctor.location}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-phone text-info me-1" style="width: 18px;"></i> <strong>Phone:</strong> ${doctor.phone}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-rupee-sign text-info me-1" style="width: 18px;"></i> <strong>Fees:</strong> ₹${doctor.fees}
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <i class="fas fa-id-card text-warning me-1" style="width: 18px;"></i> <strong>Aadhar Number:</strong> <span class="text-dark fw-medium">[Aadhaar Redacted]</span>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                  <i class="fas fa-calendar-alt text-info me-1" style="width: 18px;"></i> <strong>Availability:</strong> ${doctor.availability}
+                </div>
+              </div>
+
+              <div class="border-top pt-3 text-start">
+                <h5 class="h6 mb-2 fw-bold text-dark"><i class="fas fa-file-medical text-secondary me-1"></i> Verification Documents:</h5>
+                <div class="d-flex gap-3 flex-wrap">
+                  <a href="${licensePath}" target="_blank" class="btn btn-sm btn-outline-primary rounded-3 px-3">
+                    <i class="fas fa-certificate me-1"></i> View Medical License
+                  </a>
+                  <a href="${degreePath}" target="_blank" class="btn btn-sm btn-outline-primary rounded-3 px-3">
+                    <i class="fas fa-user-graduate me-1"></i> View Degree Certificate
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
                 });
               }
               $("#pending-doctors-list").html(html);
             },
             error: function (err) {
               $("#pending-doctors-list").html(
-                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to load platform validation files.</div>',
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to load pending request lists.</div>',
               );
             },
           });
@@ -354,9 +388,9 @@
                 <table class="data-table">
                   <thead>
                     <tr>
-                      <th>Account Owner Name</th>
-                      <th>Encrypted Core Email Identifier</th>
-                      <th class="text-end">Destructive Actions Base</th>
+                      <th>Patient Name</th>
+                      <th>Email Address</th>
+                      <th class="text-end">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -367,20 +401,20 @@
                     <tr>
                       <td class="fw-medium text-dark">${user.name}</td>
                       <td class="text-secondary">${user.email}</td>
-                      <td class="text-end"><button class="btn delete-btn delete-user-btn py-1 px-3 rounded-3" data-id="${user._id}"><i class="fas fa-trash-alt me-1"></i> Wipe Index</button></td>
+                      <td class="text-end"><button class="btn delete-btn delete-user-btn py-1 px-3 rounded-3" data-id="${user._id}"><i class="fas fa-trash-alt me-1"></i> Delete Account</button></td>
                     </tr>
                   `;
                 });
               } else {
                 html +=
-                  '<tr><td colspan="3" class="text-center text-muted p-4">No active user structures detected across cluster database.</td></tr>';
+                  '<tr><td colspan="3" class="text-center text-muted p-4">No registered patient accounts found in the database.</td></tr>';
               }
               html += "</tbody></table>";
               $("#users-list").html(html);
             },
             error: function (err) {
               $("#users-list").html(
-                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync client cluster nodes data logs.</div>',
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync patient database records.</div>',
               );
             },
           });
@@ -396,9 +430,9 @@
                 <table class="data-table">
                   <thead>
                     <tr>
-                      <th>Practitioner Legal Identity</th>
-                      <th>Specialization Domain Descriptor</th>
-                      <th class="text-end">Operations Control Panel</th>
+                      <th>Doctor Name</th>
+                      <th>Specialization</th>
+                      <th class="text-end">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -409,20 +443,20 @@
                     <tr>
                       <td class="fw-medium text-dark">Dr. ${doctor.name}</td>
                       <td><span class="badge rounded-pill bg-light text-dark border px-3 py-1">${doctor.field}</span></td>
-                      <td class="text-end"><button class="btn delete-btn delete-doctor-btn py-1 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-user-slash me-1"></i> Revoke Node</button></td>
+                      <td class="text-end"><button class="btn delete-btn delete-doctor-btn py-1 px-3 rounded-3" data-id="${doctor._id}"><i class="fas fa-user-slash me-1"></i> Revoke Access</button></td>
                     </tr>
                   `;
                 });
               } else {
                 html +=
-                  '<tr><td colspan="3" class="text-center text-muted p-4">No medical records indexed inside platform shards.</td></tr>';
+                  '<tr><td colspan="3" class="text-center text-muted p-4">No approved medical specialists found.</td></tr>';
               }
               html += "</tbody></table>";
               $("#doctors-list").html(html);
             },
             error: function (err) {
               $("#doctors-list").html(
-                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync active service provider databases.</div>',
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to sync doctor records.</div>',
               );
             },
           });
@@ -438,10 +472,10 @@
                 <table class="data-table">
                   <thead>
                     <tr>
-                      <th>Patient Consumer</th>
-                      <th>Assigned Specialist</th>
-                      <th>Scheduled Date</th>
-                      <th>Allocation Interval Time</th>
+                      <th>Patient Name</th>
+                      <th>Assigned Doctor</th>
+                      <th>Appointment Date</th>
+                      <th>Time Slot</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -459,14 +493,14 @@
                 });
               } else {
                 html +=
-                  '<tr><td colspan="4" class="text-center text-muted p-4">No allocations processed over the platform network modules.</td></tr>';
+                  '<tr><td colspan="4" class="text-center text-muted p-4">No appointments scheduled on the platform.</td></tr>';
               }
               html += "</tbody></table>";
               $("#appointments-list").html(html);
             },
             error: function (err) {
               $("#appointments-list").html(
-                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to poll cluster pipeline registers.</div>',
+                '<div class="p-3 text-danger text-center bg-light rounded-3">Failed to load apppointments data.</div>',
               );
             },
           });
@@ -480,15 +514,11 @@
             method: "POST",
             xhrFields: { withCredentials: true },
             success: function () {
-              alert(
-                "Dynamic infrastructure update: Practitioner credentials approved successfully.",
-              );
+              alert("Success: Practitioner has been approved successfully.");
               loadPendingDoctors();
             },
             error: function () {
-              alert(
-                "System Backplane Error: Licensing configuration deployment rejected.",
-              );
+              alert("Error: Failed to complete doctor verification.");
             },
           });
         });
@@ -501,12 +531,12 @@
             xhrFields: { withCredentials: true },
             success: function () {
               alert(
-                "Credential registry wiped: Licensing verification discarded.",
+                "Doctor application rejected and registration data deleted.",
               );
               loadPendingDoctors();
             },
             error: function () {
-              alert("Error cleaning credential file cache buffers.");
+              alert("Error processing rejection.");
             },
           });
         });
@@ -515,7 +545,7 @@
           const id = $(this).data("id");
           if (
             confirm(
-              "Execute absolute indexing removal for this specific customer entity record?",
+              "Are you sure you want to permanently delete this patient's account?",
             )
           ) {
             $.ajax({
@@ -523,13 +553,11 @@
               method: "DELETE",
               xhrFields: { withCredentials: true },
               success: function () {
-                alert("Account database shards unlinked successfully.");
+                alert("Patient account successfully deleted.");
                 loadUsers();
               },
               error: function () {
-                alert(
-                  "Database Exception: Cascading execution failure dropped execution context.",
-                );
+                alert("Error deleting the account. Please try again.");
               },
             });
           }
@@ -539,7 +567,7 @@
           const id = $(this).data("id");
           if (
             confirm(
-              "Revoke platform network accessibility layer tokens completely for this medical specialist?",
+              "Are you sure you want to completely revoke platform access for this doctor?",
             )
           ) {
             $.ajax({
@@ -547,11 +575,11 @@
               method: "DELETE",
               xhrFields: { withCredentials: true },
               success: function () {
-                alert("Practitioner routing records de-indexed securely.");
+                alert("Doctor profile has been removed.");
                 loadDoctors();
               },
               error: function () {
-                alert("Failover execution dropped connection endpoints.");
+                alert("Error revoking doctor access.");
               },
             });
           }

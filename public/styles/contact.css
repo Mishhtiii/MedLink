@@ -33,7 +33,6 @@ body {
     url("../images/scope.jpg"); /* Reusing shared local image resources */
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
 }
 
 .hero-content {

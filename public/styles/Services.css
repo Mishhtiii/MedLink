@@ -31,7 +31,6 @@ body {
     url("../images/scope.jpg"); /* Matches existing background resources */
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
 }
 
 .hero-content {

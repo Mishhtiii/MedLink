@@ -25,16 +25,7 @@
     <section class="home" id="home">
       <div class="swiper home-slider">
         <div class="swiper-wrapper">
-          <div
-            class="box"
-            style="
-              background:
-                linear-gradient(rgba(7, 35, 49, 0.75), rgba(7, 35, 49, 0.8)),
-                url(&quot;images/scope.jpg&quot;) no-repeat;
-              background-size: cover;
-              background-position: center;
-            "
-          >
+          <div class="box">
             <div class="content text-start">
               <div class="hero-badge-panel mb-3">
                 <span class="dot-teal me-2"></span> Clinical Console Terminal
@@ -77,10 +68,11 @@
         >
           <div class="d-flex align-items-center gap-3">
             <img
-              src="<%= doctor.image %>"
-              alt="Doctor Image"
-              class="practitioner-avatar border shadow-sm rounded-circle"
-              style="width: 75px; height: 75px; object-fit: cover"
+              src="/images/<%= doctor.img || 'doctor.png' %>"
+              alt="Dr. <%= doctor.name %>"
+              class="rounded-circle border shadow-sm"
+              style="width: 80px; height: 80px; object-fit: cover"
+              onerror="this.src = '/images/doctor.png'"
             />
             <div class="text-start">
               <div

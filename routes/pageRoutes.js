@@ -56,7 +56,12 @@ router.get('/doctorProfile', (req, res) => {
 router.get('/emergency', (req, res) => res.render('Emergency', { req }));
 router.get('/finddoctor', findDoctorPage);
 router.get('/doctorRegister', (req, res) => res.render('doctorRegister', { req }));
-router.post('/doctorRegister', upload.single('image'), registerDoctor);
+// Change this line inside MedLink/routes/pageRoutes.js
+router.post('/doctorRegister', upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'license', maxCount: 1 },
+    { name: 'degree', maxCount: 1 }
+]), registerDoctor);
 router.get('/doctorLogin', (req, res) => res.render('doctorLogin', { req }));
 
 router.get('/pharmacy', async (req, res) => {

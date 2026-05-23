@@ -56,7 +56,10 @@ const pendingDoctorSchema = new mongoose.Schema({
     availability: {
         type: String,
         required: true
-    }
+    },
+    aadharNumber: { type: String, required: true },
+    license: { type: String, required: true }, // File name store hoga
+    degree: { type: String, required: true }
 });
 
 let pendingDoctorModel = new mongoose.model('PendingDoctor', pendingDoctorSchema);

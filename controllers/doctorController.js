@@ -52,70 +52,52 @@ const getAllDoctors = async (req, res, next) => {
 const PendingDoctor = require('../models/pendingDoctor');
 
 const registerDoctor = async (req, res, next) => {
-    const { name, username, email, password, specialization, experience, location, phone, hospital, fees, availability, qualification, rating } = req.body;
-    const image = req.file ? req.file.filename : null;
+    try {
+        const body = req.body;
+        const files = req.files; // Look at req.files (plural) for upload.fields()
 
-    if (!name || !username || !email || !password || !specialization || !experience || !location || !phone || !hospital || !fees || !image || !availability || !qualification || !rating) {
-        if (req.body.responseType === 'redirect') {
+        if (!files || !files.image || !files.license || !files.degree) {
             return res.redirect('/doctorRegister?error=MissingFields');
         }
-        return res.status(400).json({ message: 'Please provide all required fields' });
-    }
 
-    const passwordError = validatePassword(password);
-    if (passwordError) {
-        if (req.body.responseType === 'redirect') {
+        const passwordError = validatePassword(body.password);
+        if (passwordError) {
             return res.redirect('/doctorRegister?error=WeakPassword');
         }
-        return res.status(400).json({ message: passwordError });
-    }
 
-    try {
-        const pendingDoctorExists = await PendingDoctor.findOne({ username }).exec();
+        const pendingDoctorExists = await PendingDoctor.findOne({ username: body.username }).exec();
         if (pendingDoctorExists) {
-            if (req.body.responseType === 'redirect') {
-                return res.redirect('/doctorRegister?error=UsernameTaken');
-            }
-            return res.status(409).json({ message: 'Username is already taken' });
+            return res.redirect('/doctorRegister?error=UsernameTaken');
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(body.password, 10);
 
         const pendingDoctor = await PendingDoctor.create({
-            name,
-            username,
-            email,
+            name: body.name,
+            username: body.username,
+            email: body.email,
             password: hashedPassword,
-            specialization,
-            qualification,
-            experience,
-            rating,
-            location,
-            phone,
-            hospital,
-            fees,
-            image,
-            availability
+            specialization: body.specialization,
+            qualification: body.qualification,
+            experience: body.experience,
+            location: body.location,
+            phone: body.phone,
+            hospital: body.hospital,
+            fees: body.fees,
+            availability: body.availability,
+            aadharNumber: body.aadharNumber,
+            image: files.image[0].filename,
+            license: files.license[0].filename,
+            degree: files.degree[0].filename,
+            rating: 0
         });
 
-        if (pendingDoctor) {
-            // Trigger Nodemailer Doctor Staged/Pending notification
-            emailService.sendDoctorPendingReview(pendingDoctor.email, pendingDoctor.name);
-
-            if (req.body.responseType === 'redirect') {
-                return res.redirect('/?message=Please wait for the confirmation of admin for registration as a doctor');
-            }
-
-            return res.status(201).json({
-                message: 'Doctor registration submitted for approval',
-                pendingDoctor: { id: pendingDoctor._id, name: pendingDoctor.name, username: pendingDoctor.username, email: pendingDoctor.email }
-            });
-        }
+        emailService.sendDoctorPendingReview(pendingDoctor.email, pendingDoctor.name);
+        res.redirect('/doctorLogin?success=Registered');
     } catch (err) {
         next(err);
     }
 };
-
 const loginDoctor = async (req, res, next) => {
     const { username, password, responseType } = req.body;
 

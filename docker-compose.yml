@@ -11,6 +11,9 @@ services:
       - EMAIL_SERVICE=${EMAIL_SERVICE}
       - EMAIL_USER=${EMAIL_USER}
       - EMAIL_PASS=${EMAIL_PASS}
+    volumes:
+      # Isse aapka public/images folder host machine ke sath sync ho jayega
+      - ./public/images:/app/public/images
     depends_on:
       - mongo
       - redis

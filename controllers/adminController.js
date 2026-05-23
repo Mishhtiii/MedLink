@@ -7,7 +7,8 @@ const emailService = require('../utils/emailService'); // Integrated automated m
 
 const getPendingDoctors = async (req, res, next) => {
     try {
-        const pendingDoctors = await PendingDoctor.find();
+        // Password field ko select se exclude kiya security ke liye
+        const pendingDoctors = await PendingDoctor.find().select('-password');
         res.status(200).json(pendingDoctors);
     } catch (err) {
         next(err);
@@ -23,6 +24,7 @@ const approveDoctor = async (req, res, next) => {
             return res.status(404).json({ message: 'Pending doctor not found' });
         }
 
+        // Naye fields ko permanent Doctor collection mein transfer kar rahe hain
         const newDoctor = new Doctor({
             name: pendingDoctor.name,
             username: pendingDoctor.username,
@@ -37,14 +39,17 @@ const approveDoctor = async (req, res, next) => {
             fees: pendingDoctor.fees,
             img: pendingDoctor.image,              // Maps 'image' to 'img'
             availability: pendingDoctor.availability,
-            rating: pendingDoctor.rating
+            rating: pendingDoctor.rating,
+            // Final Approval ke baad permanent fields map ho rahi hain:
+            aadharNumber: pendingDoctor.aadharNumber,
+            license: pendingDoctor.license,
+            degree: pendingDoctor.degree
         });
 
         await newDoctor.save();
         await PendingDoctor.findByIdAndDelete(id);
 
         // Trigger Nodemailer Doctor Approval Notice Asynchronously
-        // Dispatches a platform activation alert to the doctor's email inbox logs
         emailService.sendDoctorApprovalNotice(newDoctor.email, newDoctor.name);
 
         res.status(200).json({ message: 'Doctor approved successfully', doctor: newDoctor });
