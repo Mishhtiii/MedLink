@@ -82,5 +82,7 @@ router.post('/slots/manage/:id', doctorController.manageSlotAvailability);
 router.post('/slots/update-time/:id', doctorController.updateSlotTime);
 router.post('/appointment/complete/:appointmentId', doctorController.completeAppointment);
 router.get('/profile-data', doctorController.getDoctorProfileData);
+router.get('/speciality', doctorController.getDoctorsBySpeciality);
+router.get('/available-slots', doctorController.getAvailableSlots);
 
 module.exports = router;
